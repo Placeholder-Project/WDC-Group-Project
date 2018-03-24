@@ -1,0 +1,93 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  background-color: #ff8f2d;
+  border: none;
+  margin-bottom: 0;
+  border-radius: 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  font-family: Karla, sans-serif;
+}
+.collapse a {
+  color:white !important;
+}
+
+/* Set height of the grid*/
+.row.content {height: 450px}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #2e5ca5;
+  color: black;
+  padding: 50px;
+}
+
+/* On small screens, set height to 'auto' for grid */
+@media screen and (max-width: 767px) {
+  .row.content {height:auto;}
+}
+
+/* changing active colour*/
+.navbar-default .navbar-nav > .active{
+  color: #000;
+  background: #d65c14;
+}
+
+.button_details_booknow{
+  background-color:#ff8f2d;
+  color:white;
+  border:none;
+}
+
+body {
+  background-color: white;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
+}
+
+img.hotels {
+  width: 30%;
+  float:left;
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+
+}
+
+.imageinfo {
+  padding: 10px;
+}
+
+div.container-fluid.text-center{
+  max-width: 1100px;
+  background-color: white;
+}
+
+div#booking_your_hotel_div{
+  display:none;
+}
+div.lets_book_this_div{
+  display:none;
+}
+div.signup_div{
+  display:none;
+}
+div.login_div{
+  display:none;
+}
