@@ -1,15 +1,15 @@
 function write_confirmation() {
-	// write innerHTML of the variables in to the fields.
+	// write in to the spans of given id with corr. variables
 
-	document.getElementById("hotel_name").innerHTML = hotel_name;
-	document.getElementById("loc").innerHTML = hotel_location;
+	$("#hotel_name").html(hotel_name);
+	$("#loc").html(hotel_location);
 	assign_number_nights();
-	document.getElementById("n_nights").innerHTML = number_nights;
-	document.getElementById("n_adults").innerHTML = number_adults;
-	document.getElementById("n_children").innerHTML = number_children;
-	document.getElementById("arr_date").innerHTML = date_arrival;
-	document.getElementById("dep_date").innerHTML = date_departure;
-	document.getElementById("price_total").innerHTML = total_price;
+	$("#n_nights").html(number_nights);
+	$("#n_adults").html(number_adults);
+	$("#n_children").html(number_children);
+	$("#arr_date").html(date_arrival);
+	$("#dep_date").html(date_departure);
+	$("#price_total").html(total_price);
 
 }
 
