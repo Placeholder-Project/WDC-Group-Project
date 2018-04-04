@@ -15,6 +15,7 @@
 .row.content {height: 450px}
 
 /* Set black background color, white text and some padding */
+/* blue */
 footer {
   background-color: #2e5ca5;
   color: black;
@@ -27,6 +28,7 @@ footer {
 }
 
 /* changing active colour*/
+/* orange */
 .navbar-default .navbar-nav > .active{
   color: #000;
   background: #d65c14;

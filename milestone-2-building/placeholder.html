@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title>PLACEHOLDER</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,23 +10,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
-  <script type="text/javascript">
-    function book_details(){
-      document.getElementById("places_and_area_div").style.display = "none";
-      document.getElementById("booking_your_hotel_div").style.display = "block";
-    }
-    function book_now(){
-      document.getElementById("booking_your_hotel_div").style.display = "none";
-      document.getElementById("lets_book_this_div").style.display = "block";
-    }
-    function signup(){
-      document.getElementById("lets_book_this_div").style.display = "none";
-      document.getElementById("signup_div").style.display = "block";
-    }
-    function login(){
-      document.getElementById("lets_book_this_div").style.display = "none";
-      document.getElementById("login_div").style.display = "block";
-    }
+  <script type="text/javascript" src="placeholder.js">
+
   </script>
 
 </head>
@@ -44,14 +30,14 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#Back">Back</a></li>
-        <li class="active"><a href="#Home">Home</a></li>
-        <li><a href="#About">About</a></li>
-        <li><a href="#Contact">Contact</a></li>
+        <li onclick="backbuttonfunc()" id="back"><a href="#Back">Back</a></li>
+        <li class="active"><a href="#Home" id="home">Home</a></li>
+        <li><a href="#About" id="about">About</a></li>
+        <li><a href="#Contact" id="contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><button>Login</button></li>
-        <li><button>Sign-up</button></li>
+        <button>Login</button>
+        <button>Sign-up</button>
       </ul>
     </div>
   </div>
@@ -62,16 +48,15 @@
 <div class="container-fluid text-center" id="places_and_area_div">
   <div class="row content">
     <div class="col-sm-12 text-left">
-      <h3>Places in this area:</h3>
       <div class="col-md-12">
         <p class="imageinfo"><img src="hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <!--all onclick detail functions pass the name of the of the hotel-->
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('InterContinental')">Details</button>
-        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details()">Book Now</button>
+        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('InterContinental','Adelaide(CBD)',550)">Book Now</button>
         <div style="clear:both;"></div>
         <p class="imageinfo"><img src="hotel2.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton')">Details</button>
-        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details()">Book Now</button>
+        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('Hilton','Adelaide(CBD)',380)">Book Now</button>
       </div>
     </div>
   </div>
@@ -111,7 +96,7 @@
         <p>To: <input id="to_date" type="date"></p>
         <p>From: <input id="from_date" type="date"></p>
         <br>
-        <button onclick = "book_now()">Next</button>
+        <button onclick = "submit_details()">Submit</button>
       <hr>
     </div>
   </div>
@@ -131,34 +116,38 @@
 </div>
 
 <!-- Signup -->
-<div class="container-fluid col-sm-7 signup_div" id="signup_div">
-		<h1>Sign up for new account</h1>
-		<input class="form-control" type="text" name="fname" placeholder="First Name">
-		<br>
-		<input class="form-control" type="text" name="lname" placeholder="Last Name">
-		<br>
-		<input class="form-control" type="date" name="dob">
-		<br>
-		<input class="form-control" type="email" name="email" placeholder="Email">
-		<br>
-		<input class="form-control" type="password" name="pwd" placeholder="Password">
-		<br>
-		<input class="form-control" type="password" name="cpwd" placeholder="Confirm Password">
-		<br>
-		<input class="form-control" type="tel" name="number" placeholder="Contact Number">
-		<br>
-		<input type="submit" value="Submit">
-		<br>
+<div class="row">
+  <div class="container-fluid col-sm-7 signup_div row" id="signup_div">
+    <h1>Sign up for new account</h1>
+    <input class="form-control" type="text" name="fname" placeholder="First Name">
+    <br>
+    <input class="form-control" type="text" name="lname" placeholder="Last Name">
+    <br>
+    <input class="form-control" type="date" name="dob">
+    <br>
+    <input class="form-control" type="email" name="email" placeholder="Email">
+    <br>
+    <input class="form-control" type="password" name="pwd" placeholder="Password">
+    <br>
+    <input class="form-control" type="password" name="cpwd" placeholder="Confirm Password">
+    <br>
+    <input class="form-control" type="tel" name="number" placeholder="Contact Number">
+    <br>
+    <input type="submit" value="Submit">
+    <br>
+  </div>
 </div>
 
 <!-- Login -->
-<div class="container-fluid col-sm-3 login_div" id="login_div">
+<div class="row">
+  <div class="container-fluid col-sm-3 login_div" id="login_div">
 			<h1>Log in</h1>
-			<input class="form-control" type="email" name="email" placeholder="Email">
-			<br>
-			<input class="form-control" type="password" name="pwd" placeholder="Password">
-			<br>
-			<input type="submit" value="Submit">
+        <input class="form-control" type="email" name="email" placeholder="Email">
+        <br>
+        <input class="form-control" type="password" name="pwd" placeholder="Password">
+        <br>
+        <input type="submit" value="Submit">
+      </div>
 	</div>
 
 <!-- FOOTER -->
