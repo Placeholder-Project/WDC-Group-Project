@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Confirmation</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type = "text/css" href="header_footer.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- TODO: need to change to universal js file when merged -->
+	<script src="confirmation.js"></script>
+</head>
+
+<body>
+	<!-- HEADER -->
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Logo</a>
+	    </div>
+	    <div class="collapse navbar-collapse">
+	      <ul class="nav navbar-nav">
+	        <li><a href="#Back">Back</a></li>
+	        <li class="active"><a href="#Home">Home</a></li>
+	        <li><a href="#About">About</a></li>
+	        <li><a href="#Contact">Contact</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><button>Login</button></li>
+	        <li><button>Sign-up</button></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	<!-- CONTENT -->
+	<div class="container-fluid">
+		<div class="col-sm-7">
+			<h1>Booking Conformation</h1>
+
+			<ul class="list-group">
+				<li class="list-group-item">Name of hotel:		<span id="hotel_name"></span></li>
+				<li class="list-group-item">Location:			<span id="loc"></span></li>
+				<li class="list-group-item">No. nights:			<span id="n_nights"></span></li>
+				<li class="list-group-item">No. adults:			<span id="n_adults"></span></li>
+				<li class="list-group-item">No. children: 		<span id="n_children"></span></li>
+				<li class="list-group-item">Date of arrival:		<span id="arr_date"></span></li>
+				<li class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
+				<li class="list-group-item"><strong>TOTAL PRICE:	<span id="price_total"></strong></span></li>
+			</ul>
+
+			<!-- include onclick command in the input -->
+			<div  class="d-flex justify-content-between">
+				<input type="submit" value="Next">
+			</div>
+			<br>
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<footer class="container-fluid text-right">
+	  <p>Footer Text</span>
+	</footer>
+	<!-- TODO: change how this is called when this stuff becomes a div of the main page -->
+	<script>window.onload = write_confirmation()</script>
+</body>
+</html>
