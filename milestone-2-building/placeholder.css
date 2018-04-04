@@ -93,3 +93,6 @@ div.signup_div{
 div.login_div{
   display:none;
 }
+div#content_div{
+  display:none;
+}

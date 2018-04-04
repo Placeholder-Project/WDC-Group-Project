@@ -49,24 +49,12 @@
   <div class="row content">
     <div class="col-sm-12 text-left">
       <div class="col-md-12">
-        <p class="imageinfo">
-		<img src="hotel1.jpg" alt="Hotel 1" class="hotels">
-		<strong>Name: </strong> InterContinental 
-		<br><strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong>
-		<br><strong>Price: </strong>$550 per night
-		<br><strong>Location: </strong>Adelaide (CBD)
-	</p>
+        <p class="imageinfo"><img src="hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <!--all onclick detail functions pass the name of the of the hotel-->
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('InterContinental')">Details</button>
         <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('InterContinental','Adelaide(CBD)',550)">Book Now</button>
         <div style="clear:both;"></div>
-        <p class="imageinfo">
-		<img src="hotel2.jpg" alt="Hotel 1" class="hotels">
-		<strong>Name:</strong>Hilton
-		<br><strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong>
-		<br><strong>Price: </strong>$380 per night
-		<br><strong>Location: </strong>Adelaide (CBD)
-	</p>
+        <p class="imageinfo"><img src="hotel2.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton')">Details</button>
         <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('Hilton','Adelaide(CBD)',380)">Book Now</button>
       </div>
@@ -105,8 +93,8 @@
         </p>
 
         <h3>Dates:</h3>
-        <p>To: <input id="to_date" type="date"></p>
         <p>From: <input id="from_date" type="date"></p>
+        <p>To: <input id="to_date" type="date"></p>
         <br>
         <button onclick = "submit_details()">Submit</button>
       <hr>
@@ -145,7 +133,7 @@
     <br>
     <input class="form-control" type="tel" name="number" placeholder="Contact Number">
     <br>
-    <input type="submit" value="Submit">
+    <button type="button" name="button" onclick="submit_signup()">Submit</button>
     <br>
   </div>
 </div>
@@ -158,9 +146,35 @@
         <br>
         <input class="form-control" type="password" name="pwd" placeholder="Password">
         <br>
-        <input type="submit" value="Submit">
-      </div>
-	</div>
+        <button type="button" name="button" onclick="submit_login()">Submit</button>
+  </div>
+</div>
+
+<!-- CONFIRMATION -->
+<div class="container-fluid" id="content_div">
+  <div class="col-sm-7">
+    <h1>Booking Conformation</h1>
+
+    <ul class="list-group">
+      <li class="list-group-item">Name of hotel:		<span id="hotel_name"></span></li>
+      <li class="list-group-item">Location:			<span id="loc"></span></li>
+      <li class="list-group-item">No. nights:			<span id="n_nights"></span></li>
+      <li class="list-group-item">No. adults:			<span id="n_adults"></span></li>
+      <li class="list-group-item">No. children: 		<span id="n_children"></span></li>
+      <li class="list-group-item">Date of arrival:		<span id="arr_date"></span></li>
+      <li class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
+      <li class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total"></span></li>
+    </ul>
+
+    <!-- include onclick command in the input -->
+    <div  class="d-flex justify-content-between">
+      <input type="submit" value="Next">
+    </div>
+    <br>
+  </div>
+</div>
+
+
 
 <!-- FOOTER -->
 <footer class="container-fluid text-center">
