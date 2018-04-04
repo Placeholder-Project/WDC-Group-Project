@@ -93,6 +93,128 @@ div.signup_div{
 div.login_div{
   display:none;
 }
-div#content_div{
+div#confirmation_div{
+  display:none;
+}
+.back_button{
+  margin-top:10px;
+  margin-bottom:10px;
+  float:left;
+}
+
+#searchBar
+{
+  width: 750px;
+  height: 50px;
+  min-height: 50%;
+  min-width: 50%;
+  position: relative;
+  text-align: left;
+}
+#background
+{
+}
+#or
+{
+  float:center;
+  text-align: center;
+  font-size: 24px;
+  font-family: Rubik, sans-serif;
+  opacity: 0.9;
+  line-height: 2.5em;
+}
+#blankSpace1
+{
+  padding:8%;
+}
+.blankSpace
+{
+  padding-top:25%;
+}
+#deals
+{
+  text-align: left;
+}
+#mapsButton
+{
+  padding: 4px;
+  float:center;
+  border-radius: 8px;
+  font-size: 16px;
+  opacity: 0.9px;
+  font-family: Rubik, sans-serif;
+  white-space:nowrap;
+  width:auto;
+  height:auto;
+  overflow:visible;
+}
+#buttonText
+{
+  opacity: 0.9;
+  text-align: center;
+}
+#mapIcon
+{
+  font-size: 15px;
+}
+button em{
+    vertical-align:middle;
+    margin:0 2px;
+    display:inline-block;
+    width:25px;
+    height:25px;
+    background-image: url(Maps-icon.jpg);
+    background-size: 25px;
+
+}
+button em.rightImage{
+    background-position: -64px -16px;
+}
+.title
+{
+  font-family: Oxygen, sans-serif;
+  text-align: center;
+  display: inline;
+  font-size: 108px;
+  float: center;
+}
+.firstTitleColour
+{
+  color: darkgrey;
+}
+.secondTitleColour
+{
+  color: #2e5ca5;
+  opacity: 0.9;
+}
+.inline-block {
+   display: inline-block;
+}
+.img_size {
+  width: 230px;
+  height: 240px;
+  float: left;
+  margin-right: 50px;
+
+}
+.dealText
+{
+  font-family: Oxygen, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+#secondCity
+{
+  margin-left: 118px;
+}
+#thirdCity
+{
+  margin-left: 128px;
+}
+#places_and_area_div{
+  display:block;  
+}
+#search_div{
   display:none;
 }

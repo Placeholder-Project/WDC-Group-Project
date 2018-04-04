@@ -36,12 +36,12 @@ function login(){
 }
 function submit_signup(){
   $("#signup_div").hide();
-  $("#content_div").show();
+  $("#confirmation_div").show();
   write_confirmation();
 }
 function submit_login(){
   $("#login_div").hide();
-  $("#content_div").show();
+  $("#confirmation_div").show();
   write_confirmation();
 }
 
@@ -51,12 +51,13 @@ function write_confirmation() {
 	$("#hotel_name").html(hotel_name);
 	$("#loc").html(hotel_location);
   assign_number_nights();
+  total_price=price*number_nights;
 	$("#n_nights").html(number_nights);
 	$("#n_adults").html(number_adults);
 	$("#n_children").html(number_children);
 	$("#arr_date").html(date_arrival);
 	$("#dep_date").html(date_departure);
-	$("#price_total").html(total_price);
+	$("#price_total").html("$"+total_price);
 }
 
 function assign_number_nights() {
@@ -77,4 +78,29 @@ function days_between(t1, t2) {
 	    d1 = Math.floor(t1 / cd),
 	    d2 = Math.floor(t2 / cd);
 	return (d2-d1);
+}
+
+function back_button_hotels(){
+  $("#places_and_area_div").hide();
+  $("#search_div").show();
+}
+function back_button_booking_details(){
+  $("#booking_your_hotel_div").hide();
+  $("#places_and_area_div").show();
+}
+function back_button_login_signup(){
+  $("#lets_book_this_div").hide();
+  $("#booking_your_hotel_div").show();
+}
+function back_button_signup(){
+  $("#signup_div").hide();
+  $("#lets_book_this_div").show();
+}
+function back_button_login(){
+  $("#login_div").hide();
+  $("#lets_book_this_div").show();
+}
+function back_button_confirmation(){
+  $("#confirmation_div").hide();
+  $("#lets_book_this_div").show();
 }

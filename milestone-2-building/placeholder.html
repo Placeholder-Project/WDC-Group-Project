@@ -17,31 +17,62 @@
 </head>
 <body>
 
-<!-- HEADER -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
+
+<!-- SEARCH -->
+
+<div class="container-fluid text-center" id="search_div">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li onclick="backbuttonfunc()" id="back"><a href="#Back">Back</a></li>
-        <li class="active"><a href="#Home" id="home">Home</a></li>
-        <li><a href="#About" id="about">About</a></li>
-        <li><a href="#Contact" id="contact">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <button>Login</button>
-        <button>Sign-up</button>
-      </ul>
+    <div class="col-sm-8 text-center">
+      <div id = "blankSpace1">
+
+      </div>
+      <div>
+        <h1 class = "title"><span class = "firstTitleColour">place</span><span class = "secondTitleColour">holder</span></h1>
+      </div>
+      <hr />
+        <div>
+            <input id = "searchBar" type="text" placeholder="Search..">
+        </div>
+        <div>
+            <p id = "or"> or</p>
+        </div>
+        <div>
+            <button id = "mapsButton"> <span id = "buttonText">maps</span><i id = "mapIcon" class="material-icons">place</i></button>
+        </div>
+        <div class = "blankSpace">
+
+        </div>
+        <div>
+          <h2 id =  "deals">Top destinations</h2>
+          <hr />
+          <div style="float:left;">
+            <div class="inline-block">
+             <img class = "img_size" src ="adelaide.jpg">
+            </div>
+
+          <div class="inline-block">
+            <img class = "img_size" src ="sydney.jpg">
+          </div>
+
+          <div class="inline-block">
+             <img class = "img_size" src ="melbourne.jpg">
+          </div>
+          </div>
+          <div>
+            <p class = "dealText"> Adelaide (avg. $185) <span id = "secondCity"> Sydney (avg. $201) </span> <span id = "thirdCity"> Melbourne (avg. $190) </span> </p>
+          </div>
+          <div class = "blankSpace">
+          </div>
+        </div>
+    </div>
+    <div class="col-sm-2 sidenav">
     </div>
   </div>
-</nav>
+</div>
+
+
 
 <!-- Places in this area page -->
 
@@ -49,6 +80,7 @@
   <div class="row content">
     <div class="col-sm-12 text-left">
       <div class="col-md-12">
+        <h1>Hotels</h1>
         <p class="imageinfo"><img src="hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <!--all onclick detail functions pass the name of the of the hotel-->
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('InterContinental')">Details</button>
@@ -57,10 +89,11 @@
         <p class="imageinfo"><img src="hotel2.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton')">Details</button>
         <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('Hilton','Adelaide(CBD)',380)">Book Now</button>
+        <br>
       </div>
     </div>
   </div>
-  <hr>
+  <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotels()">Back</button>
 </div>
 
 <!-- Booking details -->
@@ -97,13 +130,17 @@
         <p>To: <input id="to_date" type="date"></p>
         <br>
         <button onclick = "submit_details()">Submit</button>
+        <br>
+        <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_booking_details()">Back</button>
+        <br>
+        <br>
       <hr>
     </div>
   </div>
 </div>
 
 <!-- Let's book this -->
-<div class="lets_book_this_div" id="lets_book_this_div">
+<div class="lets_book_this_div container-fluid" id="lets_book_this_div">
   <div class="row content">
     <div class="col-sm-12 text-center">
       <h3>Let's book this!</h3>
@@ -111,50 +148,57 @@
       <p>or</p>
       <button type="button" class="btn btn-default button_details_booknow" onclick="signup()">Sign Up</button>
       <br>
+      <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_login_signup()">Back</button>
     </div>
   </div>
 </div>
 
 <!-- Signup -->
 <div class="row">
-  <div class="container-fluid col-sm-7 signup_div row" id="signup_div">
-    <h1>Sign up for new account</h1>
-    <input class="form-control" type="text" name="fname" placeholder="First Name">
-    <br>
-    <input class="form-control" type="text" name="lname" placeholder="Last Name">
-    <br>
-    <input class="form-control" type="date" name="dob">
-    <br>
-    <input class="form-control" type="email" name="email" placeholder="Email">
-    <br>
-    <input class="form-control" type="password" name="pwd" placeholder="Password">
-    <br>
-    <input class="form-control" type="password" name="cpwd" placeholder="Confirm Password">
-    <br>
-    <input class="form-control" type="tel" name="number" placeholder="Contact Number">
-    <br>
-    <button type="button" name="button" onclick="submit_signup()">Submit</button>
-    <br>
+  <div class="container-fluid">
+    <div class="container-fluid col-sm-7 signup_div " id="signup_div">
+      <h1>Sign up for new account</h1>
+      <input class="form-control" type="text" name="fname" placeholder="First Name">
+      <br>
+      <input class="form-control" type="text" name="lname" placeholder="Last Name">
+      <br>
+      <input class="form-control" type="date" name="dob">
+      <br>
+      <input class="form-control" type="email" name="email" placeholder="Email">
+      <br>
+      <input class="form-control" type="password" name="pwd" placeholder="Password">
+      <br>
+      <input class="form-control" type="password" name="cpwd" placeholder="Confirm Password">
+      <br>
+      <input class="form-control" type="tel" name="number" placeholder="Contact Number">
+      <br>
+      <button type="button" name="button" onclick="submit_signup()">Submit</button>
+      <br>
+      <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_signup()">Back</button>
+    </div>
   </div>
 </div>
 
 <!-- Login -->
 <div class="row">
-  <div class="container-fluid col-sm-3 login_div" id="login_div">
-			<h1>Log in</h1>
-        <input class="form-control" type="email" name="email" placeholder="Email">
-        <br>
-        <input class="form-control" type="password" name="pwd" placeholder="Password">
-        <br>
-        <button type="button" name="button" onclick="submit_login()">Submit</button>
+  <div class="container-fluid">
+    <div class=" col-sm-3 login_div" id="login_div">
+        <h1>Log in</h1>
+          <input class="form-control" type="email" name="email" placeholder="Email">
+          <br>
+          <input class="form-control" type="password" name="pwd" placeholder="Password">
+          <br>
+          <button type="button" name="button" onclick="submit_login()">Submit</button>
+          <br>
+          <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_login()">Back</button>
+    </div>
   </div>
 </div>
 
 <!-- CONFIRMATION -->
-<div class="container-fluid" id="content_div">
+<div class="container-fluid" id="confirmation_div">
   <div class="col-sm-7">
-    <h1>Booking Conformation</h1>
-
+    <h1>Booking Confirmation</h1>
     <ul class="list-group">
       <li class="list-group-item">Name of hotel:		<span id="hotel_name"></span></li>
       <li class="list-group-item">Location:			<span id="loc"></span></li>
@@ -170,6 +214,8 @@
     <div  class="d-flex justify-content-between">
       <input type="submit" value="Next">
     </div>
+    <br>
+    <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_confirmation()">Back</button>
     <br>
   </div>
 </div>
