@@ -2,22 +2,19 @@ html{
   position:relative;
   min-height: 100%;
 }
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-    background-color: #ff8f2d;
-    border: none;
-    margin-bottom: 0;
-    border-radius: 0;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    font-family: Karla, sans-serif;
+.float-right
+{
+  font-family: Karla, sans-serif;
+  float:right;
 }
-.collapse a {
-    color:lightgray !important;
+#home{
+  font-family: Karla, sans-serif;
+  float: left;
+  margin-left: 10px;
 }
 
 /* Set height of the grid*/
 .row.content {height: 450px}
-
 
 footer {
     font-family: Karla, sans-serif;
@@ -34,10 +31,4 @@ footer {
 /* On small screens, set height to 'auto' for grid */
 @media screen and (max-width: 767px) {
     .row.content {height:auto;}
-}
-
-/* changing active colour*/
-.navbar-default .navbar-nav > .active{
-    color: #000;
-    background: #d65c14;
 }
