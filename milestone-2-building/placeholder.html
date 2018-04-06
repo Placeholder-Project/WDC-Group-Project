@@ -17,10 +17,15 @@
 </head>
 <body>
 
+<nav>
+  <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
+  <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
+  <button onclick="go_home()" class = "btn btn-default" id = "buttonhome"><span id = "home"> Home </span></button>
+</nav>
 
 <!-- SEARCH -->
 
-<div class="container-fluid text-center" id="search_div">
+<div class="container-fluid text-center feature_page" id="search_div">
   <div class="row content">
     <div class="col-sm-2 sidenav">
     </div>
@@ -76,18 +81,19 @@
 
 <!-- Places in this area page -->
 
-<div class="container-fluid text-center" id="places_and_area_div">
+<div class="container-fluid text-center feature_page" id="places_and_area_div">
   <div class="row content">
     <div class="col-sm-12 text-left">
       <div class="col-md-12">
         <h1>Hotels</h1>
         <p class="imageinfo"><img src="hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <!--all onclick detail functions pass the name of the of the hotel-->
-        <button type="button" class="btn btn-default button_details_booknow" onclick="details('InterContinental')">Details</button>
+        <button type="button" class="btn btn-default button_details_booknow" onclick="details('InterContinental','Adelaide(CBD)',550,'hotel1.jpg')">Details</button>
         <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('InterContinental','Adelaide(CBD)',550)">Book Now</button>
         <div style="clear:both;"></div>
-        <p class="imageinfo"><img src="hotel2.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
-        <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton')">Details</button>
+
+        <p class="imageinfo"><img src="hotel2.jpg" alt="Hotel 2" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
+        <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton','Adelaide(CBD)',380,'hotel2.jpg')">Details</button>
         <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('Hilton','Adelaide(CBD)',380)">Book Now</button>
         <br>
       </div>
@@ -96,8 +102,29 @@
   <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotels()">Back</button>
 </div>
 
+<!-- Details of hotels -->
+
+<div class="container-fluid" id="hotel_details_div">
+  <h1 id = "name_details"></h1>
+  <p class="imageinfo"><img id ="image_details" src="hotel1.jpg" alt="Hotel 1" class="hotels">
+    <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong>
+    <br><strong>Price: </strong><span id = "price_details">$ </span> per night
+    <br><strong>Location: </strong> <span id = "location_details"></span>
+    <br><strong>Other info: </strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ilpa qui officia deserunt mollit anim id est laborum.
+    <br><span id="misc_info"></span>
+  </p>
+
+
+  <!-- include onclick command in the input -->
+  <div  class="d-flex justify-content-between">
+    <button class="btn btn-default" id = "book_now_from_details" onclick="book_now_button_detials()">Book Now</button>
+  </div>
+  <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotel_details()">Back</button>
+  <br>
+</div>
+
 <!-- Booking details -->
-<div class="container-fluid text-center" id = "booking_your_hotel_div">
+<div class="container-fluid text-center feature_page" id = "booking_your_hotel_div">
   <div class="row content">
     <div class="col-sm-12 text-center">
       <h1>Booking details</h1>
@@ -129,7 +156,7 @@
         <p>From: <input id="from_date" type="date"></p>
         <p>To: <input id="to_date" type="date"></p>
         <br>
-        <button onclick = "submit_details()">Submit</button>
+        <button class="btn btn-default" onclick = "submit_details()">Submit</button>
         <br>
         <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_booking_details()">Back</button>
         <br>
@@ -140,7 +167,7 @@
 </div>
 
 <!-- Let's book this -->
-<div class="lets_book_this_div container-fluid" id="lets_book_this_div">
+<div class="lets_book_this_div container-fluid feature_page" id="lets_book_this_div">
   <div class="row content">
     <div class="col-sm-12 text-center">
       <h3>Let's book this!</h3>
@@ -172,7 +199,7 @@
       <br>
       <input class="form-control" type="tel" name="number" placeholder="Contact Number">
       <br>
-      <button type="button" name="button" onclick="submit_signup()">Submit</button>
+      <button type="button" name="button" class="btn btn-default" onclick="submit_signup()">Submit</button>
       <br>
       <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_signup()">Back</button>
     </div>
@@ -188,7 +215,7 @@
           <br>
           <input class="form-control" type="password" name="pwd" placeholder="Password">
           <br>
-          <button type="button" name="button" onclick="submit_login()">Submit</button>
+          <button type="button" name="button" class="btn btn-default" onclick="submit_login()">Submit</button>
           <br>
           <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_login()">Back</button>
     </div>
@@ -212,6 +239,7 @@
 
     <!-- include onclick command in the input -->
     <div  class="d-flex justify-content-between">
+
       <input type="submit" value="Next">
     </div>
     <br>
