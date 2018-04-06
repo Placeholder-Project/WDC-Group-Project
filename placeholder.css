@@ -1,0 +1,256 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  background-color: #ff8f2d;
+  border: none;
+  margin-bottom: 0;
+  border-radius: 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  font-family: Karla, sans-serif;
+}
+.collapse a {
+  color:white !important;
+}
+
+/* Set height of the grid*/
+.row.content {height: 450px}
+
+/* Set black background color, white text and some padding */
+/* blue */
+footer {
+    font-family: Karla, sans-serif;
+    background-color: #2e5ca5;
+    color: white;
+    padding: 30px;
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:75px;
+}
+
+/* On small screens, set height to 'auto' for grid */
+@media screen and (max-width: 767px) {
+  .row.content {height:auto;}
+}
+
+/* changing active colour*/
+/* orange */
+.navbar-default .navbar-nav > .active{
+  color: #000;
+  background: #d65c14;
+}
+
+.button_details_booknow{
+  background-color:#ff8f2d;
+  color:white;
+  border:none;
+}
+
+body {
+  background-color: white;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
+}
+
+img.hotels {
+  width: 30%;
+  float:left;
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+
+}
+
+.imageinfo {
+  padding: 10px;
+}
+
+div.container-fluid.text-center{
+  max-width: 1100px;
+  background-color: white;
+}
+
+div#booking_your_hotel_div{
+  display:none;
+}
+div.lets_book_this_div{
+  display:none;
+}
+div.signup_div{
+  display:none;
+}
+div.login_div{
+  display:none;
+}
+.login_sign-up
+{
+  margin-top:10px;
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+  float:right;
+}
+#home{
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+  float: left;
+}
+#buttonhome{
+  margin-top:10px;
+  margin-left:10px;
+}
+div#confirmation_div{
+  display:none;
+}
+.back_button{
+  margin-top:10px;
+  margin-bottom:10px;
+  float:left;
+}
+
+#searchBar
+{
+  width: 750px;
+  height: 50px;
+  min-height: 50%;
+  min-width: 50%;
+  position: relative;
+  text-align: left;
+}
+#background
+{
+}
+#or
+{
+  float:center;
+  text-align: center;
+  font-size: 24px;
+  font-family: Rubik, sans-serif;
+  opacity: 0.9;
+  line-height: 2.5em;
+}
+#blankSpace1
+{
+  padding:8%;
+}
+.blankSpace
+{
+  padding-top:25%;
+}
+#deals
+{
+  text-align: left;
+}
+#mapsButton
+{
+  padding: 4px;
+  float:center;
+  border-radius: 8px;
+  font-size: 16px;
+  opacity: 0.9px;
+  font-family: Rubik, sans-serif;
+  white-space:nowrap;
+  width:auto;
+  height:auto;
+  overflow:visible;
+}
+#buttonText
+{
+  opacity: 0.9;
+  text-align: center;
+}
+#mapIcon
+{
+  font-size: 15px;
+}
+button em{
+    vertical-align:middle;
+    margin:0 2px;
+    display:inline-block;
+    width:25px;
+    height:25px;
+    background-image: url(Maps-icon.jpg);
+    background-size: 25px;
+
+}
+button em.rightImage{
+    background-position: -64px -16px;
+}
+.title
+{
+  font-family: Oxygen, sans-serif;
+  text-align: center;
+  display: inline;
+  font-size: 108px;
+  float: center;
+}
+.firstTitleColour
+{
+  color: darkgrey;
+}
+.secondTitleColour
+{
+  color: #2e5ca5;
+  opacity: 0.9;
+}
+.inline-block {
+   display: inline-block;
+}
+.img_size {
+  width: 230px;
+  height: 240px;
+  float: left;
+  margin-right: 50px;
+
+}
+.dealText
+{
+  font-family: Oxygen, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+#secondCity
+{
+  margin-left: 118px;
+}
+#thirdCity
+{
+  margin-left: 128px;
+}
+#places_and_area_div{
+  display:block;
+}
+#search_div{
+  display:none;
+}
+#su{
+  margin-right:10px
+}
+#hotel_details_div{
+  display:none;
+}
+#placeholdertext{
+  float:left;
+  margin:20px;
+  font-family: Oxygen, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+}
