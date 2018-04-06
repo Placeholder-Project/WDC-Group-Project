@@ -104,7 +104,7 @@
 
 <!-- Details of hotels -->
 
-<div class="container-fluid" id="hotel_details_div">
+<div class="container-fluid feature_page" id="hotel_details_div">
   <h1 id = "name_details"></h1>
   <p class="imageinfo"><img id ="image_details" src="hotel1.jpg" alt="Hotel 1" class="hotels">
     <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong>
@@ -236,12 +236,7 @@
       <li class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
       <li class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total"></span></li>
     </ul>
-
-    <!-- include onclick command in the input -->
-    <div  class="d-flex justify-content-between">
-
-      <input type="submit" value="Next">
-    </div>
+    <button type="button" name="button" class="btn btn-default" onclick="button_confirmation()">Confirm</button>
     <br>
     <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_confirmation()">Back</button>
     <br>

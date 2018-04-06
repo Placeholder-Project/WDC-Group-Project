@@ -168,7 +168,7 @@ function back_button_hotel_details(){
 }
 
 function go_home(){
-  //$("div").hide();
+  //$("div#feature#signup_div#login_div").hide();
   //$("#search_div").show();
 }
 function signup_button(){
@@ -195,6 +195,7 @@ function write_misc_info() {
   [misc_attr[0], misc_attr[2], misc_attr[4]].join(" : ");
 }
 
+// fill in areas of each hotel independantly
 
 function details(placename,location,price,img){
   Placename=placename;
@@ -207,9 +208,15 @@ function details(placename,location,price,img){
   $("#price_details").html("$"+price);
   $("#location_details").html(location);
 
+// book now button does the same as book_details button
 
 }
 function book_now_button_detials(){
   book_details(Placename,Locations,Hotelprice);
   $("#hotel_details_div").hide();
+}
+
+function button_confirmation(){
+  $("#confirmation_div").hide();
+  $("#places_and_area_div").show();
 }
