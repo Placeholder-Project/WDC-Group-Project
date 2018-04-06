@@ -246,3 +246,11 @@ button em.rightImage{
 #hotel_details_div{
   display:none;
 }
+#placeholdertext{
+  float:left;
+  margin:20px;
+  font-family: Oxygen, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+}
