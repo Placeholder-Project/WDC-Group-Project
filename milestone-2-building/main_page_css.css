@@ -29,7 +29,7 @@
 }
 .blankSpace2
 {
-  padding:15%;
+  padding:10%;
 }
 #deals
 {
@@ -87,20 +87,13 @@ button em.rightImage{
   color: #2e5ca5;
   opacity: 0.9;
 }
-.inline-block {
+.float-left {
    float: left;
-
-}
-.picspace
-{
-
 }
 .img_size {
   width: 230px;
   height: 240px;
   margin-right: 8vh;
-
-
 }
 .dealText
 {
