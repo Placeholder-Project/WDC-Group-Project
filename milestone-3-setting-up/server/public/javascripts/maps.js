@@ -1,3 +1,4 @@
+
 var focus = {lat:-27, lng: 133.7751};
 function initMap(){
   map = new google.maps.Map(document.getElementById('map_aus'), {
@@ -13,8 +14,9 @@ function initMap(){
 
 }
 
-function pass_hotel_array(){
-  var hotels_array = hotels_from_search();
+
+function pass_hotel_array(search_word){
+  var hotels_array = hotels_from_search(search_word);
   add_markers(hotels_array);
 }
 

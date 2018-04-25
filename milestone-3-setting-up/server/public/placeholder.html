@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="javascripts/placeholder.js"></script>
   <script src="javascripts/maps.js"></script>
+  <script src="javascripts/hotels.js"></script>
 
 
 </head>
@@ -66,19 +67,16 @@
           <div class = "float-left">
 
             <div class = "float-left">
-              <p class = "dealText"> Adelaide <span class = "small-text">(avg. $185)<span> </p>
+              <p class = "dealText"> Adelaide <span class = "small-text">(avg. $185)</span> </p>
              <img class = "img_size img-responsive" src ="images/adelaide.jpg" alt="Adelaide">
             </div>
-            <div id = "blankSpace1">
 
-            </div>
-
-          <p class = "dealText"> Sydney <span class = "small-text">(avg. $201)<span> </p>
+          <p class = "dealText"> Sydney <span class = "small-text">(avg. $201)</span> </p>
           <div class = "float-left">
             <img class = "img_size img-responsive" src ="images/sydney.jpg" alt="Sydney">
           </div>
 
-          <p class = "dealText"> Melbourne <span class = "small-text">(avg. $190)<span> </p>
+          <p class = "dealText"> Melbourne <span class = "small-text">(avg. $190)</span> </p>
           <div class = "float-left">
              <img class = "img_size img-responsive" src ="images/melbourne.jpg" alt="Melbourne">
              <div class = "blankSpace3">
@@ -107,7 +105,7 @@
         <div class = "ui-widget">
             <input id = "searchLocation" type="text" placeholder="Location">
         </div>
-        <button id = "map_search_button" type="submit"><i class="fa fa-search"></i></button>
+        <button id = "map_search_button" onclick = "pass_hotel_array(document.getElementById('searchLocation').value)" type="submit"><i class="fa fa-search"></i></button>
 
         <br>
         <div class = "inline-block" id="map_aus">
