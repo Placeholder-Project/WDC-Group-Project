@@ -14,7 +14,6 @@ function initMap(){
 
 }
 
-
 function pass_hotel_array(search_word){
   var hotels_array = hotels_from_search(search_word);
   add_markers(hotels_array);
@@ -22,10 +21,17 @@ function pass_hotel_array(search_word){
 
 function add_markers(hotels_array){
   function marker(location, name, city, price, features, stars, img_src, description) {
-
+    name = "blh";
+    city = "adf";
+    price = 200;
+    img_src = "images/hotel2.jpg";
     var content = "<h4>"+ name +"</h4><p><strong>Location: </strong>"+city+
     "<br><strong>Price: </strong>"+price+
-    "<br><br><strong>Other info: </strong></p>";
+    "<br>"+
+    "<button type='button' class='btn btn-default button_details_booknow' onclick='details( "+name+","+city+","+price+","+img_src+")'>Details</button>"+
+    "<button type='button' class='btn btn-default button_details_booknow' onclick='book_details("+name+","+city+","+price+")'>Book Now</button>";
+
+
 
     var marker = new google.maps.Marker({
       position : location,

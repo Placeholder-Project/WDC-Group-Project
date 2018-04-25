@@ -112,6 +112,7 @@ div#confirmation_div{
   border-right: none;
   float: left;
   width: 80%;
+  height: 40px;
 
   position: relative;
   z-index: 1;
@@ -281,6 +282,7 @@ button em.rightImage{
   cursor: pointer;
   position: relative;
   z-index: 1;
+  height: 40px;
 }
 #map_search_button {
   float: left;

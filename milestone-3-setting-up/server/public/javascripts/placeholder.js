@@ -207,6 +207,7 @@ function write_misc_info() {
 // fill in areas of each hotel independantly
 
 function details(placename,location,price,img){
+  alert(1);
   Placename=placename;
   Locations=location;
   Hotelprice=price;
