@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css">
+  <link rel="stylesheet" type = "text/css" href="stylesheets/maps.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
-  <script src="javascripts/placeholder.js">
-
-  </script>
+  <script src="javascripts/placeholder.js"></script>
+  <script src="javascripts/maps.js"></script>
 
 </head>
 <body>
@@ -46,7 +46,7 @@
             <p id = "or"> or</p>
         </div>
         <div>
-            <button id = "mapsButton"> <span id = "buttonText">maps</span><i id = "mapIcon" class="material-icons">place</i></button>
+            <button id = "mapsButton" onclick="go_to_maps()"> <span id = "buttonText">maps</span><i id = "mapIcon" class="material-icons">place</i></button>
         </div>
         <div class = "blankSpace">
 
@@ -78,6 +78,33 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!-- Map -->
+
+<div class="container-fluid text-center feature_page" id="maps_div">
+  <div class="row content">
+    <div class="col-sm-12 text-left">
+      <div class="col-md-12">
+        <br>
+        <div>
+            <input id = "searchLocation" type="text" placeholder="Location">
+        </div>
+        <br>
+        <div id="map_aus">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotels()">Back</button>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPddoWkAKPv38fhVilIs6ho1_XtsbLAno&callback=initMap">
+  </script>
+</div>
+
 
 
 

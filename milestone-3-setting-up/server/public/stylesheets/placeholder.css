@@ -10,7 +10,10 @@
 .collapse a {
   color:white !important;
 }
-
+html{
+  position:relative;
+  min-height: 100%;
+}
 /* Set height of the grid*/
 .row.content {height: 450px}
 
@@ -127,8 +130,8 @@ div#confirmation_div{
 #searchBar
 {
   width: 750px;
-  height: 50px;
-  min-height: 50%;
+  height: 10px;
+  min-height: 5%;
   min-width: 50%;
   position: relative;
   text-align: left;
@@ -235,10 +238,13 @@ button em.rightImage{
   margin-left: 128px;
 }
 #places_and_area_div{
-  display:block;
+  display:none;
+}
+#maps_div{
+  display:none;
 }
 #search_div{
-  display:none;
+  display:block;
 }
 #su{
   margin-right:10px

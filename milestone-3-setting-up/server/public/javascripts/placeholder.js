@@ -26,14 +26,12 @@ function book_details(hotel, location, night_price){
   $("#booking_your_hotel_div").show();
 }
 
-//  NUMBER OF PEOPLE AND DATE PAGE
+////////////////// NUMBER OF PEOPLE AND DATE PAGE //////////////////
 function submit_details(){
   number_adults = $("#adult_number option:selected").text();
   number_children = $("#child_number option:selected").text();
   date_arrival = $("#from_date").val();
   date_departure = $("#to_date").val();
-
-  // ERROR HERE - WONT SEND DETAILS ????????
 
   $("#booking_your_hotel_div").hide();
   if (submit_l_s==1){
@@ -95,7 +93,7 @@ function write_confirmation() {
 }
 
 
-
+////////////////// NUMBER OF NIGHTS CALCULATOR //////////////////
 
 function assign_number_nights() {
 	var t1 = toDate(date_arrival),
@@ -119,8 +117,7 @@ function days_between(t1, t2) {
 
 
 
-
-
+////////////////// BACK BUTTONS //////////////////
 
 function back_button_hotels(){
   $("#places_and_area_div").hide();
@@ -167,6 +164,10 @@ function back_button_hotel_details(){
   $("#places_and_area_div").show();
 }
 
+
+
+////////////////// OTHER BUTTONS //////////////////
+
 function go_home(){
   //$("div#feature#signup_div#login_div").hide();
   //$("#search_div").show();
@@ -186,6 +187,14 @@ function login_button(){
   $("#login_div").show();
   l_s = 1;
 }
+
+function go_to_maps(){
+  //stores the id of the previous page
+  $("#search_div").hide();
+  $("#maps_div").show();
+
+}
+
 
 
 // for details page
