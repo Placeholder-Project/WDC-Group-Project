@@ -229,3 +229,23 @@ function button_confirmation(){
   $("#confirmation_div").hide();
   $("#places_and_area_div").show();
 }
+//autocomplete
+
+$( function() {
+  var cities = [
+    "Adelaide",
+    "Sydney",
+    "Brisbane",
+    "Melbourne",
+    "Canberra",
+    "Perth",
+    "Hobart",
+    "Darwin"
+  ];
+  $( "#searchBar" ).autocomplete({
+    source: cities
+  });
+  $( "#searchLocation" ).autocomplete({
+    source: cities
+  });
+} );
