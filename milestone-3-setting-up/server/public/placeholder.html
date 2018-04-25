@@ -10,20 +10,25 @@
   <link rel="stylesheet" type = "text/css" href="stylesheets/maps.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla%7COxygen%7CRubik">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="javascripts/placeholder.js"></script>
   <script src="javascripts/maps.js"></script>
+
 
 </head>
 <body>
 
-<nav>
+<header>
   <!-- acts as home button -->
   <p id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></p>
 
   <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
   <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
-</nav>
+</header>
 
 <!-- SEARCH -->
 
@@ -39,11 +44,15 @@
         <h1 class = "title"><span class = "firstTitleColour">place</span><span class = "secondTitleColour">holder</span></h1>
       </div>
       <hr />
-        <div>
-            <input id = "searchBar" type="text" placeholder="Search..">
+
+
+        <div class = "ui-widget">
+            <input id = "searchBar" placeholder="Search..">
+
         </div>
+        <button id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
         <div>
-            <p id = "or"> or</p>
+          <p id = "or"> or</p>
         </div>
         <div>
             <button id = "mapsButton" onclick="go_to_maps()"> <span id = "buttonText">maps</span><i id = "mapIcon" class="material-icons">place</i></button>
@@ -54,30 +63,36 @@
         <div>
           <h2 id =  "deals">Top destinations</h2>
           <hr />
-          <div style="float:left;">
-            <div class="inline-block">
-             <img class = "img_size" src ="images/adelaide.jpg" alt="Adelaide">
+          <div class = "float-left">
+
+            <div class = "float-left">
+              <p class = "dealText"> Adelaide <span class = "small-text">(avg. $185)<span> </p>
+             <img class = "img_size img-responsive" src ="images/adelaide.jpg" alt="Adelaide">
+            </div>
+            <div id = "blankSpace1">
+
             </div>
 
-          <div class="inline-block">
-            <img class = "img_size" src ="images/sydney.jpg" alt="Sydney">
+          <p class = "dealText"> Sydney <span class = "small-text">(avg. $201)<span> </p>
+          <div class = "float-left">
+            <img class = "img_size img-responsive" src ="images/sydney.jpg" alt="Sydney">
           </div>
 
-          <div class="inline-block">
-             <img class = "img_size" src ="images/melbourne.jpg" alt="Melbourne">
+          <p class = "dealText"> Melbourne <span class = "small-text">(avg. $190)<span> </p>
+          <div class = "float-left">
+             <img class = "img_size img-responsive" src ="images/melbourne.jpg" alt="Melbourne">
+             <div class = "blankSpace3">
+             </div>
           </div>
-          </div>
-          <div>
-            <p class = "dealText"> Adelaide (avg. $185) <span id = "secondCity"> Sydney (avg. $201) </span> <span id = "thirdCity"> Melbourne (avg. $190) </span> </p>
-          </div>
-          <div class = "blankSpace">
           </div>
         </div>
+
     </div>
     <div class="col-sm-2 sidenav">
     </div>
   </div>
 </div>
+
 
 
 
@@ -89,11 +104,13 @@
     <div class="col-sm-12 text-left">
       <div class="col-md-12">
         <br>
-        <div>
+        <div class = "ui-widget">
             <input id = "searchLocation" type="text" placeholder="Location">
         </div>
+        <button id = "map_search_button" type="submit"><i class="fa fa-search"></i></button>
+
         <br>
-        <div id="map_aus">
+        <div class = "inline-block" id="map_aus">
 
         </div>
       </div>
@@ -146,7 +163,7 @@
 
   <!-- include onclick command in the input -->
   <div  class="d-flex justify-content-between">
-    <button class="btn btn-default" id = "book_now_from_details" onclick="book_now_button_detials()">Book Now</button>
+    <button class="btn btn-default" id = "book_now_from_details" onclick="book_now_button_details()">Book Now</button>
   </div>
   <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotel_details()">Back</button>
   <br>
