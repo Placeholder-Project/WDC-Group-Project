@@ -1,15 +1,4 @@
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-  background-color: #ff8f2d;
-  border: none;
-  margin-bottom: 0;
-  border-radius: 0;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
-  font-family: Karla, sans-serif;
-}
-.collapse a {
-  color:white !important;
-}
+
 html{
   position:relative;
   min-height: 100%;
@@ -36,12 +25,6 @@ footer {
   .row.content {height:auto;}
 }
 
-/* changing active colour*/
-/* orange */
-.navbar-default .navbar-nav > .active{
-  color: #000;
-  background: #d65c14;
-}
 
 .button_details_booknow{
   background-color:#ff8f2d;
@@ -56,12 +39,6 @@ body {
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {height: 450px}
 
-/* Set gray background color and 100% height */
-.sidenav {
-  padding-top: 20px;
-  background-color: #f1f1f1;
-  height: 100%;
-}
 
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -129,15 +106,15 @@ div#confirmation_div{
 
 #searchBar
 {
-  width: 750px;
-  height: 10px;
-  min-height: 5%;
-  min-width: 50%;
+  padding: 10px;
+  font-size: 17px;
+  border: 0.25px solid grey;
+  border-right: none;
+  float: left;
+  width: 80%;
+
   position: relative;
-  text-align: left;
-}
-#background
-{
+  z-index: 1;
 }
 #or
 {
@@ -147,14 +124,23 @@ div#confirmation_div{
   font-family: Rubik, sans-serif;
   opacity: 0.9;
   line-height: 2.5em;
+  color: white;
 }
 #blankSpace1
 {
-  padding:8%;
+  padding:12%;
 }
 .blankSpace
 {
-  padding-top:25%;
+  padding-top:30%;
+}
+.blankSpace2
+{
+  padding:10%;
+}
+.blankSpace3
+{
+  padding: 20%;
 }
 #deals
 {
@@ -216,26 +202,39 @@ button em.rightImage{
    display: inline-block;
 }
 .img_size {
-  width: 230px;
-  height: 240px;
-  float: left;
-  margin-right: 50px;
+  width: 100%;
+  height: auto;
+  margin-right: 10vh;
 
 }
 .dealText
 {
   font-family: Oxygen, sans-serif;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
   text-align: left;
 }
+.float-left {
+   float: left;
+}
+.small-text {
+   font-size: 18px;
+}
+
+.container{
+  width: 100%;
+  padding-right: 120px; //whatever you want
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 #secondCity
 {
-  margin-left: 118px;
+  margin-left: 13.5%;
 }
 #thirdCity
 {
-  margin-left: 128px;
+  margin-left: 14.5%;
 }
 #places_and_area_div{
   display:none;
@@ -254,9 +253,51 @@ button em.rightImage{
 }
 #placeholdertext{
   float:left;
-  margin:20px;
+  position:relative;
   font-family: Oxygen, sans-serif;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
   text-align: left;
+}
+#searchLocation {
+  display: inline-block;
+  float: left;
+
+  margin-top: 2%;
+  height: 20px;
+}
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+#searchButton {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2e5ca5;
+  color: white;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+#map_search_button {
+  float: left;
+  width: 2.5%;
+  max-width: 100px;
+  margin-top: 2%;
+  margin-right:1%;
+  background: #2e5ca5;
+  color: white;
+  font-size: 10px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  height: 20px;
+}
+#map_aus {
+  float: center;
 }
