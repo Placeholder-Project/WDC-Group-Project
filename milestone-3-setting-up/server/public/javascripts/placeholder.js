@@ -220,7 +220,7 @@ function details(placename,location,price,img){
 // book now button does the same as book_details button
 
 }
-function book_now_button_detials(){
+function book_now_button_details(){
   book_details(Placename,Locations,Hotelprice);
   $("#hotel_details_div").hide();
 }
