@@ -22,7 +22,7 @@ var Hilton = {
 
 var all_hotels = [InterContinental, Hilton];
 
-function write_to_hotels_info(hotel_list) {
+/*function write_to_hotels_info(hotel_list) {
 	var geocoder = new google.maps.Geocoder();
 	var location_string;
 	for (var hotel in hotel_list) {
@@ -61,7 +61,7 @@ function write_features(feature_list) {
 	}
 
 	return new_list;
-}
+}*/
 
 // searches the city names from matching the given string
 	// later: search name of hotel and every part of address from rev. geocoding

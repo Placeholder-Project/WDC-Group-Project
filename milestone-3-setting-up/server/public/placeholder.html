@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css">
   <link rel="stylesheet" type = "text/css" href="stylesheets/maps.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla%7COxygen%7CRubik">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -16,8 +15,9 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="javascripts/placeholder.js"></script>
-  <script src="javascripts/maps.js"></script>
   <script src="javascripts/hotels.js"></script>
+  <script src="javascripts/maps.js"></script>
+
 
 
 </head>
@@ -48,10 +48,10 @@
 
 
         <div class = "ui-widget">
-            <input id = "searchBar" placeholder="Search..">
+            <input id = "searchBar" placeholder="Search.." >
 
         </div>
-        <button id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
+        <button id = "searchButton" type="submit"><i class="fa fa-search" onclick="search_page_search_button()"></i></button>
         <div>
           <p id = "or"> or</p>
         </div>
@@ -114,7 +114,7 @@
       </div>
     </div>
   </div>
-  <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotels()">Back</button>
+  <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_map()">Back</button>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPddoWkAKPv38fhVilIs6ho1_XtsbLAno&callback=initMap">
   </script>
@@ -133,12 +133,12 @@
         <p class="imageinfo"><img src="images/hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <!--all onclick detail functions pass the name of the of the hotel-->
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('InterContinental','Adelaide(CBD)',550,'images/hotel1.jpg')">Details</button>
-        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('InterContinental','Adelaide(CBD)',550)">Book Now</button>
+        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search('InterContinental','Adelaide(CBD)',550)">Book Now</button>
         <div style="clear:both;"></div>
 
         <p class="imageinfo"><img src="images/hotel2.jpg" alt="Hotel 2" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
         <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton','Adelaide(CBD)',380,'images/hotel2.jpg')">Details</button>
-        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details('Hilton','Adelaide(CBD)',380)">Book Now</button>
+        <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search('Hilton','Adelaide(CBD)',380)">Book Now</button>
         <br>
       </div>
     </div>
@@ -149,15 +149,15 @@
 <!-- Details of hotels -->
 
 <div class="container-fluid feature_page" id="hotel_details_div">
-  <h1 id = "name_details"></h1>
-  <p class="imageinfo"><img id ="image_details" src="hotel1.jpg" alt="Hotel 1" class="hotels">
+  <br>
+  <h1 id = "name_details">""</h1>
+  <p class="imageinfo"><img id ="image_details" src="images/hotel1.jpg" alt="Hotel 1" class="hotels">
     <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong>
     <br><strong>Price: </strong><span id = "price_details">$ </span> per night
     <br><strong>Location: </strong> <span id = "location_details"></span>
     <br><strong>Other info: </strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ilpa qui officia deserunt mollit anim id est laborum.
     <br><span id="misc_info"></span>
   </p>
-
 
   <!-- include onclick command in the input -->
   <div  class="d-flex justify-content-between">
@@ -166,6 +166,7 @@
   <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotel_details()">Back</button>
   <br>
 </div>
+
 
 <!-- Booking details -->
 <div class="container-fluid text-center feature_page" id = "booking_your_hotel_div">

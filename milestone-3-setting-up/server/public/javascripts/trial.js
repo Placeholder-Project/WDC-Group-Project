@@ -192,16 +192,9 @@ function back_button_hotel_details(){
 
 ////////////////// OTHER BUTTONS //////////////////
 
-function search_page_search_button(){
-  $("#search_div").hide();
-  $("#places_and_area_div").show();
-}
-
 function go_home(){
-  var current_page = $("div.feature_page").not(":hidden").prop("id");
-  $("#"+current_page).hide();
-  $("#signup_div, #login_div").hide();
-  $("#search_div").show();
+  //$("div#feature#signup_div#login_div").hide();
+  //$("#search_div").show();
 }
 function signup_button(){
   //stores the id of the previous page
@@ -260,7 +253,7 @@ function book_now_button_details(){
 
 function button_confirmation(){
   $("#confirmation_div").hide();
-  $("#search_div").show();
+  $("#places_and_area_div").show();
 }
 //autocomplete
 

@@ -259,6 +259,8 @@ button em.rightImage{
   font-size: 26px;
   font-weight: bold;
   text-align: left;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 #searchLocation {
   display: inline-block;
