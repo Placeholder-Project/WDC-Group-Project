@@ -12,22 +12,28 @@ var uniqueID = 0;
 var empty_user = {"uID" : 0, "fname":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":""}
 
 router.get('/Map', function(req,res) {
-	prev_page.push(current_page);
+	prev_pages.push(current_page);
 	current_page = "maps.html";
 	res.redirect("Map.html");
 }
 
 router.get('/Home', function(res, req) {
-	prev_page.push(current_page);
+	prev_pages.push(current_page);
 	current_page = "Home.html";
 	res.redirect("Home.html");
 });
 
-router.getrouter.get('/SearchHotels', function(res, req) {
-	prev_page.push(current_page);
+router.get('/SearchHotels', function(res, req) {
+	prev_pages.push(current_page);
 	current_page = "Home.html";
 	res.redirect("Home.html");
 });
+
+router.get('/back', function(req,res) {
+	var page = prev_pages.pop();
+	prev_pages.splice(0,prev_pages.length-1);
+	res.redirect(page);
+})
 
 router.post('/signup', function(req,res) {
 	sess = req.session;
@@ -47,7 +53,7 @@ router.post('/signup', function(req,res) {
 	// next user to be added is the next one of the
 	users.push(empty_user);
 	next_user++;
-	res.redirect(prev_page);
+	res.redirect(prev_pages[prev_pages.length - 1]);
 });
 
 router.post('/login', function(req, res) {
@@ -57,7 +63,7 @@ router.post('/login', function(req, res) {
 			// password matches username
 			// add user to session
 			sess.user = get_user_from_email(req.body.email);
-			res.redirect(prev_page);
+			res.redirect(prev_pages[prev_pages.length - 1]);
 		} else {
 			// password does not match username
 			res.redirect("login.html" /* passwd does not match email... how to display message? */);
@@ -105,14 +111,44 @@ function check_password(given_user) {
 	return false;
 }
 
+var InterContinental = {
+  name:"InterContinental",
+  location: {lat: -34.9212 , lng: 138.6059},
+  city: "Adelaide",
+  price: 550,
+  features: [0,1,2,3,4,5,6],
+  stars: 4,
+  img_src: ["images/hotel1.jpg"],
+  description: "Exclusively positioned on the banks of the River Torrens, InterContinental Adelaide provides luxury city centre accommodation, dining and meeting facilities. Situated adjacent to the Adelaide Festival Centre, Convention Centre, Casino and directly opposite the spectacular Adelaide Oval, our location provides effortless exploring and entertainment at your fingertips."
+};
+
+var Hilton = {
+  name: "Hilton",
+  location: {lat: -34.929143, lng: 138.598906},
+  city: "Adelaide",
+  price: 330,
+  features: [0,1,3,4],
+  stars: 4,
+  img_src: ["images/hotel2.jpg"],
+  description: "Overlooking Victoria Square, Hilton Adelaide is set in the heart of the city’s entertainment, shopping and dining precincts. The Central Market, Chinatown and Gouger Street - Adelaide’s most vibrant dining destinations – are also minutes away."
+};
+
+var all_hotels = [InterContinental, Hilton];
+
 router.get('/SearchHotels', function(req, res) {
-  prev_page = current_page;
+  prev_pages.push(current_page);
   current_page = "SearchHotels.html";
 
   var searchedHotels = hotels_from_search(req.body);
   var div_content = "";
   for (var i = 0; i < req.body.length; i++) {
-	  div_content += '<p class="imageinfo"><img src='+req.body[i].img_src+' alt="Hotel '+i+'" class="hotels"><strong>Name: </strong> '+req.body[i].name+' <br> <strong>Stars: '+write_stars(req.body[i].stars)+'</strong><br> <strong>Price: </strong>$'+req.body[i].price+' per night<br> <strong>Location: </strong>'+req.body[i].city+'</p>';
+	  div_content += '<p class="imageinfo"><img src='+req.body[i].img_src+
+	  				'alt="Hotel '+i+
+					'class="hotels"><strong>Name: </strong> '+req.body[i].name+
+					'<br> <strong>Stars: '+write_stars(req.body[i].stars)+
+					'</strong><br> <strong>Price: </strong>$'+req.body[i].price+
+					'per night<br> <strong>Location: </strong>'+req.body[i].city+
+					'</p><p>'+ write_features(req.body[i].features).join(" | ") +'</p>';
   }
 
   res.send('<!DOCTYPE html> \
@@ -188,5 +224,16 @@ function write_stars(n) {
 		i++;
 	}
 	return stars;
+}
+
+var features = ["wifi", "pool", "spa", "undercover parking", "restaurant", "balcony", "etc"];
+
+function write_features(feature_list) {
+	var new_list;
+	for (var i in feature_list) {
+		new_list.push(feature_list[i]);
+	}
+
+	return new_list;
 }
 module.exports = router;
