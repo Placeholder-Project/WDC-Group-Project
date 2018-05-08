@@ -40,7 +40,7 @@
           <div class="container-fluid">
             <div class=" col-sm-3 login_div" id="hotel_login_div">
                 <h1>Log in</h1>
-                <form action="/HotelLogin" method="post">
+                <form action="/HotelCurrentStatus" method="get">
                   <input class="form-control" type="string" name="username" placeholder="Username">
                   <br>
                   <input class="form-control" type="password" name="pwd" placeholder="Password">
@@ -50,18 +50,19 @@
                 </form>
             </div>
           </div>
+          <br>
+          <br>
+          <p>or</p>
+          <h1>Signup</h1>
+          <form action="/HotelManagementSignup" method="get">
+            <button type="button" class="btn btn-default button_details_booknow" onclick="signup()">Sign Up</button>
+          </form>
+          <br>
+          <form action="/back" method="get">
+            <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+          </form>
         </div>
-        <br>
-        <br>
-        <p>or</p>
-        <h1>Signup</h1>
-        <button type="button" class="btn btn-default button_details_booknow" onclick="signup()">Sign Up</button>
-        <br>
-        <br>
-        <br>
-        <form action="/back" method="get">
-          <button type="submit" name="button" class="btn btn-default back_button">Back</button>
-        </form>
+
       </div>
     </div>
 

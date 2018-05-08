@@ -41,9 +41,13 @@
       <div class="row content">
         <div class="col-sm-12 text-center">
           <h3>Let's book this!</h3>
-          <button type="button" class="btn btn-default button_details_booknow" onclick="login()">Login</button>
+          <form action="/Login" method="get">
+            <button type="submit" class="btn btn-default button_details_booknow" onclick="login()">Login</button>
+          </form>
           <p>or</p>
-          <button type="button" class="btn btn-default button_details_booknow" onclick="signup()">Sign Up</button>
+          <form action="/Signup" method="get">
+            <button type="submit" class="btn btn-default button_details_booknow" onclick="signup()">Sign Up</button>
+          </form>
           <br>
           <form action="/back" method="get">
             <button type="submit" name="button" class="btn btn-default back_button">Back</button>

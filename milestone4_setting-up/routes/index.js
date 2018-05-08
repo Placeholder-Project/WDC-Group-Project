@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var prev_pages = [];
 var current_page = '/';
+var logged_in = false;
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	prev_pages.push(current_page);
@@ -13,23 +14,102 @@ var next_user = 0;
 var uniqueID = 0;
 var empty_user = {"uID" : 0, "fname":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":""};
 var users =[empty_user];
+
+// HOME PAGE
 router.get('/', function(req, res, next) {
   prev_pages.push(current_page);
   current_page = "Home.html";
 	res.redirect("Home.html");
 });
-
+// MAP PAGE
 router.get('/Map', function(req,res) {
   prev_pages.push(current_page);
 	current_page = "Map.html";
 	res.redirect("Map.html");
 });
+
+
+
+// DO WE GO TO LOGIN SIGNUP PAGE
+router.get('/LoginSignupQuery', function(req, res){
+  // if we are logged in
+  if (logged_in == true){
+    prev_pages.push(current_page);
+    current_page = "Confirmation.html";
+    res.redirect("Confirmation.html");
+  }
+  prev_pages.push(current_page);
+  current_page = "LoginSignup.html";
+  res.redirect("LoginSignup.html");
+
+
+});
+// LOGINSIGNUP PAGE
+router.get('/LoginSignup', function(req, res){
+  prev_pages.push(current_page);
+  current_page = "LoginSignup.html";
+  res.redirect("LoginSignup.html");
+});
+// LOGIN PAGE
+router.get('/Login', function(req, res){
+  prev_pages.push(current_page);
+  //current_page = "Login.html";
+  res.redirect("Login.html");
+});
+// SIGNUP PAGE
+router.get('/Signup', function(req, res){
+  prev_pages.push(current_page);
+  //current_page = "Signup.html";
+  res.redirect("Signup.html");
+});
+// WHERE WE ARE GOING AFTER LOGGINGIN
+router.get('/LoginSignupRedirect', function(req, res){
+  logged_in = true;
+  if (current_page=="LoginSignup.html"){
+    res.redirect("Confirmation.html");
+  }
+  res.redirect(current_page);
+});
+
+
+// HOTEL MANAGEMENT LOGIN PAGE
+router.get('/HotelManagementLogin', function(req, res){
+  prev_pages.push(current_page);
+  current_page = "HotelManagementLogin.html";
+  res.redirect("HotelManagementLogin.html");
+});
+// HOTEL MANAGEMENT SIGNUP
+router.get('/HotelManagementSignup', function(req, res){
+  prev_pages.push(current_page);
+  current_page = "HotelManagementSignup.html";
+  res.redirect("HotelManagementSignup.html");
+});
+// HOTEL MANAGEMENT CURRENT STATUS
+router.get('/HotelCurrentStatus', function(req, res){
+  // if back button is pressed here we only want to go back to
+  // the home page (becase they must have logged in or signed up)
+  prev_pages.push("/");
+  current_page = "HotelCurrentStatus.html";
+  res.redirect("HotelCurrentStatus.html");
+});
+// HOTEL MANAGEMENT
+router.get('/HotelManagement', function(req, res){
+  prev_pages.push(current_page);
+  current_page = "HotelManagement.html";
+  res.redirect("HotelManagement.html");
+});
+
 // BACK BUTTON
 router.get('/back', function(req,res) {
+  console.log(prev_pages);
 	current_page = prev_pages[prev_pages.length-1];
 	prev_pages.splice(-1,prev_pages.length-1);
+  // if (current_page == "undefined"){
+  //   res.redirect('/');
+  // }
 	res.redirect(current_page);
   // ADD FUNCTION IF UNDEFINED GO TO HOME
+
 });
 
 
@@ -133,83 +213,83 @@ var Hilton = {
 
 var all_hotels = [InterContinental, Hilton];
 
-router.get('/SearchHotels', function(req, res) {
-  prev_pages.push(current_page);
-  current_page = "SearchHotels.html";
-  var searchedHotels = hotels_from_search(req.body);
-  var div_content = "";
-  for (var i = 0; i < req.body.length; i++) {
-	  div_content += '<p class="imageinfo"><img src='+req.body[i].img_src+
-	  				'alt="Hotel '+i+
-					'class="hotels"><strong>Name: </strong> '+req.body[i].name+
-					'<br> <strong>Stars: '+write_stars(req.body[i].stars)+
-					'</strong><br> <strong>Price: </strong>$'+req.body[i].price+
-					'per night<br> <strong>Location: </strong>'+req.body[i].city+
-					'</p><p>'+ write_features(req.body[i].features).join(" | ") +'</p> \
-					<button type="button" class="btn btn-default button_details_booknow" onclick="details("InterContinental","Adelaide(CBD)",550,"images/hotel1.jpg")">Details</button> \
-		               <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search("InterContinental","Adelaide(CBD)",550)">Book Now</button> ';
-  }
-  var to_send = '<!DOCTYPE html> \
-  <html lang="en" dir="ltr"> \
-    <head> \
-      <meta charset="utf-8"> \
-      <title>Home</title> \
-      <title>PLACEHOLDER</title> \
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> \
-      <meta charset="utf-8"> \
-      <meta name="viewport" content="width=device-width, initial-scale=1"> \
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> \
-      <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css"> \
-      <link rel="stylesheet" type = "text/css" href="stylesheets/maps.css"> \
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> \
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla%7COxygen%7CRubik"> \
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> \
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> \
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> \
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> \
-      <script src="javascripts/placeholder.js"></script> \
-      <script src="javascripts/hotels.js"></script> \
-      <script src="javascripts/maps.js"></script> \
-    </head> \
-    <body> \
-      <!-- HEADER --> \
-      <header> \
-        <!-- acts as home button --> \
-        <form action="/Homepage" method="get"> \
-          <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button> \
-        </form> \
-        <!-- login signup buttons --> \
-        <form action="Signup.html"> \
-          <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button> \
-        </form> \
-        <form action="Login.html"> \
-          <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button> \
-        </form> \
-      </header> \
-      <!-- DISPLAY OF HOTELS --> \
-	 <div class="container-fluid text-center feature_page" id="places_and_area_div"> \
-        <div class="row content"> \
-          <div class="col-sm-12 text-left"> \
-            <div class="col-md-12"> \
-              <h1>Hotels</h1> \
-		    ' + div_content + '\
-              <!--all onclick detail functions pass the name of the hotel--> \
-              <div style="clear:both;"></div> \
-              <br> \
-            </div> \
-          </div> \
-        </div> \
-        <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotels()">Back</button> \
-      </div> \
-      <!-- FOOTER --> \
-      <footer class="container-fluid text-center"> \
-        <p>Footer Text</p> \
-      </footer> \
-    </body> \
-  </html>';
-
-  res.send(to_send);
-});
+// router.get('/SearchHotels', function(req, res) {
+//   prev_pages.push(current_page);
+//   current_page = "SearchHotels.html";
+//   var searchedHotels = hotels_from_search(req.body);
+//   var div_content = "";
+//   for (var i = 0; i < req.body.length; i++) {
+// 	  div_content += '<p class="imageinfo"><img src='+req.body[i].img_src+
+// 	  				'alt="Hotel '+i+
+// 					'class="hotels"><strong>Name: </strong> '+req.body[i].name+
+// 					'<br> <strong>Stars: '+write_stars(req.body[i].stars)+
+// 					'</strong><br> <strong>Price: </strong>$'+req.body[i].price+
+// 					'per night<br> <strong>Location: </strong>'+req.body[i].city+
+// 					'</p><p>'+ write_features(req.body[i].features).join(" | ") +'</p> \
+// 					<button type="button" class="btn btn-default button_details_booknow" onclick="details("InterContinental","Adelaide(CBD)",550,"images/hotel1.jpg")">Details</button> \
+// 		               <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search("InterContinental","Adelaide(CBD)",550)">Book Now</button> ';
+//   }
+//   var to_send = '<!DOCTYPE html> \
+//   <html lang="en" dir="ltr"> \
+//     <head> \
+//       <meta charset="utf-8"> \
+//       <title>Home</title> \
+//       <title>PLACEHOLDER</title> \
+//       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> \
+//       <meta charset="utf-8"> \
+//       <meta name="viewport" content="width=device-width, initial-scale=1"> \
+//       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> \
+//       <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css"> \
+//       <link rel="stylesheet" type = "text/css" href="stylesheets/maps.css"> \
+//       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> \
+//       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla%7COxygen%7CRubik"> \
+//       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> \
+//       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> \
+//       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> \
+//       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> \
+//       <script src="javascripts/placeholder.js"></script> \
+//       <script src="javascripts/hotels.js"></script> \
+//       <script src="javascripts/maps.js"></script> \
+//     </head> \
+//     <body> \
+//       <!-- HEADER --> \
+//       <header> \
+//         <!-- acts as home button --> \
+//         <form action="/Homepage" method="get"> \
+//           <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button> \
+//         </form> \
+//         <!-- login signup buttons --> \
+//         <form action="Signup.html"> \
+//           <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button> \
+//         </form> \
+//         <form action="Login.html"> \
+//           <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button> \
+//         </form> \
+//       </header> \
+//       <!-- DISPLAY OF HOTELS --> \
+// 	 <div class="container-fluid text-center feature_page" id="places_and_area_div"> \
+//         <div class="row content"> \
+//           <div class="col-sm-12 text-left"> \
+//             <div class="col-md-12"> \
+//               <h1>Hotels</h1> \
+// 		    ' + div_content + '\
+//               <!--all onclick detail functions pass the name of the hotel--> \
+//               <div style="clear:both;"></div> \
+//               <br> \
+//             </div> \
+//           </div> \
+//         </div> \
+//         <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotels()">Back</button> \
+//       </div> \
+//       <!-- FOOTER --> \
+//       <footer class="container-fluid text-center"> \
+//         <p>Footer Text</p> \
+//       </footer> \
+//     </body> \
+//   </html>';
+//
+//   res.send(to_send);
+// });
 
 function write_stars(n) {
 	var stars = "";
@@ -250,15 +330,15 @@ module.exports = router;
 
 
 
-// // DONT NEED EITHER OF THESE
-// router.get('/BookingDetails', function(req, res) {
-// 	prev_pages.push(current_page);
-// 	current_page = "BookingDetails.html";
-// 	res.redirect("BookingDetails.html");
-// });
-// // DONT NEED EITHER OF THESE
-// router.get('/SearchHotels', function(req, res) {
-//   prev_pages.push(current_page);
-// 	current_page = "SearchHotels.html";
-// 	res.redirect("SearchHotels.html");
-// });
+// DONT NEED EITHER OF THESE
+router.get('/BookingDetails', function(req, res) {
+	prev_pages.push(current_page);
+	current_page = "BookingDetails.html";
+	res.redirect("BookingDetails.html");
+});
+// DONT NEED EITHER OF THESE
+router.get('/SearchHotels', function(req, res) {
+  prev_pages.push(current_page);
+	current_page = "SearchHotels.html";
+	res.redirect("SearchHotels.html");
+});

@@ -40,36 +40,38 @@
     <div class="container-fluid text-center feature_page" id = "booking_your_hotel_div">
       <div class="row content">
         <div class="col-sm-12 text-center">
-          <h1>Booking details</h1>
-            <br>
-            <h3>Number of people:</h3>
-              <p>Adults
-                  <select id = "adult_number">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  </select>
-              </p>
-              <p>Children
-                  <select id = "child_number">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  </select>
-              </p>
-
-              <h3>Dates:</h3>
-              <p>From: <input id="from_date" type="date"></p>
-              <p>To: <input id="to_date" type="date"></p>
+          <form action="/LoginSignupQuery" method="get">
+            <h1>Booking details</h1>
               <br>
-              <button type = "submit" class="btn btn-default">Submit</button>
-            <br>
+              <h3>Number of people:</h3>
+                <p>Adults
+                    <select id = "adult_number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                </p>
+                <p>Children
+                    <select id = "child_number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                </p>
+
+                <h3>Dates:</h3>
+                <p>From: <input id="from_date" type="date"></p>
+                <p>To: <input id="to_date" type="date"></p>
+                <br>
+                <button type = "submit" class="btn btn-default">Submit</button>
+              <br>
+          </form>
             <form action="/back" method="get">
               <button type="submit" name="button" class="btn btn-default back_button">Back</button>
             </form>

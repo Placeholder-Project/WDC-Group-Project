@@ -18,6 +18,8 @@ footer {
     left: 0;
     right: 0;
     height:75px;
+    margin-top: 20px;
+    width:100%;
 }
 header {
   padding-bottom:50px;
@@ -26,8 +28,9 @@ header {
 @media screen and (max-width: 767px) {
   .row.content {height:auto;}
 }
-
-
+.row{
+  margin-bottom: 100px;
+}
 .button_details_booknow{
   background-color:#ff8f2d;
   color:white;
