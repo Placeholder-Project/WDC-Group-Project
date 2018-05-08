@@ -25,7 +25,7 @@
 
 <header>
   <!-- acts as home button -->
-  <form action="/homepage" method="get">
+  <form action="/home.html" method="get">
     <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></p>
   </form>
 
@@ -50,7 +50,7 @@
 
 
         <div class = "ui-widget">
-          <form action="/search" method="get">
+          <form action="/searchhotels.html" method="get">
             <input id = "searchBar" placeholder="Search.." >
             <button onclick="search_page_search_button()" id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
           </form>
@@ -107,7 +107,7 @@
       <div class="col-md-12">
         <br>
         <div class = "ui-widget">
-          <form action="/map_search" method="get">
+          <form action="/map.html" method="get">
             <input id = "searchLocation" type="text" placeholder="Location">
             <button id = "map_search_button" onclick = "pass_hotel_array(document.getElementById('searchLocation').value)" type="submit"><i class="fa fa-search"></i></button>
           </form>
@@ -183,7 +183,6 @@
       <h1>Booking details</h1>
         <br>
         <h3>Number of people:</h3>
-        <form action="/book" method="get">
           <p>Adults
               <select id = "adult_number">
               <option value="0">0</option>
@@ -210,7 +209,6 @@
           <p>To: <input id="to_date" type="date"></p>
           <br>
           <button type = "submit" class="btn btn-default">Submit</button>
-        </form>
         <br>
         <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_booking_details()">Back</button>
         <br>
@@ -239,7 +237,7 @@
   <div class="container-fluid">
     <div class="container-fluid col-sm-7 signup_div " id="signup_div">
       <h1>Sign up for new account</h1>
-      <form action="/signup" method="post">
+      <form action="/signup.html" method="post">
         <input class="form-control" type="text" name="fname" placeholder="First Name">
         <br>
         <input class="form-control" type="text" name="lname" placeholder="Last Name">
@@ -267,7 +265,7 @@
   <div class="container-fluid">
     <div class=" col-sm-3 login_div" id="login_div">
         <h1>Log in</h1>
-        <form action="/login" method="post">
+        <form action="/login.html" method="post">
           <input class="form-control" type="email" name="email" placeholder="Email">
           <br>
           <input class="form-control" type="password" name="pwd" placeholder="Password">
@@ -284,17 +282,19 @@
 <div class="container-fluid" id="confirmation_div">
   <div class="col-sm-7">
     <h1>Booking Confirmation</h1>
-    <ul class="list-group">
-      <li class="list-group-item">Name of hotel:		<span id="hotel_name"></span></li>
-      <li class="list-group-item">Location:			<span id="loc"></span></li>
-      <li class="list-group-item">No. nights:			<span id="n_nights"></span></li>
-      <li class="list-group-item">No. adults:			<span id="n_adults"></span></li>
-      <li class="list-group-item">No. children: 		<span id="n_children"></span></li>
-      <li class="list-group-item">Date of arrival:		<span id="arr_date"></span></li>
-      <li class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
-      <li class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total"></span></li>
-    </ul>
-    <button type="button" name="button" class="btn btn-default" onclick="button_confirmation()">Confirm</button>
+    <form action="/confirmation.html" method="get">
+      <ul class="list-group">
+        <li name = "hotel" class="list-group-item">Name of hotel:		<span id="hotel_name"></span></li>
+        <li name = "location" class="list-group-item">Location:			<span id="loc"></span></li>
+        <li name = "n_nights" class="list-group-item">No. nights:			<span id="n_nights"></span></li>
+        <li name = "n_adults" class="list-group-item">No. adults:			<span id="n_adults"></span></li>
+        <li name = "n_children" class="list-group-item">No. children: 		<span id="n_children"></span></li>
+        <li name = "arr_date" class="list-group-item">Date of arrival:		<span id="arr_date"></span></li>
+        <li name = "dep_date" class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
+        <li name = "price_total" class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total"></span></li>
+      </ul>
+      <button type="submit" name="button" class="btn btn-default" onclick="button_confirmation()">Confirm</button>
+    </form>
     <br>
     <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_confirmation()">Back</button>
     <br>
