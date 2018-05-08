@@ -45,8 +45,11 @@
             <h1>Hotels</h1>
             <p class="imageinfo"><img src="images/hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
             <!--all onclick detail functions pass the name of the of the hotel-->
+
             <button type="button" class="btn btn-default button_details_booknow" onclick="details('InterContinental','Adelaide(CBD)',550,'images/hotel1.jpg')">Details</button>
-            <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search('InterContinental','Adelaide(CBD)',550)">Book Now</button>
+            <form action="/BookingDetails" method="get">
+              <button type="submit" class="btn btn-default button_details_booknow" onclick="book_details_search('InterContinental','Adelaide(CBD)',550)">Book Now</button>
+            </form>
             <div style="clear:both;"></div>
 
             <p class="imageinfo"><img src="images/hotel2.jpg" alt="Hotel 2" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
@@ -56,7 +59,9 @@
           </div>
         </div>
       </div>
-      <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_hotels()">Back</button>
+      <form action="/back" method="get">
+        <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+      </form>
     </div>
 
     <!-- FOOTER -->

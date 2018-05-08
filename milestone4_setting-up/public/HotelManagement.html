@@ -27,28 +27,39 @@
       <form action="/" method="get">
         <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
       </form>
-      <!-- login signup buttons -->
-      <form action="Signup.html">
-        <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
-      </form>
-      <form action="Login.html">
-        <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
-      </form>
     </header>
 
-    <!-- LOGIN -->
+    <!-- HOTEL MANAGEMENT SIGN UP -->
     <div class="row">
       <div class="container-fluid">
-        <div class=" col-sm-3 login_div" id="login_div">
-            <h1>Log in</h1>
-            <form action="/Login" method="post">
-              <input class="form-control" type="email" name="email" placeholder="Email">
-              <br>
-              <input class="form-control" type="password" name="pwd" placeholder="Password">
-              <br>
-              <button type="submit" name="button" class="btn btn-default">Submit</button>
-              <br>
+        <div class="container-fluid col-sm-7 signup_div " id="signup_div">
+          <h1>What do you want to change?</h1>
+          <form action="/HotelSignup">
+            <input class="form-control" type="text" name="hote_username" placeholder="Username">
+            <br>
+            <input class="form-control" type="password" name="hotel_pwd" placeholder="Password">
+            <br>
+            <input class="form-control" type="password" name="hotel_cpwd" placeholder="Confirm Password">
+            <br>
+            <input class="form-control" type="tel" name="hotel_number" placeholder="Contact Number">
+            <br>
+            <input class="form-control" type="text" name="hotel_name" placeholder="Hotel Name">
+            <br>
+            <input class="form-control" type="text" name="hotel_address" placeholder="Address of Hotel">
+            <br>
+            <input class="form-control" type="text" name="hotel_price" placeholder="Price per Night">
+            <br>
+            <input class="form-control" type="text" name="hotel_stars" placeholder="Number of Stars">
+            <br>
+            <input class="form-control" type="text" name="hotel_rooms" placeholder="Number of Rooms">
+            <br>
+            <button type = "submit" name="button" class="btn btn-default" >Update</button>
+            <form action="/DeleteHotel">
+              <button type = "submit" name="button" class="btn btn-default" >Delete My Hotel</button>
             </form>
+          </form>
+
+            <br>
             <form action="/back" method="get">
               <button type="submit" name="button" class="btn btn-default back_button">Back</button>
             </form>
