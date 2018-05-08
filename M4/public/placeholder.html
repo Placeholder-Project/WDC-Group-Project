@@ -17,20 +17,21 @@
   <script src="javascripts/placeholder.js"></script>
   <script src="javascripts/hotels.js"></script>
   <script src="javascripts/maps.js"></script>
-
-
-
 </head>
 <body>
 
 <header>
   <!-- acts as home button -->
-  <form action="/home.html" method="get">
+  <form action="/Homepage" method="get">
     <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></p>
   </form>
 
-  <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
-  <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
+  <form action="/SignupPage" method="get">
+    <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
+  </form>
+  <form action="/LoginPage" method="get">
+    <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
+  </form>
 </header>
 
 <!-- SEARCH -->
@@ -50,7 +51,7 @@
 
 
         <div class = "ui-widget">
-          <form action="/searchhotels.html" method="get">
+          <form action="/SearchHotels" method="get">
             <input id = "searchBar" placeholder="Search.." >
             <button onclick="search_page_search_button()" id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
           </form>
@@ -107,7 +108,7 @@
       <div class="col-md-12">
         <br>
         <div class = "ui-widget">
-          <form action="/map.html" method="get">
+          <form action="/Map" method="get">
             <input id = "searchLocation" type="text" placeholder="Location">
             <button id = "map_search_button" onclick = "pass_hotel_array(document.getElementById('searchLocation').value)" type="submit"><i class="fa fa-search"></i></button>
           </form>
@@ -237,7 +238,7 @@
   <div class="container-fluid">
     <div class="container-fluid col-sm-7 signup_div " id="signup_div">
       <h1>Sign up for new account</h1>
-      <form action="/signup.html" method="post">
+      <form action="/Signup" method="post">
         <input class="form-control" type="text" name="fname" placeholder="First Name">
         <br>
         <input class="form-control" type="text" name="lname" placeholder="Last Name">
@@ -265,7 +266,7 @@
   <div class="container-fluid">
     <div class=" col-sm-3 login_div" id="login_div">
         <h1>Log in</h1>
-        <form action="/login.html" method="post">
+        <form action="/Login" method="post">
           <input class="form-control" type="email" name="email" placeholder="Email">
           <br>
           <input class="form-control" type="password" name="pwd" placeholder="Password">
@@ -282,7 +283,7 @@
 <div class="container-fluid" id="confirmation_div">
   <div class="col-sm-7">
     <h1>Booking Confirmation</h1>
-    <form action="/confirmation.html" method="get">
+    <form action="/Confirmation" method="get">
       <ul class="list-group">
         <li name = "hotel" class="list-group-item">Name of hotel:		<span id="hotel_name"></span></li>
         <li name = "location" class="list-group-item">Location:			<span id="loc"></span></li>
