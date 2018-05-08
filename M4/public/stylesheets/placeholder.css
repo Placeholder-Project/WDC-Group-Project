@@ -66,19 +66,6 @@ div.container-fluid.text-center{
   max-width: 1100px;
   background-color: white;
 }
-
-div#booking_your_hotel_div{
-  display:none;
-}
-div.lets_book_this_div{
-  display:none;
-}
-div.signup_div{
-  display:none;
-}
-div.login_div{
-  display:none;
-}
 .login_sign-up
 {
   margin-top:10px;
@@ -95,9 +82,7 @@ div.login_div{
   margin-top:10px;
   margin-left:10px;
 }
-div#confirmation_div{
-  display:none;
-}
+
 .back_button{
   margin-top:10px;
   margin-bottom:10px;
@@ -237,20 +222,8 @@ button em.rightImage{
 {
   margin-left: 14.5%;
 }
-#places_and_area_div{
-  display:none;
-}
-#maps_div{
-  display:none;
-}
-#search_div{
-  display:block;
-}
 #su{
   margin-right:10px
-}
-#hotel_details_div{
-  display:none;
 }
 #placeholdertext{
   float:left;
