@@ -4,18 +4,20 @@ var prev_pages = [];
 var current_page;
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.redirect("Home");
+	prev_pages.push(current_page);
+	current_page = "Home.html";
+	res.redirect("Home.html");
 });
 var next_user = 0;
-var users =[];
+
 var uniqueID = 0;
 var empty_user = {"uID" : 0, "fname":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":""}
-
+var users =[empty_user];
 router.get('/Map', function(req,res) {
 	prev_pages.push(current_page);
 	current_page = "maps.html";
 	res.redirect("Map.html");
-}
+});
 
 router.get('/Home', function(res, req) {
 	prev_pages.push(current_page);
@@ -23,17 +25,19 @@ router.get('/Home', function(res, req) {
 	res.redirect("Home.html");
 });
 
-router.get('/SearchHotels', function(res, req) {
-	prev_pages.push(current_page);
-	current_page = "Home.html";
-	res.redirect("Home.html");
-});
+// router.get('/SearchHotels', function(res, req) {
+// 	prev_pages.push(current_page);
+// 	current_page = "Home.html";
+// 	res.redirect("Home.html");
+// });
 
 router.get('/back', function(req,res) {
 	var page = prev_pages.pop();
-	prev_pages.splice(0,prev_pages.length-1);
+	prev_pages.splice(-1,prev_pages.length-1);
 	res.redirect(page);
 })
+
+// sofia add above ^^^^^^
 
 router.post('/signup', function(req,res) {
 	sess = req.session;
@@ -138,7 +142,6 @@ var all_hotels = [InterContinental, Hilton];
 router.get('/SearchHotels', function(req, res) {
   prev_pages.push(current_page);
   current_page = "SearchHotels.html";
-
   var searchedHotels = hotels_from_search(req.body);
   var div_content = "";
   for (var i = 0; i < req.body.length; i++) {
@@ -148,10 +151,11 @@ router.get('/SearchHotels', function(req, res) {
 					'<br> <strong>Stars: '+write_stars(req.body[i].stars)+
 					'</strong><br> <strong>Price: </strong>$'+req.body[i].price+
 					'per night<br> <strong>Location: </strong>'+req.body[i].city+
-					'</p><p>'+ write_features(req.body[i].features).join(" | ") +'</p>';
+					'</p><p>'+ write_features(req.body[i].features).join(" | ") +'</p> \
+					<button type="button" class="btn btn-default button_details_booknow" onclick="details("InterContinental","Adelaide(CBD)",550,"images/hotel1.jpg")">Details</button> \
+		               <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search("InterContinental","Adelaide(CBD)",550)">Book Now</button> ';
   }
-
-  res.send('<!DOCTYPE html> \
+  var to_send = '<!DOCTYPE html> \
   <html lang="en" dir="ltr"> \
     <head> \
       <meta charset="utf-8"> \
@@ -194,14 +198,9 @@ router.get('/SearchHotels', function(req, res) {
           <div class="col-sm-12 text-left"> \
             <div class="col-md-12"> \
               <h1>Hotels</h1> \
-		    '+div_content+'
+		    ' + div_content + \
               <!--all onclick detail functions pass the name of the hotel--> \
-              <button type="button" class="btn btn-default button_details_booknow" onclick="details("InterContinental","Adelaide(CBD)",550,"images/hotel1.jpg")">Details</button> \
-              <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search("InterContinental","Adelaide(CBD)",550)">Book Now</button> \
               <div style="clear:both;"></div> \
-              <p class="imageinfo"><img src="images/hotel2.jpg" alt="Hotel 2" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p> \
-              <button type="button" class="btn btn-default button_details_booknow" onclick="details("Hilton","Adelaide(CBD)",380,"images/hotel2.jpg")">Details</button> \
-              <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search("Hilton","Adelaide(CBD)",380)">Book Now</button> \
               <br> \
             </div> \
           </div> \
@@ -213,8 +212,10 @@ router.get('/SearchHotels', function(req, res) {
         <p>Footer Text</p> \
       </footer> \
     </body> \
-  </html>'
-);
+  </html>';
+
+  res.send(to_send);
+});
 
 function write_stars(n) {
 	var stars = "";
@@ -236,4 +237,16 @@ function write_features(feature_list) {
 
 	return new_list;
 }
+function hotels_from_search(search_word) {
+	var new_list=[];
+	for (var i = 0 ; i < all_hotels.length; i ++) {
+
+		if (all_hotels[i].city == search_word) {
+			new_list.push(all_hotels[i]);
+		}
+	}
+	//return new_list;
+  return new_list;
+}
+
 module.exports = router;
