@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var prev_pages = [];
-var current_page;
+var current_page = '/';
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	prev_pages.push(current_page);
@@ -11,33 +11,27 @@ router.get('/', function(req, res, next) {
 var next_user = 0;
 
 var uniqueID = 0;
-var empty_user = {"uID" : 0, "fname":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":""}
+var empty_user = {"uID" : 0, "fname":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":""};
 var users =[empty_user];
-router.get('/Map', function(req,res) {
-	prev_pages.push(current_page);
-	current_page = "maps.html";
-	res.redirect("Map.html");
-});
-
-router.get('/Home', function(res, req) {
-	prev_pages.push(current_page);
-	current_page = "Home.html";
+router.get('/', function(req, res, next) {
+  prev_pages.push(current_page);
+  current_page = "Home.html";
 	res.redirect("Home.html");
 });
 
-// router.get('/SearchHotels', function(res, req) {
-// 	prev_pages.push(current_page);
-// 	current_page = "Home.html";
-// 	res.redirect("Home.html");
-// });
-
+router.get('/Map', function(req,res) {
+  prev_pages.push(current_page);
+	current_page = "Map.html";
+	res.redirect("Map.html");
+});
+// BACK BUTTON
 router.get('/back', function(req,res) {
-	var page = prev_pages.pop();
+	current_page = prev_pages[prev_pages.length-1];
 	prev_pages.splice(-1,prev_pages.length-1);
-	res.redirect(page);
-})
+	res.redirect(current_page);
+  // ADD FUNCTION IF UNDEFINED GO TO HOME
+});
 
-// sofia add above ^^^^^^
 
 router.post('/signup', function(req,res) {
 	sess = req.session;
@@ -198,7 +192,7 @@ router.get('/SearchHotels', function(req, res) {
           <div class="col-sm-12 text-left"> \
             <div class="col-md-12"> \
               <h1>Hotels</h1> \
-		    ' + div_content + \
+		    ' + div_content + '\
               <!--all onclick detail functions pass the name of the hotel--> \
               <div style="clear:both;"></div> \
               <br> \
@@ -250,3 +244,21 @@ function hotels_from_search(search_word) {
 }
 
 module.exports = router;
+
+
+
+
+
+
+// // DONT NEED EITHER OF THESE
+// router.get('/BookingDetails', function(req, res) {
+// 	prev_pages.push(current_page);
+// 	current_page = "BookingDetails.html";
+// 	res.redirect("BookingDetails.html");
+// });
+// // DONT NEED EITHER OF THESE
+// router.get('/SearchHotels', function(req, res) {
+//   prev_pages.push(current_page);
+// 	current_page = "SearchHotels.html";
+// 	res.redirect("SearchHotels.html");
+// });
