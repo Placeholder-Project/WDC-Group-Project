@@ -61,7 +61,9 @@
           <p id = "or"> or</p>
         </div>
         <div>
-            <button id = "mapsButton" onclick="go_to_maps()"> <span id = "buttonText">maps</span><i id = "mapIcon" class="material-icons">place</i></button>
+          <form action="/Map" method="get">
+            <button type = "submit" id = "mapsButton" onclick="go_to_maps()"> <span id = "buttonText">maps</span><i id = "mapIcon" class="material-icons">place</i></button>
+          </form>
         </div>
         <div class = "blankSpace">
 
@@ -108,7 +110,7 @@
       <div class="col-md-12">
         <br>
         <div class = "ui-widget">
-          <form action="/Map" method="get">
+          <form action="/MapSearch" method="get">
             <input id = "searchLocation" type="text" placeholder="Location">
             <button id = "map_search_button" onclick = "pass_hotel_array(document.getElementById('searchLocation').value)" type="submit"><i class="fa fa-search"></i></button>
           </form>
