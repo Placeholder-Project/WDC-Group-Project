@@ -289,3 +289,11 @@ button em.rightImage{
   margin-left:15px;
 
 }
+#open_id
+{
+  margin-top:11px;
+  margin-right:10px;
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+  float:right;
+}

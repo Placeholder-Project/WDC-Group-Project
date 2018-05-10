@@ -36,36 +36,34 @@
       </form>
     </header>
 
-    <!-- SIGNUP -->
-    <div class="row">
-      <div class="container-fluid">
-        <div class="container-fluid col-sm-7 signup_div " id="signup_div">
-          <h1>Sign up for new account</h1>
-          <form action="/LoginSignupRedirect" method="post">
-            <input class="form-control" type="text" name="fname" placeholder="First Name">
-            <br>
-            <input class="form-control" type="text" name="lname" placeholder="Last Name">
-            <br>
-            <input class="form-control" type="date" name="dob" placeholder = "D.O.B.">
-            <br>
-            <input class="form-control" type="email" name="email" placeholder="Email">
-            <br>
-            <input class="form-control" type="password" name="pwd" placeholder="Password">
-            <br>
-            <input class="form-control" type="password" name="cpwd" placeholder="Confirm Password">
-            <br>
-            <input class="form-control" type="tel" name="number" placeholder="Contact Number">
-            <br>
-            <button type = "submit" name="button" class="btn btn-default" >Submit</button>
-          </form>
-            <br>
-            <form action="/back" method="get">
-              <button type="submit" name="button" class="btn btn-default back_button">Back</button>
-            </form>
-          </div>
-      </div>
-    </div>
+    <!-- DISPLAY OF HOTELS -->
 
+    <div class="container-fluid text-center feature_page" id="places_and_area_div">
+      <div class="row content">
+        <div class="col-sm-12 text-left">
+          <div class="col-md-12">
+            <h1>Hotels</h1>
+            <p class="imageinfo"><img src="images/hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
+            <!--all onclick detail functions pass the name of the of the hotel-->
+            <form action="/HotelDetails" method="get">
+              <button type="submit" class="btn btn-default button_details_booknow">Details</button>
+            </form>
+            <form action="/BookingDetails" method="get">
+              <button type="submit" class="btn btn-default button_details_booknow">Book Now</button>
+            </form>
+            <div style="clear:both;"></div>
+
+            <p class="imageinfo"><img src="images/hotel2.jpg" alt="Hotel 2" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
+            <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton','Adelaide(CBD)',380,'images/hotel2.jpg')">Details</button>
+            <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search('Hilton','Adelaide(CBD)',380)">Book Now</button>
+            <br>
+          </div>
+        </div>
+      </div>
+      <form action="/back" method="get">
+        <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+      </form>
+    </div>
 
     <!-- FOOTER -->
     <footer class="container-fluid text-center">

@@ -57,9 +57,9 @@
 
 
             <div class = "ui-widget">
-              <form action="/SearchHotels" method="get">
-                <input id = "searchBar" placeholder="Search.." >
-                <button onclick="search_page_search_button()" id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
+              <form action="/SearchHotels" method="post">
+                <input class="form-control" id = "searchBar" type = "text" placeholder="Search.." name="searchBar" >
+                <button id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
               </form>
             </div>
 
