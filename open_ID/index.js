@@ -58,6 +58,7 @@ router.post('/signup', function(req,res) {
 });
 
 router.post('/login', function(req, res) {
+	console.log(req.body);
 	/*sess = req.session;
 	console.log(req.body.idtoken);
 	if (check_names(req.body.email)) {
@@ -72,9 +73,6 @@ router.post('/login', function(req, res) {
 	if (req.body.idtoken !== undefined)
 	{
 		console.log("Google token received");
-		console.log("scoop");
-		//req.session.username = "scoopity poop";
-		//console.log(req.session.username);
 		async function verify() {
 			const ticket = await client.verifyIdToken({
     		idToken: req.body.idtoken,
@@ -82,7 +80,6 @@ router.post('/login', function(req, res) {
 			});
   		const payload = ticket.getPayload();
   		const userid = payload['sub'];
-			console.log(req.body.idtoken);
 			for (var i = 0; i < users.length; i++)
 			{
 				if (users[i].google === userid)
@@ -91,11 +88,14 @@ router.post('/login', function(req, res) {
 					console.log(users[i].username);
 					req.session.current_user = users[i].username;
 					user = users[i].username;
-					//res.redirect(prev_pages[prev_pages.length - 1]);
-					res.redirect("Login.html")
+					res.redirect("LoginSignupRedirect");
 				}
 			}
-			//res.redirect("Login.html")
+			var new_user = {'google': userid, 'fname': req.body.fname};
+			users.push(new_user);
+			req.session.current_user = new_user;
+			console.log(users);
+			res.redirect("LoginSignupRedirect")
 		}
 		verify().catch(console.error);
 	}
