@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <title>PLACEHOLDER</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css">
+    <link rel="stylesheet" type = "text/css" href="stylesheets/maps.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla%7COxygen%7CRubik">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="javascripts/placeholder.js"></script>
+    <script src="javascripts/hotels.js"></script>
+    <script src="javascripts/maps.js"></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="584993438587-ooj1akeui4rsb2g96aphfcs7497tnvoq.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+  <header>
+    <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+  </header>
+
+    <!-- LOGIN SIGNUP -->
+    <div class="lets_book_this_div container-fluid feature_page" id="lets_book_this_div">
+      <div class="row content">
+        <div class="col-sm-12 text-center">
+          <h3>Let's book this!</h3>
+          <form action="/Login" method="get">
+            <button type="submit" class="btn btn-default button_details_booknow" onclick="login()">Login</button>
+          </form>
+          <p>or</p>
+          <form action="/Signup" method="get">
+            <button type="submit" class="btn btn-default button_details_booknow" onclick="signup()">Sign Up</button>
+          </form>
+          <br>
+          <form action="/back" method="get">
+            <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="container-fluid text-center">
+      <p>Footer Text</p>
+    </footer>
+
+  </body>
+</html>
