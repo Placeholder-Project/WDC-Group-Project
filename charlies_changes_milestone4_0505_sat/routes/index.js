@@ -10,9 +10,8 @@ var logged_in = false;
 /// OPEN ID
 var next_user = 1;
 var uniqueID = 0;
-var empty_user = {"uID" : 0, "username":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":""};
-var users =[{'username':"sofia", "email":"sofia@g", 'pwd': "cool", 'google': "102998056835987459663"}];
-
+var empty_user = {"uID" : 0, "username":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":"","hotel":"","location":"","n_nights":"", "n_adults":"", "n_children":"","arr_date":"","dep_date":"","price_total":""};
+var users =[{'username':"sofia", "email":"sofia@g", 'pwd': "cool", 'google': "102998056835987459663","hotel":"Magical Hotel","location":"Magical Land","n_nights":"5", "n_adults":"1", "n_children":"0","arr_date":"05/05/2000","dep_date":"05/06/2000","price_total":"$1"}];
 
 router.post('/login', function(req, res) {
 	console.log(req.body);
@@ -29,7 +28,6 @@ router.post('/login', function(req, res) {
 			for (var i = 0; i < users.length; i++){
 				// if we have a matching user, log them in
 				if (users[i].google === userid){
-					console.log("hi");
 					console.log(users[i].username);
 					req.session.current_user = users[i];
 					logged_in = true;
@@ -58,7 +56,7 @@ router.post('/Confirmation', function(req, res) {
 	prev_pages.push(current_page);
 	current_page = "Confirmation.html";
 	res.redirect('Home.html');
-})
+});
 
 
 // HOME PAGE
@@ -164,8 +162,29 @@ router.post('/SignupRedirect', function(req, res) {
 	res.redirect(prev_pages[prev_pages.length - 1]);
 });
 
-
-//WHERE WE ARE GOING AFTER LOGGING IN? charles' answer: to previous page.
+// EDIT USERS BOOKING DETAILS
+router.post('/confirmation_sent',function(req, res){
+	console.log('HEYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY THIS WORKS');
+	console.log(req.body);
+	// var details_object = req.body;
+	// var hotel = details_object.hotel;
+	// var location = details_object.location;
+	// var n_nights = details_object.n_nights;
+	// var n_adults = details_object.n_adults;
+	// var n_children = details_object.n_children;
+	// var arr_date = details_object.arr_date;
+	// var dep_date = details_object.dep_date;
+	// var price_total = details_object.price_total;
+	// req.session.current_user.hotel = hotel;
+	// req.session.current_user.location = location;
+	// req.session.current_user.n_nights = n_nights;
+	// req.session.current_user.n_adults = n_adults;
+	// req.session.current_user.n_children = n_children;
+	// req.session.current_user.arr_date = arr_date;
+	// req.session.current_user.dep_date = dep_date;
+	// req.session.current_user.price_total = price_total;
+	res.redirect('/');
+});
 
 
 // DONT NEED EITHER OF THESE
@@ -388,15 +407,24 @@ router.post("/ManagemntLoginCheck", function(req, res){
 
 });
 
+router.get('/get_booking_details', function(req, res) {
+	var to_send = {hotel:req.session.current_user.hotel,location:req.session.current_user.location,
+		n_nights:req.session.current_user.n_nights,n_adults:req.session.current_user.n_adults,
+		n_children:req.session.current_user.n_children,arr_date:req.session.current_user.arr_date,
+		dep_date:req.session.current_user.dep_date,price_total:req.session.current_user.price_total,};
+
+	res.send(JSON.stringify(to_send));
+});
+
 ///// writing to log in / signup div /////
 
 router.get('/logged_in_query', function(req, res) {
 	var to_send;
 	// && req.session.current_user
 	if (logged_in) {
-		to_send = {valid:"true", name:req.session.current_user.username}
+		to_send = {valid:"true", name:req.session.current_user.username};
 	} else {
-		to_send = {"valid":"false", "name":"false"}
+		to_send = {"valid":"false", "name":"false"};
 	}
 	console.log(to_send);
 	res.send(JSON.stringify(to_send));

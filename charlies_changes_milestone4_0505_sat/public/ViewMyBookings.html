@@ -27,6 +27,7 @@
       <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
       <script>
         window.onload = welcomeuser();
+        window.onload = mybookings();
       </script>
     </header>
 
@@ -37,10 +38,10 @@
         <form action="/ManageAccount" method="get">
           <ul class="list-group">
             <li name = "hotel" class="list-group-item">Hotel:		<span id="hotel_name"></span></li>
-            <li name = "location" class="list-group-item">Number of Nights:			<span id="loc"></span></li>
-            <li name = "n_nights" class="list-group-item">No. nights:			<span id="n_nights"></span></li>
-            <li name = "n_adults" class="list-group-item">No. adults:			<span id="n_adults"></span></li>
-            <li name = "n_children" class="list-group-item">No. children: 		<span id="n_children"></span></li>
+            <li name = "location" class="list-group-item">Location:			<span id="loc"></span></li>
+            <li name = "n_nights" class="list-group-item">Number of Nights:			<span id="n_nights"></span></li>
+            <li name = "n_adults" class="list-group-item">Number adults:			<span id="n_adults"></span></li>
+            <li name = "n_children" class="list-group-item">Number children: 		<span id="n_children"></span></li>
             <li name = "arr_date" class="list-group-item">Date of arrival:		<span id="arr_date"></span></li>
             <li name = "dep_date" class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
             <li name = "price_total" class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total"></span></li>

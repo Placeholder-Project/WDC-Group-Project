@@ -27,24 +27,27 @@
       <form action="/" method="get">
         <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
       </form>
+      <script>
+        window.onload = confirmation_details();
+      </script>
     </header>
 
     <!-- CONFIRMATION -->
     <div class="container-fluid" id="confirmation_div">
       <div class="col-sm-7">
         <h1>Booking Confirmation</h1>
-        <form action="/Confirmation" method="post">
+        <form action="/confirmation_sent" method="post">
           <ul class="list-group">
-            <li name = "hotel" class="list-group-item">Name of hotel:		<span id="hotel_name"></span></li>
-            <li name = "location" class="list-group-item">Location:			<span id="loc"></span></li>
-            <li name = "n_nights" class="list-group-item">No. nights:			<span id="n_nights"></span></li>
-            <li name = "n_adults" class="list-group-item">No. adults:			<span id="n_adults"></span></li>
-            <li name = "n_children" class="list-group-item">No. children: 		<span id="n_children"></span></li>
-            <li name = "arr_date" class="list-group-item">Date of arrival:		<span id="arr_date"></span></li>
-            <li name = "dep_date" class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
-            <li name = "price_total" class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total"></span></li>
+            <li class="list-group-item">Name of hotel:		<span name = "hotel" id="hotel_name">WOW</span></li>
+            <li name = "location" class="list-group-item">Location:			<span id="loc"></span>WOWER</li>
+            <li name = "n_nights" class="list-group-item">No. nights:			<span id="n_nights">10000</span></li>
+            <li name = "n_adults" class="list-group-item">No. adults:			<span id="n_adults">3</span></li>
+            <li name = "n_children" class="list-group-item">No. children: 		<span id="n_children">5</span></li>
+            <li name = "arr_date" class="list-group-item">Date of arrival:		<span id="arr_date">03/05/9000</span></li>
+            <li name = "dep_date" class="list-group-item">Date of departure:	<span id="dep_date">03/06/9000</span></li>
+            <li name = "price_total" class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total">$3</span></li>
           </ul>
-          <button type="submit" name="button" class="btn btn-default" onclick="button_confirmation()">Confirm</button>
+          <button type="submit" name="button" class="btn btn-default">Confirm</button>
         </form>
         <br>
         <form action="/back" method="get">

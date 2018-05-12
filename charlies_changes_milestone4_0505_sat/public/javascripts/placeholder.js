@@ -378,6 +378,57 @@ function welcomeuser(){
   xhttp.open('GET', '/logged_in_query', true);
   xhttp.send(0);
 }
+// DISPLAYS INFORMATION ON PERSONS CURRENT BOOKINGS
+function mybookings(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if (xhttp.readyState == 4 && xhttp.status == 200){
+      var userobject = JSON.parse(this.responseText);
+      var hotel = userobject.hotel;
+      var location = userobject.location;
+      var num_nights = userobject.n_nights;
+      var num_adults = userobject.n_adults;
+      var num_children = userobject.n_children;
+      var arrival = userobject.arr_date;
+      var departure = userobject.dep_date;
+      var price = userobject.price_total;
+      $("#hotel_name").html(hotel);
+      $("#loc").html(location);
+      $("#n_nights").html(num_nights);
+      $("#n_adults").html(num_adults);
+      $("#n_children").html(num_children);
+      $("#arr_date").html(arrival);
+      $("#dep_date").html(departure);
+      $("#price_total").html(price);
+    }
+  };
+  xhttp.open('GET','/get_booking_details');
+  xhttp.send(0);
+}
+
+// SENDS INFO TO SERVER ABOUT CONFIRMATION DETAILS
+function confirmation_details(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    // var hotel = $("#hotel_name").html;
+    // var location = $("#loc").html;
+    // var n_nights = $("#n_nights").html;
+    // var n_adults = $("#n_adults").html;
+    // var n_children = $("#n_children").html;
+    // var arr_date = $("#arr_date").html;
+    // var dep_date = $("#dep_date").html;
+    // var price_total = $("#price_total").html;
+    // var to_send = {"hotel":hotel,"location":location,"n_nights":n_nights,"n_adults":n_adults,"n_children":n_children,"arr_date":arr_date,"dep_date":dep_date,"price_total":price_total};
+    // alert("HERE:             "+hotel);
+    var to_send = {"hotel":"hotel","location":"location","n_nights":"n_nights","n_adults":"n_adults","n_children":"n_children","arr_date":"arr_date","dep_date":"dep_date","price_total":"price_total"};
+    //var to_send = "bleh";
+  };
+  xhttp.open('POST','/confirmation_sent');
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(to_send));
+}
+
+
 
 window.onload = logged_in_query();
 function logged_in_query() {
@@ -398,7 +449,7 @@ function logged_in_query() {
 	    	        		<button  class = "login_sign-up btn btn-default" > Logout </button> \
 	    	      	</form> \
         <form action = "/ManageAccount" method = "get">\
-          <button id = "manage_account" class = "login_sign-up btn btn-default" type="submit">'+response.name+'\'s account</button>\
+          <button id = "manage_account" class = "login_sign-up btn btn-default" type="submit">Your Account</button>\
         </form>\
 				');
 				document.getElementById('disable').disabled = "disabled";
