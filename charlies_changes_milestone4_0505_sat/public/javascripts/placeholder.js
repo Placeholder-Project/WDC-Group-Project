@@ -381,7 +381,7 @@ function logged_in_query() {
 				<form action="Logout" method="get"> \
 	    	        		<button  class = "login_sign-up btn btn-default" > Logout </button> \
 	    	      	</form> \
-				<button id="disable" class = "login_sign-up btn btn-default"> welcome back, '+response.name+ '</button> \
+        <button id = "ManageAccount" class = "login_sign-up btn btn-default" type="submit">'+response.name+'\'s account</button>\
 				');
 				document.getElementById('disable').disabled = "disabled";
 			} else {
@@ -392,7 +392,8 @@ function logged_in_query() {
 	    	      </form> \
 	    	      <form action="Login" method="get"> \
 	    	        <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button> \
-	    	      </form>');
+	    	      </form>\
+              ');
 			}
 		}
 	}

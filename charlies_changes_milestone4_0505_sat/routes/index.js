@@ -160,6 +160,7 @@ router.post('/SignupRedirect', function(req, res) {
 	new_user = {"username":req.body.fname, "email":req.body.email, "pwd":req.body.pwd};
 	req.session.current_user = new_user;
 	users.push(new_user);
+	logged_in = true;
 	res.redirect(prev_pages[prev_pages.length - 1]);
 });
 
@@ -195,7 +196,6 @@ router.get('/back', function(req,res) {
   }
   if (current_page == undefined){
     res.redirect('/');
-    return
   }
   res.redirect(current_page);
 
@@ -406,11 +406,6 @@ router.get('/Logout', function(req, res) {
 	logged_in = false;
 	res.redirect("/")
 });
-
-
-
-
-
 
 
 

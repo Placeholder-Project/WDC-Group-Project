@@ -1,3 +1,9 @@
+EDIT FROM SOFIA: 
+
+- changed logged_in = true in signup redirect
+- removed welcome button and replaced with Accounts button
+
+
 CHANGED:
 - changed users attr. fname to username for congruency
 - added 'logged_in = true' to google sign in and changed some redirection stuff
