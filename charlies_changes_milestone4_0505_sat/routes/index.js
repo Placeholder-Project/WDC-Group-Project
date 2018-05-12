@@ -196,6 +196,7 @@ router.get('/back', function(req,res) {
   }
   if (current_page == undefined){
     res.redirect('/');
+		return
   }
   res.redirect(current_page);
 
@@ -408,7 +409,7 @@ router.get('/Logout', function(req, res) {
 });
 
 
-
+////////////////////////////// HOTEL MANAGEMENT //////////////////////////////
 
 // HOTEL MANAGEMENT LOGIN PAGE
 router.get('/HotelManagementLogin', function(req, res){
@@ -433,8 +434,20 @@ router.get('/HotelManagement', function(req, res){
 });
 
 
+/////////////////////////////// MANAGE MY ACCOUNT ////////////////////////////////
+router.get('/ManageAccount', function(req, res){
+	prev_pages.push(current_page);
+	current_page = "ManageAccount.html";
+	prev_pages.push(current_page);
+	res.redirect("ManageAccount.html");
+});
 
-
+router.get('/ChangeMyDetails', function(req,res){
+	res.redirect("ChangeMyDetails.html");
+});
+router.get('/ViewMyBookings', function(req,res){
+	res.redirect("ViewMyBookings.html");
+});
 
 
 

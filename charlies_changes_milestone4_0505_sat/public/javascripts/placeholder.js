@@ -363,6 +363,22 @@ function onSignIn(googleUser) {
 }
 
 
+function welcomeuser(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if (xhttp.readyState == 4 && xhttp.status == 200){
+      var response = JSON.parse(this.responseText);
+			var logged_in = response.valid;
+      var name = response.name;
+      if (logged_in == "true"){
+        $("#welcome_name").html("Wecome back "+name+"!");
+      }
+    }
+  };
+  xhttp.open('GET', '/logged_in_query', true);
+  xhttp.send(0);
+}
+
 window.onload = logged_in_query();
 function logged_in_query() {
 	console.log("logged_in_query called");
@@ -381,9 +397,12 @@ function logged_in_query() {
 				<form action="Logout" method="get"> \
 	    	        		<button  class = "login_sign-up btn btn-default" > Logout </button> \
 	    	      	</form> \
-        <button id = "ManageAccount" class = "login_sign-up btn btn-default" type="submit">'+response.name+'\'s account</button>\
+        <form action = "/ManageAccount" method = "get">\
+          <button id = "manage_account" class = "login_sign-up btn btn-default" type="submit">'+response.name+'\'s account</button>\
+        </form>\
 				');
 				document.getElementById('disable').disabled = "disabled";
+
 			} else {
 				// write login and sign up buttons
 				$("#login_signup_buttons").html(' \
@@ -398,5 +417,5 @@ function logged_in_query() {
 		}
 	}
 	xhr.open('GET', '/logged_in_query', true);
-     xhr.send(0);
+  xhr.send(0);
 }
