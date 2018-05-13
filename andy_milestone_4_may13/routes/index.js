@@ -21,11 +21,12 @@ var users =[{'username':"sofia", "email":"sofia@g", 'pwd': "cool", 'google': "10
 
 router.post('/login', function(req, res) {
 	var create_new = true;
-	if (req.body.idtoken !== undefined){
+	var req_object = (req.body)
+	if (req_object.idtoken !== undefined){
 		console.log("Google token received");
 		async function verify() {
 			const ticket = await client.verifyIdToken({
-    		idToken: req.body.idtoken,
+    		idToken: req_object.idtoken,
     		audience: CLIENT_ID
 			});
   		const payload = ticket.getPayload();
@@ -44,7 +45,7 @@ router.post('/login', function(req, res) {
 			// if we dont have a matching user, create a new user and log them in
 			if (create_new) {
 				console.log("New user signed up!")
-				var new_user = {'google': userid, 'username': req.body.fname};
+				var new_user = {'google': userid, 'username': req_object.name};
 				users.push(new_user);
 				req.session.current_user = new_user;
 				logged_in = true;
