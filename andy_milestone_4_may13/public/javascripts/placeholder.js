@@ -361,8 +361,12 @@ function onSignIn(googleUser) {
   console.log("ID Token: " + id_token);
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'login');
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send('idtoken=' + id_token);
+  xhr.setRequestHeader("Content-type", "application/json");
+  var object = {
+    'idtoken': id_token,
+    'name': profile.getGivenName()
+  }
+  xhr.send(JSON.stringify(object));
 }
 
 var name;
