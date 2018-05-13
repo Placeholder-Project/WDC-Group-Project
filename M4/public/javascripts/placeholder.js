@@ -10,6 +10,7 @@ var number_nights;
 var Placename;
 var Locations;
 var Hotelprice;
+
 // storing last page before signup/login page
 var page_before_login_signup;
 // storing "map", "search", or "details" for back buttons
@@ -86,7 +87,7 @@ function submit_login(){
 
 }
 
-function write_confirmation() {
+/*function write_confirmation() {
 	// write in to the spans of given id with corr. variables
 
 	$("#hotel_name").html(hotel_name);
@@ -99,14 +100,14 @@ function write_confirmation() {
 	$("#arr_date").html(date_arrival);
 	$("#dep_date").html(date_departure);
 	$("#price_total").html("$"+total_price);
-}
+}*/
 
 
 ////////////////// NUMBER OF NIGHTS CALCULATOR //////////////////
 
-function assign_number_nights() {
-	var t1 = toDate(date_arrival),
-	    t2 = toDate(date_departure);
+function assign_number_nights(from,to) {
+	var t1 = toDate(from),
+	    t2 = toDate(to);
 	number_nights = days_between(t1,t2);
 }
 
@@ -282,3 +283,287 @@ $( function() {
     source: cities
   });
 } );
+
+
+
+/////// AJAX REQUEST FOR SEARCH HOTEL PAGES /////////
+function SearchHotelsResponse(){
+  var searchTerm = window.location.search.substring(12);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      var page = this.responseText;
+      document.getElementById("SearchHotelsID").innerHTML = page;
+    }
+  };
+
+  xhttp.open("GET","/SearchHotels?searchTerm="+searchTerm, true);
+  xhttp.send();
+
+}
+
+/////////////////////HOTEL MANAGEMENT DETAILS ///////////////////
+var FirstHotel = {
+	username:"FirstHotel",
+	password:"FirstHotel",
+	numRooms:59,
+	hotelName:"InterContinental",
+	address:"Adelaide",
+	price:550,
+	stars:4
+
+};
+var SecondHotel = {
+	username:"SecondHotel",
+	password:"SecondHotel",
+	numRooms:20,
+	hotelName:"Hilton",
+	address:"Adelaide",
+	price:330,
+	stars:4
+
+};
+
+var HotelManagementDetails=[FirstHotel, SecondHotel];
+
+function HotelManagementDisplay(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      document.getElementById("hotel_rooms").innerHTML = HotelManagementDetails[0].numRooms;
+      document.getElementById("hotel_name_change").innerHTML = HotelManagementDetails[0].hotelName;
+      document.getElementById("hotel_address").innerHTML = HotelManagementDetails[0].address;
+      document.getElementById("hotel_price").innerHTML = HotelManagementDetails[0].price;
+      document.getElementById("hotel_stars").innerHTML = HotelManagementDetails[0].stars;
+    }
+  };
+
+  xhttp.open("GET","/HotelCurrentStatus", true);
+  xhttp.send();
+}
+
+
+//OPEN ID
+var google;
+function onSignIn(googleUser) {
+  // Useful data for your client-side scripts:
+  var profile = googleUser.getBasicProfile();
+  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+  console.log('Full Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log("Image URL: " + profile.getImageUrl());
+  console.log("Email: " + profile.getEmail());
+
+  // The ID token you need to pass to your backend:
+  var id_token = googleUser.getAuthResponse().id_token;
+  google = profile.getId();
+  console.log("ID Token: " + id_token);
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'login');
+  xhr.setRequestHeader("Content-type", "application/json");
+  var object = {
+    'idtoken': id_token,
+    'name': profile.getGivenName()
+  };
+  xhr.send(JSON.stringify(object));
+}
+
+var name;
+function welcomeuser(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if (xhttp.readyState == 4 && xhttp.status == 200){
+      var response = JSON.parse(this.responseText);
+			var logged_in = response.valid;
+      name = response.name;
+      if (logged_in == "true"){
+        $("#welcome_name").html("Welcome back "+name+"!");
+      }
+    }
+  };
+  xhttp.open('GET', '/logged_in_query', true);
+  xhttp.send(0);
+}
+// DISPLAYS INFORMATION ON PERSONS CURRENT BOOKINGS
+/*function mybookings(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if (xhttp.readyState == 4 && xhttp.status == 200){
+      var userobject = JSON.parse(this.responseText);
+      var hotel = userobject.hotel;
+      var location = userobject.location;
+      var num_nights = userobject.n_nights;
+      var num_adults = userobject.n_adults;
+      var num_children = userobject.n_children;
+      var arrival = userobject.arr_date;
+      var departure = userobject.dep_date;
+      var price = userobject.price_total;
+      $("#hotel_name").html(hotel);
+      $("#loc").html(location);
+      $("#n_nights").html(num_nights);
+      $("#n_adults").html(num_adults);
+      $("#n_children").html(num_children);
+      $("#arr_date").html(arrival);
+      $("#dep_date").html(departure);
+      $("#price_total").html(price);
+    }
+  };
+  xhttp.open('GET','/get_booking_details');
+  xhttp.send(0);
+}*/
+
+// SENDS INFO TO SERVER ABOUT CONFIRMATION DETAILS
+function confirmation_details(){
+  var xhttp = new XMLHttpRequest();
+
+    // var hotel = $("#hotel_name").val();
+    // alert("HOTELLLLL: "+hotel);
+    // var location = $("#loc").val();
+    // var n_nights = $("#n_nights").val();
+    // var n_adults = $("#n_adults").val();
+    // var n_children = $("#n_children").val();
+    // var arr_date = $("#arr_date").val();
+    // var dep_date = $("#dep_date").val();
+    // var price_total = $("#price_total").val();
+    // var to_send = {"hotel":hotel,"location":location,"n_nights":n_nights,"n_adults":n_adults,"n_children":n_children,"arr_date":arr_date,"dep_date":dep_date,"price_total":price_total};
+    var to_send = {"hotel":"hotel","location":"location","n_nights":"n_nights","n_adults":"n_adults","n_children":"n_children","arr_date":"arr_date","dep_date":"dep_date","price_total":"price_total"};
+  xhttp.open('POST','/confirmation_sent',true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(to_send));
+}
+
+
+
+window.onload = logged_in_query();
+function logged_in_query() {
+	console.log("logged_in_query called");
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4 && xhr.status === 200) {
+			var response = JSON.parse(this.responseText);
+			var logged_in = response.valid;
+
+			if (logged_in == "true") {
+				// write "hello, <username>!" and a sign out button
+				//TODO: change button with the name to just a div
+				$("#login_signup_buttons").html(
+				' \
+				<form action="Logout" method="get"> \
+	    	        		<button  class = "login_sign-up btn btn-default" > Logout </button> \
+	    	      	</form> \
+        <form action = "/ManageAccount" method = "get">\
+          <button id = "manage_account" class = "login_sign-up btn btn-default" type="submit">Your Account</button>\
+        </form>\
+				');
+				//document.getElementById('disable').disabled = "disabled";
+
+			} else {
+				// write login and sign up buttons
+				$("#login_signup_buttons").html(' \
+				<form action="Signup" method="get"> \
+	    	        <button onclick="signup_button()" class = "login_sign-up btn btn-default" id="su"> Sign-up </button> \
+	    	      </form> \
+	    	      <form action="Login" method="get"> \
+	    	        <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button> \
+	    	      </form>\
+              ');
+			}
+		}
+	}
+	xhr.open('GET', '/logged_in_query', true);
+  xhr.send(0);
+}
+
+////////////////CONFIRMATION//////////////
+function confirmFill()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      var object = JSON.parse(xhttp.responseText);
+      var fd = object.from_date;
+      var td = object.to_date;
+      assign_number_nights(fd,td);
+      document.getElementById("n_nights").innerHTML = number_nights;
+      document.getElementById("hotel_name").innerHTML = object.hotel_name;
+      document.getElementById("loc").innerHTML = object.location;
+      document.getElementById("price_total").innerHTML = object.price * number_nights;
+      document.getElementById("n_adults").innerHTML = object.adult_number;
+      document.getElementById("n_children").innerHTML = object.child_number;
+      document.getElementById("arr_date").innerHTML = object.from_date;
+      document.getElementById("dep_date").innerHTML = object.to_date;
+
+    }
+  };
+
+  xhttp.open("GET","/fillHotelDetails", true);
+  xhttp.send();
+}
+
+function store_name_price(hotel_name, price, city)
+{
+  console.log(hotel_name);
+  console.log(price);
+  var xhttp = new XMLHttpRequest();
+  var name_price_object = {'hotel_name': hotel_name, 'hotel_price': price, 'location': city};
+  xhttp.open("POST","/StoreNamePrice", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  window.location.replace("BookingDetails.html");
+  xhttp.send((JSON.stringify(name_price_object)));
+}
+
+//////////////////USER MANAGING THEIR BOOKINGS////////////
+function display_bookings()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      var response = xhttp.responseText;
+      console.log(xhttp.responseText);
+      //alert(xhttp.responseText);
+      var temp_object_array = JSON.parse(response);
+      var object_array = [];
+      alert(temp_object_array);
+      for (var i = 0; i < temp_object_array.length; i++)
+      {
+        if (temp_object_array[i].id == name || temp_object_array[i].id == google)
+        {
+          object_array.push(temp_object_array[i]);
+        }
+      }
+    }
+  };
+  xhttp.open("POST","/get_booking_details", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  window.location.replace("ViewMyBookings.html");
+  xhttp.send(object_array);
+}
+
+function load_bookings()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      var object_array = (xhttp.responseText);
+      for (var j = 0; j < object_array.length; j++)
+      {
+        var fd = object_array[j].from_date;
+        var td = object_array[j].to_date;
+        assign_number_nights(fd,td);
+        document.getElementById("n_nights").innerHTML += number_nights;
+        document.getElementById("hotel_name").innerHTML += object_array[j].hotel_name;
+        document.getElementById("loc").innerHTML += object_array[j].location;
+        document.getElementById("price_total").innerHTML += object_array[j].price * number_nights;
+        document.getElementById("n_adults").innerHTML += object_array[j].adult_number;
+        document.getElementById("n_children").innerHTML += object_array[j].child_number;
+        document.getElementById("arr_date").innerHTML += object_array[j].from_date;
+        document.getElementById("dep_date").innerHTML += object_array[j].to_date;
+      }
+    }
+  };
+
+  xhttp.open("GET","/send_booking_details", true);
+  xhttp.send();
+}

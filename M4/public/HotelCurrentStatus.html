@@ -27,36 +27,28 @@
       </form>
     </header>
 
-    <!-- LOGIN -->
-    <div class="container-fluid" id="hotel_management_login_div">
+    <!-- HOTEL MANAGEMENT CURRENT STATUS -->
+    <div class="container-fluid" id="confirmation_div">
+      <script>
+        window.onload = HotelManagementDisplay();
+      </script>
       <div class="col-sm-7">
-        <h1>Manage your hotels on PlaceHolder</h1>
+        <h1 onload="HotelManagementDisplay()">Here is the current status of your hotel</h1>
+        <form action="/HotelManagement" method="get">
+          <ul class="list-group">
+            <li class="list-group-item">Number of Rooms Avaliable: 		<span id="hotel_rooms">lsdkjf</span></li>
+            <li class="list-group-item">Hotel Name:		<span id="hotel_name_change"></span></li>
+            <li class="list-group-item">Address:			<span id="hotel_address"></span></li>
+            <li class="list-group-item">Price per Night:			<span id="hotel_price"></span></li>
+            <li class="list-group-item">Number of stars:			<span id="hotel_stars"></span></li>
+          </ul>
+          <button type="submit" name="button" class="btn btn-default">Change my details</button>
+        </form>
         <br>
-        <!-- LOGIN -->
-        <div class="row">
-          <div class="container-fluid">
-            <div class=" col-sm-4 login_div" id="hotel_login_div">
-                <h1>Log in</h1>
-                <form action="/ManagemntLoginCheck" method="post">
-                  <input class="form-control" type="text" name="username" placeholder="Username">
-                  <br>
-                  <input class="form-control" type="password" name="password" placeholder="Password">
-                  <br>
-                  <button type="submit" name="button" class="btn btn-default">Submit</button>
-                  </form>
-                  <br>
-                <br>
-                <br>
-                <h5>Want your hotel up here?</h5>
-                <h6>Call us on +61 123 456 789</h6>
-            </div>
-          </div>
-
-          <form action="/back" method="get">
-            <button type="submit" name="button" class="btn btn-default back_button">Back</button>
-          </form>
-        </div>
-
+        <form action="/back" method="get">
+          <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+        </form>
+        <br>
       </div>
     </div>
 

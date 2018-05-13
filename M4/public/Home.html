@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title>Home</title>
     <title>PLACEHOLDER</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
@@ -19,6 +17,9 @@
     <script src="javascripts/placeholder.js"></script>
     <script src="javascripts/hotels.js"></script>
     <script src="javascripts/maps.js"></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="584993438587-ooj1akeui4rsb2g96aphfcs7497tnvoq.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -27,12 +28,12 @@
       <form action="/" method="get">
         <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
       </form>
-      <!-- login signup buttons -->
-      <form action="Signup.html">
-        <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
-      </form>
-      <form action="Login.html">
-        <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
+	 <!-- login signup buttons CHANGED: writing from logged_in_query -->
+	 <div id = "login_signup_buttons"></div>
+	<div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+      <br><br><br>
+      <form action="/HotelManagementLogin" method="get">
+        <button id="manage_hotels_button" type="submit" class = "btn btn-default"> Manage your hotel </button>
       </form>
     </header>
 
@@ -40,6 +41,7 @@
     <div class="container-fluid text-center feature_page" id="search_div">
       <div class="row content">
         <div class="col-sm-2 sidenav">
+
         </div>
         <div class="col-sm-8 text-center">
           <div id = "blankSpace1">
@@ -52,9 +54,9 @@
 
 
             <div class = "ui-widget">
-              <form action="/SearchHotels" method="get">
-                <input id = "searchBar" placeholder="Search.." >
-                <button onclick="search_page_search_button()" id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
+              <form action="/SearchQuery" method="get">
+                <input class="form-control" id = "searchBar" type = "text" placeholder="Search.." name="searchTerm" >
+                <button id = "searchButton" type="submit"><i class="fa fa-search"></i></button>
               </form>
             </div>
 
@@ -82,7 +84,6 @@
               <div class = "float-left">
                 <img class = "img_size img-responsive" src ="images/sydney.jpg" alt="Sydney">
               </div>
-
               <p class = "dealText"> Melbourne <span class = "small-text">(avg. $190)</span> </p>
               <div class = "float-left">
                  <img class = "img_size img-responsive" src ="images/melbourne.jpg" alt="Melbourne">

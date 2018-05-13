@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-
+    <title>PLACEHOLDER</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css">
@@ -18,9 +17,6 @@
     <script src="javascripts/placeholder.js"></script>
     <script src="javascripts/hotels.js"></script>
     <script src="javascripts/maps.js"></script>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="584993438587-ooj1akeui4rsb2g96aphfcs7497tnvoq.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -29,33 +25,39 @@
       <form action="/" method="get">
         <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
       </form>
-	 <!-- login signup buttons CHANGED: writing from logged_in_query -->
-	 <div id = "login_signup_buttons"></div>
-      <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     </header>
 
-    <!-- SIGNUP -->
+    <!-- HOTEL MANAGEMENT SIGN UP -->
     <div class="row">
       <div class="container-fluid">
         <div class="container-fluid col-sm-7 signup_div " id="signup_div">
-          <h1>Sign up for new account</h1>
-          <form action="/SignupRedirect" method="post">
-            <input class="form-control" type="text" name="fname" placeholder="First Name">
+          <h1>What do you want to change?</h1>
+          <form action="/HotelCurrentStatus" method="get">
+            <input class="form-control" type="text" name="hote_username" placeholder="Username">
             <br>
-            <input class="form-control" type="text" name="lname" placeholder="Last Name">
+            <input class="form-control" type="password" name="hotel_pwd" placeholder="Password">
             <br>
-            <input class="form-control" type="date" name="dob" placeholder = "D.O.B.">
+            <input class="form-control" type="password" name="hotel_cpwd" placeholder="Confirm Password">
             <br>
-            <input class="form-control" type="email" name="email" placeholder="Email">
+            <input class="form-control" type="tel" name="hotel_number" placeholder="Contact Number">
             <br>
-            <input class="form-control" type="password" name="pwd" placeholder="Password">
+            <input class="form-control" type="text" name="hotel_name" placeholder="Hotel Name">
             <br>
-            <input class="form-control" type="password" name="cpwd" placeholder="Confirm Password">
+            <input class="form-control" type="text" name="hotel_address" placeholder="Address of Hotel">
             <br>
-            <input class="form-control" type="tel" name="number" placeholder="Contact Number">
+            <input class="form-control" type="text" name="hotel_price" placeholder="Price per Night">
             <br>
-            <button type = "submit" name="button" class="btn btn-default" >Submit</button>
-          </form>
+            <input class="form-control" type="text" name="hotel_stars" placeholder="Number of Stars">
+            <br>
+            <input class="form-control" type="text" name="hotel_rooms" placeholder="Number of Rooms">
+            <br>
+            <button type = "submit" name="button" class="btn btn-default" >Update</button>
+            </form>
+            <form action="/DeleteHotel" method="get">
+              <button type = "submit" name="button" class="btn btn-default" >Delete My Hotel</button>
+            </form>
+
+
             <br>
             <form action="/back" method="get">
               <button type="submit" name="button" class="btn btn-default back_button">Back</button>
@@ -63,7 +65,6 @@
           </div>
       </div>
     </div>
-
 
     <!-- FOOTER -->
     <footer class="container-fluid text-center">

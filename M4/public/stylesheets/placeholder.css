@@ -18,14 +18,19 @@ footer {
     left: 0;
     right: 0;
     height:75px;
+    margin-top: 20px;
+    width:100%;
 }
-
+header {
+  padding-bottom:50px;
+}
 /* On small screens, set height to 'auto' for grid */
 @media screen and (max-width: 767px) {
   .row.content {height:auto;}
 }
-
-
+.row{
+  margin-bottom: 100px;
+}
 .button_details_booknow{
   background-color:#ff8f2d;
   color:white;
@@ -114,7 +119,7 @@ div.container-fluid.text-center{
 }
 #blankSpace1
 {
-  padding:12%;
+  padding:5%;
 }
 .blankSpace
 {
@@ -279,4 +284,16 @@ button em.rightImage{
 }
 #map_aus {
   float: center;
+}
+#manage_hotels_button{
+  margin-left:15px;
+
+}
+#open_id
+{
+  margin-top:11px;
+  margin-right:10px;
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+  float:right;
 }

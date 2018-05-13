@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title>Home</title>
     <title>PLACEHOLDER</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
@@ -19,6 +17,9 @@
     <script src="javascripts/placeholder.js"></script>
     <script src="javascripts/hotels.js"></script>
     <script src="javascripts/maps.js"></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="584993438587-ooj1akeui4rsb2g96aphfcs7497tnvoq.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -27,50 +28,50 @@
       <form action="/" method="get">
         <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
       </form>
-      <!-- login signup buttons -->
-      <form action="Signup.html">
-        <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
-      </form>
-      <form action="Login.html">
-        <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
-      </form>
+	 <!-- login signup buttons CHANGED: writing from logged_in_query -->
+	 <div id = "login_signup_buttons"></div>
+      <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     </header>
 
     <!-- Booking details -->
     <div class="container-fluid text-center feature_page" id = "booking_your_hotel_div">
       <div class="row content">
         <div class="col-sm-12 text-center">
-          <h1>Booking details</h1>
-            <br>
-            <h3>Number of people:</h3>
-              <p>Adults
-                  <select id = "adult_number">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  </select>
-              </p>
-              <p>Children
-                  <select id = "child_number">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  </select>
-              </p>
-
-              <h3>Dates:</h3>
-              <p>From: <input id="from_date" type="date"></p>
-              <p>To: <input id="to_date" type="date"></p>
+          <form action="/StoreHotelDetails" method="post">
+            <h1>Booking details</h1>
               <br>
-              <button type = "submit" class="btn btn-default">Submit</button>
-            <br>
-            <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_booking_details()">Back</button>
+              <h3>Number of people:</h3>
+                <p>Adults
+                    <select name = "adult_number" id = "adult_number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                </p>
+                <p>Children
+                    <select name = "child_number" id = "child_number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                </p>
+
+                <h3>Dates:</h3>
+                <p>From: <input name = "from_date" id="from_date" type="date"></p>
+                <p>To: <input name = "to_date" id="to_date" type="date"></p>
+                <br>
+                <button type = "submit" class="btn btn-default">Submit</button>
+              <br>
+          </form>
+            <form action="/back" method="get">
+              <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+            </form>
             <br>
             <br>
           <hr>

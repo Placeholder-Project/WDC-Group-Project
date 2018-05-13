@@ -22,27 +22,42 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-  <header>
-    <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-  </header>
+    <!-- HEADER -->
+    <header>
+      <div id = "login_signup_buttons"></div>
+      <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+      <script>
+        window.onload = welcomeuser();
+      </script>
+    </header>
 
-    <!-- LOGIN SIGNUP -->
-    <div class="lets_book_this_div container-fluid feature_page" id="lets_book_this_div">
-      <div class="row content">
-        <div class="col-sm-12 text-center">
-          <h3>Let's book this!</h3>
-          <form action="/Login" method="get">
-            <button type="submit" class="btn btn-default button_details_booknow" onclick="login()">Login</button>
+    <!-- CHANGE DETAILS -->
+    <div class="row">
+      <div class="container-fluid">
+        <div class="container-fluid col-sm-7 signup_div">
+          <h1>Please enter your new details below</h1>
+          <form action="/ChangeMyDetails" method="post">
+            <input class="form-control" type="text" name="fname" placeholder="First Name">
+            <br>
+            <input class="form-control" type="text" name="lname" placeholder="Last Name">
+            <br>
+            <input class="form-control" type="date" name="dob" placeholder = "D.O.B.">
+            <br>
+            <input class="form-control" type="email" name="email" placeholder="Email">
+            <br>
+            <input class="form-control" type="password" name="pwd" placeholder="Password">
+            <br>
+            <input class="form-control" type="password" name="cpwd" placeholder="Confirm Password">
+            <br>
+            <input class="form-control" type="tel" name="number" placeholder="Contact Number">
+            <br>
+            <button type = "submit" name="button" class="btn btn-default" >Submit</button>
           </form>
-          <p>or</p>
-          <form action="/Signup" method="get">
-            <button type="submit" class="btn btn-default button_details_booknow" onclick="signup()">Sign Up</button>
-          </form>
-          <br>
-          <form action="/back" method="get">
-            <button type="submit" name="button" class="btn btn-default back_button">Back</button>
-          </form>
-        </div>
+            <br>
+            <form action="/back" method="get">
+              <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+            </form>
+          </div>
       </div>
     </div>
 

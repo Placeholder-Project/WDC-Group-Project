@@ -2,10 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
     <title>PLACEHOLDER</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css">
@@ -19,22 +17,20 @@
     <script src="javascripts/placeholder.js"></script>
     <script src="javascripts/hotels.js"></script>
     <script src="javascripts/maps.js"></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="584993438587-ooj1akeui4rsb2g96aphfcs7497tnvoq.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-    <!-- HEADER -->
-    <header>
-      <!-- acts as home button -->
-      <form action="/" method="get">
-        <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
-      </form>
-      <!-- login signup buttons -->
-      <form action="Signup.html">
-        <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
-      </form>
-      <form action="Login.html">
-        <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
-      </form>
-    </header>
+  <header>
+    <!-- acts as home button -->
+    <form action="/" method="get">
+      <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
+    </form>
+    <!-- login signup buttons CHANGED: writing from logged_in_query -->
+    <div id = "login_signup_buttons"></div>
+    <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+  </header>
 
     <div class="container-fluid text-center feature_page" id="maps_div">
       <div class="row content">
@@ -52,7 +48,9 @@
             <div class = "inline-block" id="map_aus">
 
             </div>
-            <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_map()">Back</button>
+            <form action="/back" method="get">
+              <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+            </form>
             <div class = "blankSpace2">
             </div>
           </div>

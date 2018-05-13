@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title>Home</title>
     <title>PLACEHOLDER</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
@@ -19,29 +17,27 @@
     <script src="javascripts/placeholder.js"></script>
     <script src="javascripts/hotels.js"></script>
     <script src="javascripts/maps.js"></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="584993438587-ooj1akeui4rsb2g96aphfcs7497tnvoq.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-    <!-- HEADER -->
-    <header>
-      <!-- acts as home button -->
-      <form action="/" method="get">
-        <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
-      </form>
-      <!-- login signup buttons -->
-      <form action="Signup.html">
-        <button onclick="signup_button()" class = "login_sign-up btn btn-default" id ="su"> Sign-up </button>
-      </form>
-      <form action="Login.html">
-        <button onclick="login_button()" class = "login_sign-up btn btn-default" > Login </button>
-      </form>
-    </header>
+  <header>
+    <!-- acts as home button -->
+    <form action="/" method="get">
+      <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
+    </form>
+    <!-- login signup buttons CHANGED: writing from logged_in_query -->
+    <div id = "login_signup_buttons"></div>
+    <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+  </header>
 
     <!-- LOGIN -->
     <div class="row">
       <div class="container-fluid">
         <div class=" col-sm-3 login_div" id="login_div">
             <h1>Log in</h1>
-            <form action="/Login" method="post">
+            <form action="/LoginRedirect" method="post">
               <input class="form-control" type="email" name="email" placeholder="Email">
               <br>
               <input class="form-control" type="password" name="pwd" placeholder="Password">
@@ -49,8 +45,10 @@
               <button type="submit" name="button" class="btn btn-default">Submit</button>
               <br>
             </form>
-              <button type="button" name="button" class="btn btn-default back_button" onclick="back_button_login()">Back</button>
-        </div>
+            <form action="/back" method="get">
+              <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+            </form>
+          </div>
       </div>
     </div>
 

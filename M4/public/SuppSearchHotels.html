@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <meta charset="utf-8">
     <title>PLACEHOLDER</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css">
@@ -30,27 +30,33 @@
 	<div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     </header>
 
-    <!-- DETAILS OF HOTEL -->
+    <!-- DISPLAY OF HOTELS -->
 
-    <div class="container-fluid feature_page" id="hotel_details_div">
-      <br>
-      <h1 id = "name_details">""</h1>
-      <p class="imageinfo"><img id ="image_details" src="images/hotel1.jpg" alt="Hotel 1" class="hotels">
-        <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong>
-        <br><strong>Price: </strong><span id = "price_details">$ </span> per night
-        <br><strong>Location: </strong> <span id = "location_details"></span>
-        <br><strong>Other info: </strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ilpa qui officia deserunt mollit anim id est laborum.
-        <br><span id="misc_info"></span>
-      </p>
+    <div class="container-fluid text-center feature_page" id="places_and_area_div">
+      <div class="row content">
+        <div class="col-sm-12 text-left">
+          <div class="col-md-12">
+            <h1>Hotels</h1>
+            <p class="imageinfo"><img src="images/hotel1.jpg" alt="Hotel 1" class="hotels"><strong>Name: </strong> InterContinental <br> <strong>Stars: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></strong><br> <strong>Price: </strong>$550 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
+            <!--all onclick detail functions pass the name of the of the hotel-->
+            <form action="/HotelDetails" method="get">
+              <button type="submit" class="btn btn-default button_details_booknow">Details</button>
+            </form>
+            <form action="/BookingDetails" method="get">
+              <button type="submit" class="btn btn-default button_details_booknow">Book Now</button>
+            </form>
+            <div style="clear:both;"></div>
 
-      <!-- include onclick command in the input -->
-      <div  class="d-flex justify-content-between">
-        <button class="btn btn-default" id = "book_now_from_details" onclick="book_now_button_details()">Book Now</button>
+            <p class="imageinfo"><img src="images/hotel2.jpg" alt="Hotel 2" class="hotels"><strong>Name: </strong> Hilton <br> <strong>Stars:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong><br> <strong>Price: </strong>$380 per night<br> <strong>Location: </strong>Adelaide (CBD)</p>
+            <button type="button" class="btn btn-default button_details_booknow" onclick="details('Hilton','Adelaide(CBD)',380,'images/hotel2.jpg')">Details</button>
+            <button type="button" class="btn btn-default button_details_booknow" onclick="book_details_search('Hilton','Adelaide(CBD)',380)">Book Now</button>
+            <br>
+          </div>
+        </div>
       </div>
       <form action="/back" method="get">
         <button type="submit" name="button" class="btn btn-default back_button">Back</button>
       </form>
-      <br>
     </div>
 
     <!-- FOOTER -->
