@@ -409,21 +409,19 @@ function mybookings(){
 // SENDS INFO TO SERVER ABOUT CONFIRMATION DETAILS
 function confirmation_details(){
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
-    // var hotel = $("#hotel_name").html;
-    // var location = $("#loc").html;
-    // var n_nights = $("#n_nights").html;
-    // var n_adults = $("#n_adults").html;
-    // var n_children = $("#n_children").html;
-    // var arr_date = $("#arr_date").html;
-    // var dep_date = $("#dep_date").html;
-    // var price_total = $("#price_total").html;
+
+    // var hotel = $("#hotel_name").val();
+    // alert("HOTELLLLL: "+hotel);
+    // var location = $("#loc").val();
+    // var n_nights = $("#n_nights").val();
+    // var n_adults = $("#n_adults").val();
+    // var n_children = $("#n_children").val();
+    // var arr_date = $("#arr_date").val();
+    // var dep_date = $("#dep_date").val();
+    // var price_total = $("#price_total").val();
     // var to_send = {"hotel":hotel,"location":location,"n_nights":n_nights,"n_adults":n_adults,"n_children":n_children,"arr_date":arr_date,"dep_date":dep_date,"price_total":price_total};
-    // alert("HERE:             "+hotel);
     var to_send = {"hotel":"hotel","location":"location","n_nights":"n_nights","n_adults":"n_adults","n_children":"n_children","arr_date":"arr_date","dep_date":"dep_date","price_total":"price_total"};
-    //var to_send = "bleh";
-  };
-  xhttp.open('POST','/confirmation_sent');
+  xhttp.open('POST','/confirmation_sent',true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(JSON.stringify(to_send));
 }

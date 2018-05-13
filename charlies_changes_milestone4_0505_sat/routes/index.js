@@ -166,24 +166,29 @@ router.post('/SignupRedirect', function(req, res) {
 router.post('/confirmation_sent',function(req, res){
 	console.log('HEYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY THIS WORKS');
 	console.log(req.body);
-	// var details_object = req.body;
-	// var hotel = details_object.hotel;
-	// var location = details_object.location;
-	// var n_nights = details_object.n_nights;
-	// var n_adults = details_object.n_adults;
-	// var n_children = details_object.n_children;
-	// var arr_date = details_object.arr_date;
-	// var dep_date = details_object.dep_date;
-	// var price_total = details_object.price_total;
-	// req.session.current_user.hotel = hotel;
-	// req.session.current_user.location = location;
-	// req.session.current_user.n_nights = n_nights;
-	// req.session.current_user.n_adults = n_adults;
-	// req.session.current_user.n_children = n_children;
-	// req.session.current_user.arr_date = arr_date;
-	// req.session.current_user.dep_date = dep_date;
-	// req.session.current_user.price_total = price_total;
-	res.redirect('/');
+	var details_object = req.body;
+	var hotel = details_object.hotel;
+	var location = details_object.location;
+	var n_nights = details_object.n_nights;
+	var n_adults = details_object.n_adults;
+	var n_children = details_object.n_children;
+	var arr_date = details_object.arr_date;
+	var dep_date = details_object.dep_date;
+	var price_total = details_object.price_total;
+	req.session.current_user.hotel = hotel;
+	req.session.current_user.location = location;
+	req.session.current_user.n_nights = n_nights;
+	req.session.current_user.n_adults = n_adults;
+	req.session.current_user.n_children = n_children;
+	req.session.current_user.arr_date = arr_date;
+	req.session.current_user.dep_date = dep_date;
+	req.session.current_user.price_total = price_total;
+});
+
+router.get('/gohome', function(req, res) {
+	prev_pages.push(current_page);
+	current_page = "/";
+	res.redirect("/");
 });
 
 
