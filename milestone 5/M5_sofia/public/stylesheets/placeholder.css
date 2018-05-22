@@ -1,0 +1,299 @@
+
+html{
+  position:relative;
+  min-height: 100%;
+}
+/* Set height of the grid*/
+.row.content {height: 450px}
+
+/* Set black background color, white text and some padding */
+/* blue */
+footer {
+    font-family: Karla, sans-serif;
+    background-color: #2e5ca5;
+    color: white;
+    padding: 30px;
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:75px;
+    margin-top: 20px;
+    width:100%;
+}
+header {
+  padding-bottom:50px;
+}
+/* On small screens, set height to 'auto' for grid */
+@media screen and (max-width: 767px) {
+  .row.content {height:auto;}
+}
+.row{
+  margin-bottom: 100px;
+}
+.button_details_booknow{
+  background-color:#ff8f2d;
+  color:white;
+  border:none;
+}
+
+body {
+  background-color: white;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
+}
+
+img.hotels {
+  width: 30%;
+  float:left;
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+
+}
+
+.imageinfo {
+  padding: 10px;
+}
+
+div.container-fluid.text-center{
+  max-width: 1100px;
+  background-color: white;
+}
+.login_sign-up
+{
+  margin-top:10px;
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+  float:right;
+}
+#home{
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+  float: left;
+}
+#buttonhome{
+  margin-top:10px;
+  margin-left:10px;
+}
+
+.back_button{
+  margin-top:10px;
+  margin-bottom:10px;
+  float:left;
+}
+
+#searchBar
+{
+  padding: 10px;
+  font-size: 17px;
+  border: 0.25px solid grey;
+  border-right: none;
+  float: left;
+  width: 80%;
+  height: 40px;
+
+  position: relative;
+  z-index: 1;
+}
+#or
+{
+  float:center;
+  text-align: center;
+  font-size: 24px;
+  font-family: Rubik, sans-serif;
+  opacity: 0.9;
+  line-height: 2.5em;
+  color: white;
+}
+#blankSpace1
+{
+  padding:5%;
+}
+.blankSpace
+{
+  padding-top:30%;
+}
+.blankSpace2
+{
+  padding:10%;
+}
+.blankSpace3
+{
+  padding: 20%;
+}
+#deals
+{
+  text-align: left;
+}
+#mapsButton
+{
+  padding: 4px;
+  float:center;
+  border-radius: 8px;
+  font-size: 16px;
+  opacity: 0.9px;
+  font-family: Rubik, sans-serif;
+  white-space:nowrap;
+  width:auto;
+  height:auto;
+  overflow:visible;
+}
+#buttonText
+{
+  opacity: 0.9;
+  text-align: center;
+}
+#mapIcon
+{
+  font-size: 15px;
+}
+button em{
+    vertical-align:middle;
+    margin:0 2px;
+    display:inline-block;
+    width:25px;
+    height:25px;
+    background-image: url(Maps-icon.jpg);
+    background-size: 25px;
+
+}
+button em.rightImage{
+    background-position: -64px -16px;
+}
+.title
+{
+  font-family: Oxygen, sans-serif;
+  text-align: center;
+  display: inline;
+  font-size: 108px;
+  float: center;
+}
+.firstTitleColour
+{
+  color: darkgrey;
+}
+.secondTitleColour
+{
+  color: #2e5ca5;
+  opacity: 0.9;
+}
+.inline-block {
+   display: inline-block;
+}
+.img_size {
+  width: 100%;
+  height: auto;
+  margin-right: 10vh;
+
+}
+.dealText
+{
+  font-family: Oxygen, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+}
+.float-left {
+   float: left;
+}
+.small-text {
+   font-size: 18px;
+}
+
+.container{
+  width: 100%;
+  padding-right: 120px; //whatever you want
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#secondCity
+{
+  margin-left: 13.5%;
+}
+#thirdCity
+{
+  margin-left: 14.5%;
+}
+#su{
+  margin-right:10px
+}
+#placeholdertext{
+  float:left;
+  position:relative;
+  font-family: Oxygen, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 5px;
+  background-color: white;
+  border: none;
+}
+#searchLocation {
+  display: inline-block;
+  float: left;
+
+  margin-top: 2%;
+  height: 20px;
+}
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+#searchButton {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2e5ca5;
+  color: white;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  height: 40px;
+}
+#map_search_button {
+  float: left;
+  width: 2.5%;
+  max-width: 100px;
+  margin-top: 2%;
+  margin-right:1%;
+  background: #2e5ca5;
+  color: white;
+  font-size: 10px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  height: 20px;
+}
+#map_aus {
+  float: center;
+}
+#manage_hotels_button{
+  margin-left:15px;
+
+}
+#open_id
+{
+  margin-top:11px;
+  margin-right:10px;
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+  float:right;
+}
