@@ -22,6 +22,12 @@ var l_s;
 //if submitted login/signup Details
 var submit_l_s;
 
+// fake function
+function fake (word){
+  alert(word);
+}
+
+
 //  PLACES IN THIS AREA
 function book_details_search(hotel, location, night_price){
   previous_map_or_search_or_details = "search";
@@ -504,7 +510,9 @@ function confirmFill()
 
 function store_name_price(hotel_name, price, city, h_id)
 {
-  console.log(hotel_name);
+  alert("**********************************************")
+  alert("hid: "+h_id);
+  console.log("hid: "+h_id);
   console.log(price);
   var xhttp = new XMLHttpRequest();
   var name_price_object = {'hotel_name': hotel_name, 'hotel_price': price, 'location': city, 'hotel_id': h_id};

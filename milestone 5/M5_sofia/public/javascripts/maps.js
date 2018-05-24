@@ -1,5 +1,5 @@
-
 var focus = {lat:-27, lng: 133.7751};
+var markerArray = [];
 function initMap(){
   map = new google.maps.Map(document.getElementById('map_aus'), {
       zoom: 4,
@@ -21,16 +21,16 @@ function pass_hotel_array(search_word){
   xhttp.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 200){
       var arr = JSON.parse(xhttp.responseText);
-      console.log("HOTELS ARRAY "+arr[0].hotel_name);
+      //console.log("HOTELS ARRAY "+arr[0].hotel_name);
       add_markers(arr);
     }
   };
   var object = {'search_word': search_word};
-  console.log("SEARCH WORD"+object.search_word);
-  console.log("SEARCH WORD"+object);
+  //console.log("SEARCH WORD"+object.search_word);
+  //console.log("SEARCH WORD"+object);
   xhttp.open("POST","/mapSearch", true);
   xhttp.setRequestHeader("Content-type", "application/json");
-  console.log("SEARCH WORD"+object);
+  //console.log("SEARCH WORD"+object);
   xhttp.send(JSON.stringify(object));
 
   // ;
@@ -50,6 +50,8 @@ function marker(hotel) {
   city = "adf";
   price = 200;
   img_src = "images/hotel2.jpg";*/
+
+
   var content = "<h4>"+ hotel.hotel_name +"</h4><p><strong>Location: </strong>"+hotel.location +
   "<br><strong>Price: </strong>"+hotel.cost_per_night+
   "<br> \
@@ -57,9 +59,9 @@ function marker(hotel) {
     <button type='submit' class='btn btn-default button_details_booknow'>Details</button> \
   </form>\
   <form action='/BookingDetails' method='get'>\
-    <button type='submit' onclick = 'store_name_price('"+hotel.hotel_name+"', '"+hotel.cost_per_night+"', '"+hotel.location+"', '"+hotel.hotel_id+"')' class='btn btn-default button_details_booknow'>Book Now</button>\
+    <button type='submit' onclick = 'store_name_price(&quot;"+hotel.hotel_name+"&quot;, &quot;"+hotel.cost_per_night+"&quot;, &quot;"+hotel.location+"&quot;, &quot;"+hotel.hotel_id+"&quot;)' class='btn btn-default button_details_booknow'>Book Now</button>\
   </form>";
-  console.log(hotel.hotel_name);
+  console.log("hname: "+(hotel.hotel_id));
   var loc = {"lat":hotel.lat,"lng":hotel.lng};
   var marker = new google.maps.Marker({
     position : loc,
@@ -74,10 +76,20 @@ function marker(hotel) {
 }
 
 function add_markers(hotels_array){
-  console.log(hotels_array);
-  for(var i=0; i<hotels_array.length; i++) {
+  //console.log(hotels_array);
+  //clear markers
+  var i;
+  // if (markerArray.length != 0){
+  //   for (i = 0; i < markerArray.length;i++){
+  //     console.log("^^^^^");
+  //     markerArray[i].setMap(null);
+  //   }
+  //   markerArray = [];
+  // }
+  for(i=0; i<hotels_array.length; i++) {
+    console.log("length: "+(hotels_array.length));
     //console.log("IDK ANYMORE"+hotels_array[i].hotel_name);
-    marker(hotels_array[i]);
+    markerArray.push(marker(hotels_array[i]));
   }
 
 }
@@ -85,32 +97,3 @@ function add_markers(hotels_array){
 
 
 ////////////////////////////  MAPS FUNCTIONS ////////////////////////////
-
-function back_button_map(){
-  $("#maps_div").hide();
-  $("#search_div").show();
-}
-
-function book_details_maps(hotel, location, night_price){
-  previous_map_or_search_or_details = "map";
-  hotel_name = hotel;
-  hotel_location = location;
-  price = night_price;
-  $("#maps_div").hide();
-  $("#booking_your_hotel_div").show();
-}
-
-
-function details_maps(placename,location,price,img){
-  details_to_map_or_search = "map";
-  Placename=placename;
-  Locations=location;
-  Hotelprice=price;
-  $("#maps_div").hide();
-  $("#hotel_details_div").show();
-  $("#image_details").attr("src",img);
-  $("#name_details").html(placename);
-  $("#price_details").html("$"+price);
-  $("#location_details").html(location);
-
-}

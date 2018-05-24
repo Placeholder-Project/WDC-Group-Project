@@ -354,9 +354,7 @@ router.get('/SearchHotels', function(req, res) {
 				t++;
 			}
 			var div_content='';
-			console.log(searchedHotels[0]);
 			for (var i = 0; i < searchedHotels.length; i++) {
-				console.log(searchedHotels[i].hotel_name);
 				div_content += '<link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css"> \
 							<script src="javascripts/placeholder.js"></script> \
 							<p class="imageinfo"><img style = "width: 30%;float:left;display: inline-block;margin: 0px 10px 10px 0px;" src='+searchedHotels[i].photos+ " " +
