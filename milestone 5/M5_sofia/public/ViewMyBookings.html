@@ -18,14 +18,11 @@
     <script src="javascripts/hotels.js"></script>
     <script src="javascripts/maps.js"></script>
   </head>
-  <body onload="load_bookings()">
+  <body onload="loadbookings()">
     <!-- HEADER -->
     <header>
       <div id = "login_signup_buttons"></div>
       <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-      <script>
-        window.onload = welcomeuser();
-      </script>
     </header>
 
     <!-- VIEW MY BOOKING -->
@@ -33,22 +30,18 @@
       <div class="col-sm-7">
         <h1>What have you booked?</h1>
         <form action="/ManageAccount" method="get">
-          <ul class="list-group">
-            <li class="list-group-item">Hotel:		<span id="hotel_name"></span></li>
-            <li class="list-group-item">Location:			<span id="loc"></span></li>
-            <li class="list-group-item">Number of Nights:			<span id="n_nights"></span></li>
-            <li class="list-group-item">Number adults:			<span id="n_adults"></span></li>
-            <li class="list-group-item">Number children: 		<span id="n_children"></span></li>
-            <li class="list-group-item">Date of arrival:		<span id="arr_date"></span></li>
-            <li class="list-group-item">Date of departure:	<span id="dep_date"></span></li>
-            <li class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total"></span></li>
-          </ul>
+          <div id="confirmation_div_id">
+
+          </div>
           <button type="submit" name="button" class="btn btn-default" onclick="button_confirmation()">Got it!</button>
           <h4>If you think these details are incorrect or you need to cancel your bookings, please call us on:  +61 123 456 789</h4>
         </form>
         <br>
         <br>
       </div>
+    </div>
+    <div class="blankSpace4">
+
     </div>
 
     <!-- FOOTER -->

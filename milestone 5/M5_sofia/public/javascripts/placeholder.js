@@ -130,8 +130,19 @@ function days_between(t1, t2) {
 	    d2 = Math.floor(t2 / cd);
 	return (d2-d1);
 }
+////// CUSTOMER BOOKING PAGE ////////
+function assign_number_nightsMy(from,to) {
 
-
+	var t1 = toDateMy(from);
+	var t2 = toDateMy(to);
+	number_nights = days_between(t1,t2);
+}
+function toDateMy(s) {
+	// splits up date string
+	var b = s.split("-");
+	// uses these values to become dates
+	return new Date(b[0], --b[1], b[2]);
+}
 
 ////////////////// BACK BUTTONS //////////////////
 
@@ -482,7 +493,85 @@ function logged_in_query() {
   xhr.send(0);
 }
 
-////////////////CONFIRMATION//////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ////////////////CONFIRMATION//////////////
+// function loadbookings(){
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function(){
+//     if(this.readyState == 4 && this.status == 200){
+//       var allobjects= JSON.parse(xhttp.responseText);
+//       var object = allobjects[0];
+//       var fd = object.arrival;
+//       var td = object.departure;
+//       assign_number_nightsMy(fd,td);
+//       document.getElementById("n_nights").innerHTML = number_nights;
+//       document.getElementById("hotel_name").innerHTML = object.hotel_name;
+//       document.getElementById("loc").innerHTML = object.location;
+//       document.getElementById("price_total").innerHTML = "$"+object.cost_per_night * number_nights;
+//       document.getElementById("n_adults").innerHTML = object.no_adults;
+//       document.getElementById("n_children").innerHTML = object.no_children;
+//       document.getElementById("arr_date").innerHTML = object.arrival;
+//       document.getElementById("dep_date").innerHTML = object.departure;
+//     }
+//   };
+//
+//   xhttp.open("GET","/fillMyBookings", true);
+//   xhttp.send();
+// }
+
+function loadbookings(){
+  var searchTerm = window.location.search.substring(12);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      var page = this.responseText;
+      document.getElementById("confirmation_div_id").innerHTML = page;
+    }
+  };
+
+  xhttp.open("GET","/fillMyBookings", true);
+  xhttp.send();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////USERS BOOKINGS//////////////
 function confirmFill()
 {
   var xhttp = new XMLHttpRequest();
@@ -492,15 +581,14 @@ function confirmFill()
       var fd = object.from_date;
       var td = object.to_date;
       assign_number_nights(fd,td);
-      document.getElementById("n_nights").innerHTML = number_nights;
-      document.getElementById("hotel_name").innerHTML = object.hotel_name;
+      document.getElementById("hotel_name").innerHTML = object.hotel_name ;
       document.getElementById("loc").innerHTML = object.location;
-      document.getElementById("price_total").innerHTML = object.price * number_nights;
-      document.getElementById("n_adults").innerHTML = object.adult_number;
-      document.getElementById("n_children").innerHTML = object.child_number;
-      document.getElementById("arr_date").innerHTML = object.from_date;
-      document.getElementById("dep_date").innerHTML = object.to_date;
-      console.log('****************');
+      document.getElementById("n_nights").innerHTML = number_nights;
+      document.getElementById("n_adults").innerHTML = object.adult_number ;
+      document.getElementById("n_children").innerHTML = object.child_number ;
+      document.getElementById("arr_date").innerHTML = object.from_date ;
+      document.getElementById("dep_date").innerHTML = object.to_date ;
+      document.getElementById("price_total").innerHTML = "$"+object.price * number_nights;
     }
   };
 
@@ -508,10 +596,10 @@ function confirmFill()
   xhttp.send();
 }
 
+
+
 function store_name_price(hotel_name, price, city, h_id)
 {
-  alert("**********************************************")
-  alert("hid: "+h_id);
   console.log("hid: "+h_id);
   console.log(price);
   var xhttp = new XMLHttpRequest();
@@ -529,7 +617,6 @@ function display_bookings(){
     if(this.readyState == 4 && this.status == 200){
       var response = xhttp.responseText;
       console.log(xhttp.responseText);
-      //alert(xhttp.responseText);
       var temp_object_array = JSON.parse(response);
       var object_array = [];
       for (var i = 0; i < temp_object_array.length; i++)
@@ -547,29 +634,29 @@ function display_bookings(){
   xhttp.send(object_array);
 }
 
-function load_bookings()
-{
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
-    if(this.readyState == 4 && this.status == 200){
-      var object_array = (xhttp.responseText);
-      for (var j = 0; j < object_array.length; j++)
-      {
-        var fd = object_array[j].from_date;
-        var td = object_array[j].to_date;
-        assign_number_nights(fd,td);
-        document.getElementById("n_nights").innerHTML += number_nights;
-        document.getElementById("hotel_name").innerHTML += object_array[j].hotel_name;
-        document.getElementById("loc").innerHTML += object_array[j].location;
-        document.getElementById("price_total").innerHTML += object_array[j].price * number_nights;
-        document.getElementById("n_adults").innerHTML += object_array[j].adult_number;
-        document.getElementById("n_children").innerHTML += object_array[j].child_number;
-        document.getElementById("arr_date").innerHTML += object_array[j].from_date;
-        document.getElementById("dep_date").innerHTML += object_array[j].to_date;
-      }
-    }
-  };
-
-  xhttp.open("GET","/send_booking_details", true);
-  xhttp.send();
-}
+// function load_bookings()
+// {
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function(){
+//     if(this.readyState == 4 && this.status == 200){
+//       var object_array = (xhttp.responseText);
+//       for (var j = 0; j < object_array.length; j++)
+//       {
+//         var fd = object_array[j].from_date;
+//         var td = object_array[j].to_date;
+//         assign_number_nights(fd,td);
+//         document.getElementById("n_nights").innerHTML += number_nights;
+//         document.getElementById("hotel_name").innerHTML += object_array[j].hotel_name;
+//         document.getElementById("loc").innerHTML += object_array[j].location;
+//         document.getElementById("price_total").innerHTML += object_array[j].price * number_nights;
+//         document.getElementById("n_adults").innerHTML += object_array[j].adult_number;
+//         document.getElementById("n_children").innerHTML += object_array[j].child_number;
+//         document.getElementById("arr_date").innerHTML += object_array[j].from_date;
+//         document.getElementById("dep_date").innerHTML += object_array[j].to_date;
+//       }
+//     }
+//   };
+//
+//   xhttp.open("GET","/send_booking_details", true);
+//   xhttp.send();
+// }

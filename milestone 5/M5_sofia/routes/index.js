@@ -192,7 +192,6 @@ router.post('/SignupRedirect', function(req, res) {
 
 // EDIT USERS BOOKING DETAILS
 router.post('/confirmation_sent',function(req, res){
-	console.log('HEYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY THIS WORKS');
 	console.log(req.body);
 	var details_object = req.body;
 	var hotel = details_object.hotel;
@@ -583,6 +582,160 @@ router.post('/StoreNamePrice', function(req, res) {
 	current_page = "BookingDetails.html";
 	res.redirect("BookingDetails.html");
 });
+
+
+
+
+
+
+
+
+
+
+
+// router.get('/fillMyBookings',function(req,res){
+// 	var usersBookings = [];
+// 	req.pool.getConnection(function(err,connection){
+// 		if (err) {throw err;}
+// 		var user_email = req.session.current_user.email;
+// 		console.log(user_email);
+// 		//var sql = "SELECT * FROM Bookings WHERE email = '"+user_email+"';";
+// 		var sql = "SELECT * FROM Bookings LEFT JOIN Hotels ON Bookings.hotel_id = Hotels.hotel_id WHERE email = '"+user_email+"';";
+// 		//var sql = "SELECT * FROM Bookings WHERE email = 'sofia@g';";
+// 		connection.query(sql, function(err, results){
+// 			var t = 0;
+// 			while (results[t]!=undefined){
+// 				usersBookings.push(results[t]);
+// 				t++;
+// 			}
+// 			console.log(usersBookings[0].location);
+// 			res.send(usersBookings);
+// 			connection.release();
+// 		});
+// 	});
+// });
+
+
+function days_between(t1, t2) {
+	var cd = 24 * 60 * 60 * 1000,
+	    d1 = Math.floor(t1 / cd),
+	    d2 = Math.floor(t2 / cd);
+	return (d2-d1);
+}
+////// CUSTOMER BOOKING PAGE ////////
+function assign_number_nightsMy(from,to) {
+
+	var t1 = toDateMy(from);
+	var t2 = toDateMy(to);
+	return days_between(t1,t2);
+}
+function toDateMy(s) {
+	// splits up date string
+	var b = s.split("-");
+	// uses these values to become dates
+	return new Date(b[0], --b[1], b[2]);
+}
+
+router.get('/fillMyBookings',function(req,res){
+	var usersBookings = [];
+	req.pool.getConnection(function(err,connection){
+		if (err) {throw err;}
+		var user_email = req.session.current_user.email;
+		console.log(user_email);
+		//var sql = "SELECT * FROM Bookings WHERE email = '"+user_email+"';";
+		var sql = "SELECT * FROM Bookings LEFT JOIN Hotels ON Bookings.hotel_id = Hotels.hotel_id WHERE email = '"+user_email+"';";
+		//var sql = "SELECT * FROM Bookings WHERE email = 'sofia@g';";
+		connection.query(sql, function(err, results){
+			var t = 0;
+			while (results[t]!=undefined){
+				usersBookings.push(results[t]);
+				t++;
+			}
+			var div_content='';
+			for (var i = 0; i < usersBookings.length; i++) {
+				var nights = assign_number_nightsMy(usersBookings[i].arrival,usersBookings[i].departure);
+				div_content +=
+				          '<ul class="list-group">\
+				            <li class="list-group-item">Hotel:		<span id="hotel_name">'+usersBookings[i].hotel_name+'</span></li>\
+				            <li class="list-group-item">Location:			<span id="loc">'+usersBookings[i].location+'</span></li>\
+				            <li class="list-group-item">Number of Nights:			<span id="n_nights">'+nights+'</span></li>\
+				            <li class="list-group-item">Number adults:			<span id="n_adults">'+usersBookings[i].no_adults+'</span></li>\
+				            <li class="list-group-item">Number children: 		<span id="n_children">'+usersBookings[i].no_children+'</span></li>\
+				            <li class="list-group-item">Date of arrival:		<span id="arr_date">'+usersBookings[i].arrival+'</span></li>\
+				            <li class="list-group-item">Date of departure:	<span id="dep_date">'+usersBookings[i].departure+'</span></li>\
+				            <li class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total">'+'$'+usersBookings[i].cost_per_night*nights+'</span></li>\
+				          </ul>'
+			}
+			res.send(div_content);
+			connection.release();
+		});
+	});
+});
+
+//
+//
+// router.get('/SearchHotels', function(req, res) {
+//
+// 	req.pool.getConnection(function(err,connection){
+// 		if (err) {throw err;}
+// 		// select everything from hotels where the location matches the search
+// 		var sql = "SELECT * FROM Hotels WHERE location = '"+req.query.searchTerm+"';";
+// 		connection.query(sql, function(err, results){
+// 			var t = 0;
+// 			while (results[t]!=undefined){
+// 				searchedHotels.push(results[t]);
+// 				t++;
+// 			}
+// 			var div_content='';
+// 			for (var i = 0; i < searchedHotels.length; i++) {
+// 				div_content += '<link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css"> \
+// 							<script src="javascripts/placeholder.js"></script> \
+// 							<p class="imageinfo"><img style = "width: 30%;float:left;display: inline-block;margin: 0px 10px 10px 0px;" src='+searchedHotels[i].photos+ " " +
+// 							'alt="Hotel '+i+ " " +
+// 							'class="hotels"><strong>Name: </strong> '+searchedHotels[i].hotel_name+
+// 							'<br> <strong>Stars: '+write_stars(searchedHotels[i].stars)+
+// 							'</strong><br> <strong>Price: </strong>$'+searchedHotels[i].cost_per_night+
+// 							'per night<br> <strong>Location: </strong>'+searchedHotels[i].location+
+// 							'</p><p>'+ write_features(searchedHotels[i].features).join(" | ") +'</p> \
+// 							<form action="/HotelDetails" method="get">\
+// 								<button type="submit" class="btn btn-default button_details_booknow">Details</button>\
+// 							</form>\
+// 							<form action="/BookingDetails" method="get">\
+// 								<button type="submit" onclick = "store_name_price(\''+searchedHotels[i].hotel_name+'\', \''+searchedHotels[i].cost_per_night+'\', \''+searchedHotels[i].location+'\', \''+searchedHotels[i].hotel_id+'\')" class="btn btn-default button_details_booknow">Book Now</button>\
+// 							</form>\
+// 							<div style="clear:both;"></div>';
+// 			}
+//
+// 			res.send(div_content);
+// 			searchedHotels = [];
+// 			connection.release();
+// 		});
+// 	});
+// });
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/fillHotelDetails', function(req, res) {
 	console.log(number_adults);
