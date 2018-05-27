@@ -56,7 +56,7 @@ function marker(hotel) {
   "<br><strong>Price: </strong>"+hotel.cost_per_night+
   "<br> \
   <form action='/HotelDetails' method='get'> \
-    <input type='hidden' name='hotel_id' value="'+hotel.hotel_id+'" /> \
+    <input type='hidden' name='hotel_id' value='"+hotel.hotel_id+"' /> \
     <button type='submit' class='btn btn-default button_details_booknow'>Details</button> \
   </form>\
   <form action='/BookingDetails' method='get'>\
