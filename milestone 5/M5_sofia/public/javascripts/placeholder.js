@@ -319,6 +319,20 @@ function SearchHotelsResponse(){
 
 }
 
+function write_hotel_details(url) {
+	var hotel_id = url.split("?hotel_id=")[1];
+	var xhttp = new XMLHttpRequest;
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var page = this.responseText;
+			document.getElementById("hotel_details_div").innerHTML = page;
+        	}
+      };
+
+      xhttp.open("GET","/HotelDetailsWrite?hotel_id="+hotel_id, true);
+      xhttp.send();
+}
+
 /////////////////////HOTEL MANAGEMENT DETAILS ///////////////////
 var FirstHotel = {
 	username:"FirstHotel",
