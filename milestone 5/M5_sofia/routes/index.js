@@ -577,7 +577,26 @@ router.get('/ManageAccount', function(req, res){
 	res.redirect("ManageAccount.html");
 });
 
-router.get('/ChangeMyDetails', function(req,res){
+router.post('/ChangeMyDetails', function(req,res){
+	const currentUserEmail = req.session.current_user.email;
+	console.log("currentusermeail:"+currentUserEmail)
+	req.pool.getConnection(function(err,connection) {
+			if (err) { throw err;}
+			var query = "UPDATE Users SET Fname='"+req.body.fname+"',Lname='"+req.body.lname+"',dob='"+req.body.dob+"',phone='"+req.body.number+"',pwd='"+req.body.pwd+"' WHERE email = '"+currentUserEmail+"'";
+			connection.query(query, function(err, results){
+				/*Some actions to handle the query results*/
+				connection.release(); // release connection
+				});
+		});
+	isRegLoggedIn = true;
+	var new_user = {"fname":req.body.fname, "email":req.session.current_user.email};
+	req.session.current_user = new_user;
+	logged_in = true;
+	res.redirect("Home.html");
+});
+
+router.get('/ChangeMyDetailsPage', function(req,res){
+	prev_pages.push(current_page);
 	res.redirect("ChangeMyDetails.html");
 });
 router.get('/ViewMyBookings', function(req,res){
