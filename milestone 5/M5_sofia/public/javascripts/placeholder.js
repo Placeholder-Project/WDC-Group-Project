@@ -636,29 +636,17 @@ function display_bookings(){
   xhttp.send(object_array);
 }
 
-// function load_bookings()
-// {
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function(){
-//     if(this.readyState == 4 && this.status == 200){
-//       var object_array = (xhttp.responseText);
-//       for (var j = 0; j < object_array.length; j++)
-//       {
-//         var fd = object_array[j].from_date;
-//         var td = object_array[j].to_date;
-//         assign_number_nights(fd,td);
-//         document.getElementById("n_nights").innerHTML += number_nights;
-//         document.getElementById("hotel_name").innerHTML += object_array[j].hotel_name;
-//         document.getElementById("loc").innerHTML += object_array[j].location;
-//         document.getElementById("price_total").innerHTML += object_array[j].price * number_nights;
-//         document.getElementById("n_adults").innerHTML += object_array[j].adult_number;
-//         document.getElementById("n_children").innerHTML += object_array[j].child_number;
-//         document.getElementById("arr_date").innerHTML += object_array[j].from_date;
-//         document.getElementById("dep_date").innerHTML += object_array[j].to_date;
-//       }
-//     }
-//   };
-//
-//   xhttp.open("GET","/send_booking_details", true);
-//   xhttp.send();
-// }
+///////////********************************* THINGS SOFIA HAS ALTERED **************************************/////////
+
+// use post when we need to send something (req.body) as opposed to empty send
+function deleteBookingID(id){
+  var xhttp = new XMLHttpRequest();
+  var id_object = {'book_id':id};
+  xhttp.open("POST","/DeleteBooking", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  window.location.replace("ViewMyBookings.html");
+  xhttp.send((JSON.stringify(id_object)));
+}
+
+
+///////////********************************* THINGS SOFIA HAS ALTERED **************************************/////////

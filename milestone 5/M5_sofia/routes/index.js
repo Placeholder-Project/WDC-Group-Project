@@ -19,7 +19,7 @@ var next_user = 1;
 var uniqueID = 0;
 var empty_user = {"uID" : 0, "fname":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":"","hotel":"","location":"","n_nights":"", "n_adults":"", "n_children":"","arr_date":"","dep_date":"","price_total":"","hotel_id":""};
 var users =[{'fname':"sofia", "email":"sofia@g", 'pwd': "cool", 'google': "102998056835987459663","hotel":"Magical Hotel","location":"Magical Land","n_nights":"5", "n_adults":"1", "n_children":"0","arr_date":"05/05/2000","dep_date":"05/06/2000","price_total":"$1","hotel_id":"00000000"}];
-
+var B_id = 1;
 function newUser(results)
 {
 	if (results.length == 0)
@@ -629,27 +629,11 @@ router.post('/StoreNamePrice', function(req, res) {
 
 
 
-// router.get('/fillMyBookings',function(req,res){
-// 	var usersBookings = [];
-// 	req.pool.getConnection(function(err,connection){
-// 		if (err) {throw err;}
-// 		var user_email = req.session.current_user.email;
-// 		console.log(user_email);
-// 		//var sql = "SELECT * FROM Bookings WHERE email = '"+user_email+"';";
-// 		var sql = "SELECT * FROM Bookings LEFT JOIN Hotels ON Bookings.hotel_id = Hotels.hotel_id WHERE email = '"+user_email+"';";
-// 		//var sql = "SELECT * FROM Bookings WHERE email = 'sofia@g';";
-// 		connection.query(sql, function(err, results){
-// 			var t = 0;
-// 			while (results[t]!=undefined){
-// 				usersBookings.push(results[t]);
-// 				t++;
-// 			}
-// 			console.log(usersBookings[0].location);
-// 			res.send(usersBookings);
-// 			connection.release();
-// 		});
-// 	});
-// });
+
+
+///////////********************************* THINGS SOFIA HAS ALTERED **************************************/////////
+
+
 
 
 function days_between(t1, t2) {
@@ -700,7 +684,10 @@ router.get('/fillMyBookings',function(req,res){
 				            <li class="list-group-item">Date of arrival:		<span id="arr_date">'+usersBookings[i].arrival+'</span></li>\
 				            <li class="list-group-item">Date of departure:	<span id="dep_date">'+usersBookings[i].departure+'</span></li>\
 				            <li class="list-group-item"><strong>TOTAL PRICE:	</strong><span id="price_total">'+'$'+usersBookings[i].cost_per_night*nights+'</span></li>\
-				          </ul>'
+				          </ul>\
+										<button type="submit" class="btn btn-default" onclick="deleteBookingID('+usersBookings[i].booking_id+')">Delete Booking</button>\
+									<br>\
+									<br>'
 			}
 			res.send(div_content);
 			connection.release();
@@ -708,47 +695,30 @@ router.get('/fillMyBookings',function(req,res){
 	});
 });
 
-//
-//
-// router.get('/SearchHotels', function(req, res) {
-//
-// 	req.pool.getConnection(function(err,connection){
-// 		if (err) {throw err;}
-// 		// select everything from hotels where the location matches the search
-// 		var sql = "SELECT * FROM Hotels WHERE location = '"+req.query.searchTerm+"';";
-// 		connection.query(sql, function(err, results){
-// 			var t = 0;
-// 			while (results[t]!=undefined){
-// 				searchedHotels.push(results[t]);
-// 				t++;
-// 			}
-// 			var div_content='';
-// 			for (var i = 0; i < searchedHotels.length; i++) {
-// 				div_content += '<link rel="stylesheet" type = "text/css" href="stylesheets/placeholder.css"> \
-// 							<script src="javascripts/placeholder.js"></script> \
-// 							<p class="imageinfo"><img style = "width: 30%;float:left;display: inline-block;margin: 0px 10px 10px 0px;" src='+searchedHotels[i].photos+ " " +
-// 							'alt="Hotel '+i+ " " +
-// 							'class="hotels"><strong>Name: </strong> '+searchedHotels[i].hotel_name+
-// 							'<br> <strong>Stars: '+write_stars(searchedHotels[i].stars)+
-// 							'</strong><br> <strong>Price: </strong>$'+searchedHotels[i].cost_per_night+
-// 							'per night<br> <strong>Location: </strong>'+searchedHotels[i].location+
-// 							'</p><p>'+ write_features(searchedHotels[i].features).join(" | ") +'</p> \
-// 							<form action="/HotelDetails" method="get">\
-// 								<button type="submit" class="btn btn-default button_details_booknow">Details</button>\
-// 							</form>\
-// 							<form action="/BookingDetails" method="get">\
-// 								<button type="submit" onclick = "store_name_price(\''+searchedHotels[i].hotel_name+'\', \''+searchedHotels[i].cost_per_night+'\', \''+searchedHotels[i].location+'\', \''+searchedHotels[i].hotel_id+'\')" class="btn btn-default button_details_booknow">Book Now</button>\
-// 							</form>\
-// 							<div style="clear:both;"></div>';
-// 			}
-//
-// 			res.send(div_content);
-// 			searchedHotels = [];
-// 			connection.release();
-// 		});
-// 	});
-// });
-//
+
+
+router.post("/DeleteBooking", function(req, res){
+	var object = (req.body);
+	var id = object.book_id;
+	console.log("********** "+ id);
+	req.pool.getConnection(function(err,connection){
+		if (err) {throw err;}
+		var sql = "DELETE FROM Bookings WHERE booking_id = "+id+";";
+		connection.query(sql, function(err, results){
+			connection.release();
+		});
+	});
+});
+
+
+
+
+
+
+///////////********************************* THINGS SOFIA HAS ALTERED FINISH **************************************/////////
+
+
+
 
 
 
@@ -821,11 +791,13 @@ router.get('/confirm_booking', function(req, res) {
 	}
 
 	// add new booking to database
+	// add new booking to database
 	req.pool.getConnection(function(err,connection){
 		if (err) {throw err;}
 		var user_email = req.session.current_user.email;
 		var h_id = '0';
-		var sql = "INSERT INTO Bookings (email,arrival,departure,no_adults,no_children,hotel_id,location) VALUES('"+user_email+"','"+date_arrival+"','"+date_departure+"','"+number_adults+"','"+number_children+"','"+temp_hotel_id+"','"+temp_hotel_city+"');";
+		var sql = "INSERT INTO Bookings (email,arrival,departure,no_adults,no_children,hotel_id,location,booking_id) VALUES('"+user_email+"','"+date_arrival+"','"+date_departure+"','"+number_adults+"','"+number_children+"','"+temp_hotel_id+"','"+temp_hotel_city+"','"+B_id+"');";
+		B_id++;
 		connection.query(sql, function(err, results){
 			connection.release();
 		});
