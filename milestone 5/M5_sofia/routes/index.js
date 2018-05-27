@@ -400,6 +400,7 @@ router.get('/SearchHotels', function(req, res) {
 							'per night<br> <strong>Location: </strong>'+searchedHotels[i].location+
 							'</p><p>'+ write_features(searchedHotels[i].features).join(" | ") +'</p> \
 							<form action="/HotelDetails" method="get">\
+								<input type="hidden" name="hotel_id" value="'+searchedHotels[i].hotel_id+'" /> \
 								<button type="submit" class="btn btn-default button_details_booknow">Details</button>\
 							</form>\
 							<form action="/BookingDetails" method="get">\
@@ -410,6 +411,31 @@ router.get('/SearchHotels', function(req, res) {
 
 			res.send(div_content);
 			searchedHotels = [];
+			connection.release();
+		});
+	});
+});
+
+// Send hotel info and it is written in to HotelDetails.html
+router.get('/HotelDetailsWrite', function(req, res) {
+	req.pool.getConnection(function(err,connection){
+		if (err) {throw err;}
+		// select everything from hotels where the location matches the search
+		var sql = "SELECT * FROM Hotels WHERE hotel_id = "+req.query.hotel_id+";";
+		connection.query(sql, function(err, results){
+			var page = '<br>\
+			<h1>'+results[0].hotel_name+'</h1>\
+			<p class="imageinfo"><img src="'+results[0].photos+'" alt="Hotel '+results[0].hotel_id+'" class="hotels">\
+			  <strong>Stars:'+write_stars(results[0].stars)+'</strong> \
+			  <br><strong>Price: </strong> $ '+results[0].cost_per_night+' per night \
+			  <br><strong>Location: </strong> '+results[0].location+' \
+			  <br><strong>Other info: </strong> '+results[0].description+' \
+			  <br>'+write_features(results[0].features).join(" | ")+' \
+			</p>\
+			<form action="/BookingDetails" method="get">\
+				<button type="submit" onclick = "store_name_price(\''+results[0].hotel_name+'\', \''+results[0].cost_per_night+'\', \''+results[0].location+'\', \''+results[0].hotel_id+'\')" class="btn btn-default button_details_booknow">Book Now</button>\
+			</form>';
+			res.send(page);
 			connection.release();
 		});
 	});
