@@ -23,13 +23,15 @@
   </head>
   <body>
   <header>
-    <!-- acts as home button -->
     <form action="/" method="get">
       <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
     </form>
-    <!-- login signup buttons CHANGED: writing from logged_in_query -->
     <div id = "login_signup_buttons"></div>
     <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <form action="/back" method="get">
+    <br><br><br>
+    <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+    </form>
   </header>
 
     <div class="container-fluid text-center feature_page" id="maps_div">
@@ -46,9 +48,6 @@
             <div class = "inline-block" id="map_aus">
 
             </div>
-            <form action="/back" method="get">
-              <button type="submit" name="button" class="btn btn-default back_button">Back</button>
-            </form>
             <div class = "blankSpace2">
             </div>
           </div>

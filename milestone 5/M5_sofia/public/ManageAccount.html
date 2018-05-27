@@ -22,8 +22,15 @@
   </head>
   <body>
   <header>
+    <form action="/" method="get">
+      <button type = "submit" id="placeholdertext"><span onclick="go_home()"><span class="firstTitleColour">place</span><span class="secondTitleColour">holder</span></span></button>
+    </form>
     <div id = "login_signup_buttons"></div>
     <div id = "open_id" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <form action="/back" method="get">
+    <br><br><br>
+    <button type="submit" name="button" class="btn btn-default back_button">Back</button>
+    </form>
     <script>
       window.onload = welcomeuser();
     </script>
@@ -42,9 +49,6 @@
             <button onclick = "display_bookings()" type="submit" class="btn btn-default button_details_booknow">View my Bookings</button>
 
           <br>
-          <form action="/" method="get">
-            <button type="submit" name="button" class="btn btn-default back_button">Back</button>
-          </form>
         </div>
       </div>
     </div>
