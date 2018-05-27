@@ -136,8 +136,8 @@ router.get('/Signup', function(req, res){
 });
 router.get('/HotelDetails', function(req, res){
   prev_pages.push(current_page);
-  current_page = "HotelDetails.html";
-  res.redirect("HotelDetails.html");
+  current_page = "HotelDetails.html?hotel_id="+req.query.hotel_id;
+  res.redirect(current_page);
 });
 
 router.get('/Confirmation', function(req, res){
