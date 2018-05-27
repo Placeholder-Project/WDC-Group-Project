@@ -71,7 +71,6 @@ router.post('/login', function(req, res) {
 			});
 
 			// if we dont have a matching user, create a new user and log them in
-			console.log("hi");
 
 			logged_in = true;
 			res.redirect("LoginSignupRedirect");
@@ -275,12 +274,22 @@ router.get('/BookingDetails', function(req, res) {
 // BACK BUTTON
 router.get('/back', function(req,res) {
 	console.log("back: " + prev_pages.join(" > "));
+	if (current_page == prev_pages[prev_pages.length-1]){
+		prev_pages.splice(-1,prev_pages.length-1);
+	}
+
 	current_page = prev_pages[prev_pages.length-1];
 	prev_pages.splice(-1,prev_pages.length-1);
   // checks if previous pages are identical
-  if (current_page == prev_pages[prev_pages.length-1]){
+	console.log("current_page: "+current_page);
+	console.log("next page: "+prev_pages[prev_pages.length-1]);
+  while (current_page == prev_pages[prev_pages.length-1]){
+		console.log("pages: "+ current_page);
     prev_pages.splice(-1,prev_pages.length-1);
   }
+	if (prev_pages[prev_pages.length-1] == prev_pages[prev_pages.length-2]){
+    prev_pages.splice(-1,prev_pages.length-1);
+	}
   if (current_page == undefined){
     res.redirect('/');
 		return

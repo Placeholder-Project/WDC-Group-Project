@@ -46,10 +46,13 @@ function marker(hotel) {
     <button type='submit' onclick = 'store_name_price(&quot;"+hotel.hotel_name+"&quot;, &quot;"+hotel.cost_per_night+"&quot;, &quot;"+hotel.location+"&quot;, &quot;"+hotel.hotel_id+"&quot;)' class='btn btn-default button_details_booknow'>Book Now</button>\
   </form>";
   var loc = {"lat":hotel.lat,"lng":hotel.lng};
+  map.setZoom(11);
   var marker = new google.maps.Marker({
     position : loc,
     map      : map
   });
+
+  map.panTo(marker.position);
   markers.push(marker);
 
 

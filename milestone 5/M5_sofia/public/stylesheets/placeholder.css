@@ -93,7 +93,6 @@ div.container-fluid.text-center{
 
 .back_button{
   margin-left: 15px;
-
   float:left;
 }
 
@@ -197,7 +196,7 @@ button em.rightImage{
   opacity: 0.9;
 }
 .inline-block {
-   display: inline;
+   display: inline-block;
 }
 .img_size {
   width: 100%;
