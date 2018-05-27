@@ -841,9 +841,11 @@ router.get('/confirm_booking', function(req, res) {
 		if (err) {throw err;}
 		var user_email = req.session.current_user.email;
 		var h_id = '0';
+		console.log("&&&&&&&&&&&&&&&&&&"+ B_id);
 		var sql = "INSERT INTO Bookings (email,arrival,departure,no_adults,no_children,hotel_id,location,booking_id) VALUES('"+user_email+"','"+date_arrival+"','"+date_departure+"','"+number_adults+"','"+number_children+"','"+temp_hotel_id+"','"+temp_hotel_city+"','"+B_id+"');";
 		B_id++;
 		connection.query(sql, function(err, results){
+			console.log(err);
 			connection.release();
 		});
 	});
