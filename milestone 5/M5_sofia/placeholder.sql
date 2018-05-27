@@ -84,13 +84,13 @@ CREATE TABLE `Hotels` (
 
 LOCK TABLES `Hotels` WRITE;
 /*!40000 ALTER TABLE `Hotels` DISABLE KEYS */;
-INSERT INTO `Hotels` VALUES ('InterContinental',0,550,35,'images/hotel1.jpg','0,1,2,3',4,'bIG hoTEl','Adelaide',-34.929333,138.598982),('Hilton',1,400,29,'images/hotel2.jpg','0,2,3,4,5',3,'SmoL hoTEl','Adelaide',-34.933343,138.607553);
-INSERT INTO Hotels VALUES('Hotel Sydney',2,600,20,'images/hotel3.jpg','0,1,2,3',5,'syd hotel','Sydney',-33.881417,151.234248);
-INSERT INTO Hotels VALUES('Hotel Melbourne',3,600,20,'images/hotel4.jpg','0,1,2,3',4,'mel hotel','Melbourne',-37.728139,144.976807);
-INSERT INTO Hotels VALUES('Hotel Perth',4,600,20,'images/hotel5.jpg','0,1,2,3',4,'perth hotel','Perth',-31.945930,115.876367);
-INSERT INTO Hotels VALUES('Hotel Brisbane',5,600,20,'images/hotel6.jpg','0,1,2,3',3,'bris hotel','Brisbane',-27.472152,153.026538);
-INSERT INTO Hotels VALUES('Hotel Darwin',6,600,20,'images/hotel7.jpg','0,1,2,3',5,'dar hotel','Darwin',-12.457418,130.843753);
-INSERT INTO Hotels VALUES('Hotel Hobart',7,600,20,'images/hotel8.jpg','0,1,2,3',4,'hob hotel','Hobart',-42.885091,147.329951);
+INSERT INTO `Hotels` VALUES ('InterContinental',0,550,35,'images/hotel1.jpg','0123',4,'bIG hoTEl','Adelaide',-34.929333,138.598982),('Hilton',1,400,29,'images/hotel2.jpg','0,2,3,4,5',3,'SmoL hoTEl','Adelaide',-34.933343,138.607553);
+INSERT INTO Hotels VALUES('Hotel Sydney',2,600,20,'images/hotel3.jpg','0123',5,'syd hotel','Sydney',-33.881417,151.234248);
+INSERT INTO Hotels VALUES('Hotel Melbourne',3,600,20,'images/hotel4.jpg','0123',4,'mel hotel','Melbourne',-37.728139,144.976807);
+INSERT INTO Hotels VALUES('Hotel Perth',4,600,20,'images/hotel5.jpg','0123',4,'perth hotel','Perth',-31.945930,115.876367);
+INSERT INTO Hotels VALUES('Hotel Brisbane',5,600,20,'images/hotel6.jpg','013',3,'bris hotel','Brisbane',-27.472152,153.026538);
+INSERT INTO Hotels VALUES('Hotel Darwin',6,600,20,'images/hotel7.jpg','0123',5,'dar hotel','Darwin',-12.457418,130.843753);
+INSERT INTO Hotels VALUES('Hotel Hobart',7,600,20,'images/hotel8.jpg','0123',4,'hob hotel','Hobart',-42.885091,147.329951);
 /*!40000 ALTER TABLE `Hotels` ENABLE KEYS */;
 UNLOCK TABLES;
 
