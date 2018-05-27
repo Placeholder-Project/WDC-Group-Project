@@ -381,7 +381,9 @@ function onSignIn(googleUser) {
   xhr.setRequestHeader("Content-type", "application/json");
   var object = {
     'idtoken': id_token,
-    'name': profile.getGivenName()
+    'fname': profile.getGivenName(),
+    'lname': profile.getFamilyName(),
+    'email': profile.getEmail()
   };
   xhr.send(JSON.stringify(object));
 }

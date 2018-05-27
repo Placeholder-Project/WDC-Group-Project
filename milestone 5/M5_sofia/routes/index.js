@@ -13,15 +13,23 @@ var date_departure;
 var search_index;
 var bookings = [];
 var temp_hotel_id;
+var create_new = false;
 /// OPEN ID
 var next_user = 1;
 var uniqueID = 0;
 var empty_user = {"uID" : 0, "fname":"", "lname":"", "dob":"", "email":"", "pwd":"", "tel":"","hotel":"","location":"","n_nights":"", "n_adults":"", "n_children":"","arr_date":"","dep_date":"","price_total":"","hotel_id":""};
 var users =[{'fname':"sofia", "email":"sofia@g", 'pwd': "cool", 'google': "102998056835987459663","hotel":"Magical Hotel","location":"Magical Land","n_nights":"5", "n_adults":"1", "n_children":"0","arr_date":"05/05/2000","dep_date":"05/06/2000","price_total":"$1","hotel_id":"00000000"}];
 
+function newUser(results)
+{
+	if (results.length == 0)
+	{
+		create_new = true;
+	}
+}
+
 router.post('/login', function(req, res) {
-	var create_new = true;
-	var req_object = (req.body)
+	var req_object = req.body;
 	if (req_object.idtoken !== undefined){
 		console.log("Google token received");
 		async function verify() {
@@ -31,47 +39,49 @@ router.post('/login', function(req, res) {
 			});
   		const payload = ticket.getPayload();
   		const userid = payload['sub'];
-			/*for (var i = 0; i < users.length; i++){
-				// if we have a matching user, log them in
-				if (users[i].google === userid){
-					console.log("Username: " +users[i].fname);
-					req.session.current_user = users[i];
-					logged_in = true;
-					console.log("Logged in!")
-					res.redirect("LoginSignupRedirect");
-					create_new = false;
-				}
+			var object = {
+				email: ''+req_object.email+'',
+				fname: ''+req_object.fname+'',
+				lname: ''+req_object.lname+'',
+				google: ''+userid+''
 			}
-			*/
-			// req.pool.getConnection(function(err,connection) {
-			// 		if (err) { throw err;}
-			// 		var query = "SELECT * FROM from Users WHERE email = "+req_object.email;
-			// 		connection.query(query, function(err, results){
-			// 			/*Some actions to handle the query results*/
-			// 			connection.release(); // release connection
-			// 			res.json(rows); //send response
-			// 			});
-			// });
+			req.session.current_user = object;
+			console.log(req.session.current_user);
+			req.pool.getConnection(function(err,connection) {
+					if (err) { throw err;}
+					var query = "SELECT * FROM Users WHERE email = '"+req_object.email+"'";
+					connection.query(query, function(err, results){
+						/*Some actions to handle the query results*/
+						newUser(results);
+						console.log("Logged in!");
+						connection.release(); // release connection
+						});
+						if (create_new) {
+							console.log("New user signed up!")
+							req.pool.getConnection(function(err,connection) {
+									if (err) { throw err;}
+									var query = "INSERT INTO Users (email,fname,lname,GID) VALUES ('"+req_object.email+"', '"+req_object.fname+"', '"+req_object.lname+"', '"+userid+"')";
+									connection.query(query, function(err, results){
+										/*Some actions to handle the query results*/
+										console.log("Signed up!")
+										connection.release(); // release connection
+										});
+							});
+						}
+			});
+
 			// if we dont have a matching user, create a new user and log them in
-			if (create_new) {
-				console.log("New user signed up!")
-				var new_user = {
-					'google': userid,
-				 	'fname': req_object.fname,
-					'lname': req_object.lname,
-					'email': req_object.email
-				};
-				users.push(new_user);
-				req.session.current_user = new_user;
-				logged_in = true;
-				res.redirect("LoginSignupRedirect");
-			}
+			console.log("hi");
+
+			logged_in = true;
+			res.redirect("LoginSignupRedirect");
 		}
 		verify().catch(console.error);
 	}
 	//res.redirect("Login.html");
 
 });
+
 
 router.post('/Confirmation', function(req, res) {
 	// TODO: send data to server
@@ -145,51 +155,77 @@ router.get('/LoginSignupRedirect', function(req, res) {
      res.redirect(prev_pages[prev_pages.length - 1]);
 });
 
-router.post('/LoginRedirect', function(req, res) {
-	console.log(req.body.email + " with " + req.body.pwd);
-	if (check_email(req.body.email)) {
-		if (check_password(req.body)) {
-			// password matches username
-			// add user to session
-			logged_in = true;
-			console.log("correct email and password");
-			req.session.current_user = get_user_from_email(req.body.email);
-			if (prev_pages[prev_pages.length - 1] != "LoginSignup.html"){
-				res.redirect(prev_pages[prev_pages.length - 1]);
-			}
-			res.redirect("Confirmation.html");
-			return;
-		} else {
-			// password does not match username
-			console.log("correct email wrong password");
-			res.redirect("login.html" /* passwd does not match email... how to display message? */);
-			return;
-		}
-	} else {
-		// no matching username
-		console.log("no matching email");
-		res.redirect("/Signup");
+var isRegLoggedIn = false;
+
+function regLogin(count)
+{
+	if (count != 0)
+	{
+		isRegLoggedIn = true;
 		return;
 	}
-	logged_in = true;
-     if (current_page=="LoginSignup.html"){
-       res.redirect("Confirmation.html");
-       return;
-     }
-     res.redirect(prev_pages[prev_pages.length - 1]);
+	console.log("wrong");
+	isRegLoggedIn = false;
+	return;
+}
+
+router.post('/LoginRedirect', function(req, res) {
+	console.log(req.body.email + " with " + req.body.pwd);
+	var object = {
+		email: ''+req.body.email+'',
+	}
+	req.session.current_user = object;
+	req.pool.getConnection(function(err,connection) {
+			if (err) { throw err;}
+			var query = "SELECT * FROM Users WHERE email = '"+req.body.email+"' AND pwd = '"+req.body.pwd+"'";
+			connection.query(query, function(err, results){
+				/*Some actions to handle the query results*/
+				if (results.length != 0)
+				{
+					console.log("Logged in!");
+				}
+				regLogin(results.length);
+				res.redirect('loginCheck');
+				connection.release(); // release connection
+				});
+		});
+});
+
+router.get('/loginCheck', function(req,res) {
+	if (isRegLoggedIn == false)
+	{
+		console.log("wrong username/password");
+		res.redirect("Login.html");
+	}
+	else
+	{
+		logged_in = true;
+	}
+	if (prev_pages[prev_pages.length - 1] != "LoginSignup.html" && isRegLoggedIn == true){
+		res.redirect(prev_pages[prev_pages.length - 1]);
+	}
+	else if (isRegLoggedIn == true){
+		res.redirect("Confirmation.html");
+	}
+	return;
 });
 
 router.post('/SignupRedirect', function(req, res) {
-	new_user = {"fname":req.body.fname, "email":req.body.email, "pwd":req.body.pwd};
+	var new_user = {"fname":req.body.fname, "email":req.body.email};
 	req.session.current_user = new_user;
 	users.push(new_user);
 	logged_in = true;
-	if (prev_pages[prev_pages.length - 1] != "LoginSignup.html"){
-		res.redirect(prev_pages[prev_pages.length - 1]);
-	}
-	res.redirect("Confirmation.html");
+	req.pool.getConnection(function(err,connection) {
+			if (err) { throw err;}
+			var query = "INSERT INTO Users (email, Fname, Lname, dob, phone, pwd) VALUES ('"+req.body.email+"', '"+req.body.fname+"', '"+req.body.lname+"', '"+req.body.dob+"', '"+req.body.number+"', '"+req.body.pwd+"')";
+			connection.query(query, function(err, results){
+				/*Some actions to handle the query results*/
+				connection.release(); // release connection
+				});
+		});
+	isRegLoggedIn = true;
+	res.redirect('loginCheck');
 });
-
 // EDIT USERS BOOKING DETAILS
 router.post('/confirmation_sent',function(req, res){
 	console.log(req.body);
@@ -485,9 +521,9 @@ router.post("/ManagemntLoginCheck", function(req, res){
 
 router.get('/logged_in_query', function(req, res) {
 	var to_send;
-	// && req.session.current_user
 	if (logged_in) {
-		to_send = {valid:"true", name:req.session.current_user.fname};
+		console.log("User: " +req.session.current_user.email);
+		to_send = {valid:"true", name:req.session.current_user.email};
 	} else {
 		to_send = {"valid":"false", "name":"false"};
 	}
